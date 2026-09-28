@@ -148,34 +148,134 @@
 // }
 // console.log(total)
 
-const productos = ["Tablet", "Movil", "Auriculares", "Mochila"];
+// const productos = ["Tablet", "Movil", "Auriculares", "Mochila"];
 
-productos.push("USB");
+// productos.push("USB");
 
-console.log(productos);
+// console.log(productos);
 
-const eliminarprimerproducto = productos.shift();
-console.log(productos);
+// const eliminarprimerproducto = productos.shift();
+// console.log(productos);
 
-console.log(productos.includes("pan"))
+// console.log(productos.includes("pan"))
 
-for (let i = 0; i < productos.length; i++) {
-    console.log(`Numero ${i} , Producto: ${productos[i]}`)
+// for (let i = 0; i < productos.length; i++) {
+//     console.log(`Numero ${i} , Producto: ${productos[i]}`)
+// }
+
+// let productofor = "valor";
+// function contarProducto(lista, producto) {
+//     let contador = 0;
+//     let producto_selec = ""
+
+//     for (let i = 0; i < lista.length; i++) {
+//         if (lista[i] === producto) {
+//             contador++
+//             producto_selec = lista[i]
+//         }
+//     }
+
+//     return console.log(`El producto ${producto_selec} aparece ${contador} veces`);
+// }
+
+// contarProducto(productos, "Movil")
+
+// const medicion = [18,20,41,19,21];
+
+// console.log(medicion)
+
+// medicion[2] = 22
+
+// console.log(medicion)
+
+// const parte = ["Luis","Sara","Marta"]
+
+// parte.unshift("Ana")
+// parte.push("Raúl")
+
+// console.log(parte)
+
+// const primerapersonaelim = parte.shift()
+// console.log(`Salio ${primerapersonaelim}`)
+// console.log(parte)
+
+// const canciones = ["Waka Waka","Experiencie","A toda pastilla","Caliz"]
+
+// console.log(canciones)
+
+// const cancioneliminada = canciones.pop()
+
+// console.log(`Cancion eliminada ${cancioneliminada} , permanencen ${canciones}`)
+
+// const nombre1 = ["Fabricio" , "Emilio", "Lourdes"]
+// const nombre2 = ["Javier" , "Paco", "Juan"]
+
+// const array_combinado = nombre1.concat(nombre2)
+
+// console.log(array_combinado)
+
+// console.log(nombre1)
+// console.log(nombre2)
+
+const producto = ["monitor", "ratón", "teclado", "webcam"];
+
+console.log(producto.includes("teclado"))
+console.log(producto.indexOf("teclado"))
+
+console.log(producto.includes("impresora"))
+console.log(producto.indexOf("impresora"))
+
+// el indexOf da -1 si lo que buscamos no esta dentro del array donde estamos buscando
+
+const visitas = [120, 98, 135, 110, 142]
+
+let total = 0;
+let media = 0;
+for (let i = 0; i < visitas.length; i++) {
+    total += visitas[i]
+
+
+
+}
+media = total / visitas.length
+
+console.log(total)
+console.log(media)
+
+const puntuacion = [12, 27, 19, 31, 24]
+let max = puntuacion[0]
+
+for (let i =0; i < puntuacion.length; i++){
+    if(puntuacion[i] > max){
+        max = puntuacion[i];
+    }
+}
+console.log(max)
+
+const nombres = ["Ana", "Roberto", "Inés", "Alejandro", "Mar"]
+const nombres5 = []
+for (let i =0; i < nombres.length ; i++){
+
+    if(nombres[i].length > 5){
+        nombres5.push(nombres[i])
+    }
 }
 
-let productofor = "valor";
-function contarProducto(lista, producto) {
-    let contador = 0;
-    let producto_selec = ""
+console.log(nombres5)
 
-    for (let i = 0; i < lista.length; i++) {
-        if (lista[i] === producto) {
-            contador++
-            producto_selec = lista[i]
+
+function eliminarElemento(lista, elemento){
+    for(let i =0; i < lista.length; i++){
+       let elementoeliminar = lista.indexOf(elemento)
+
+        if(lista[i] === elemento){
+            lista.splice(elementoeliminar,1)
         }
     }
 
-    return console.log(`El producto ${producto_selec} aparece ${contador} veces`);
+    return lista;
 }
 
-contarProducto(productos, "Movil")
+console.log(eliminarElemento(nombres))
+console.log(eliminarElemento(nombres,"Roberto"))
+

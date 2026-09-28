@@ -124,29 +124,78 @@
 
 
 
-cajero = 1200
+# cajero = 1200
+# opcion = 0
 
-opcion = int(input("Pon 1 si quieres consultar el saldo , 2 si quieres ingresar , 3 si quieres retirar y 4 si quieres salir.OJOOO no puedes retirar mas dinero del que tienes: "))
+# while(opcion !=4):
+        
+#         match opcion:
+#             case 1:
+#                 print(cajero)
+#             case 2:
+#                 ingresar = int(input("Dime cuanto dinero quieres ingresar"))
+#                 cajero = cajero + ingresar
+                
+#             case 3:
+#                 retirar = int(input("Dime cuanto dinero quieres retirar !!!RECUERDO no puedes retirar dinero con el cajero vacio: "))
+#                 if(retirar >= cajero):
+#                     print("no puedes retirar")
 
-match opcion:
-        case 1:
-            print(cajero)
-        case 2:
-            ingresar = int(input("Dime cuanto dinero quieres ingresar"))
-            cajero = ingresar + ingresar
-            
-        case 3:
-            retirar = int(input("Dime cuanto dinero quieres retirar !!!RECUERDO no puedes retirar dinero con el cajero vacio: "))
-            if(retirar >= cajero):
-                print("no puedes retirar")
+#                 cajero = cajero - retirar
 
-            cajero = cajero -retirar
-
-        case 4:
-            print("Has elegido salir")
-            
+#             case 4:
+#                 print("Has elegido salir")
+#         opcion = int(input("Pon 1 si quieres consultar el saldo , 2 si quieres ingresar , 3 si quieres retirar y 4 si quieres salir.OJOOO no puedes retirar mas dinero del que tienes: "))
 
 
+
+
+#numero = int(input("Introduce un numero : "))
+
+# while(numero >= 0):
+#     print(numero)
+#     numero-=1
+
+# print("!FIN")     
+     
+
+# nombre = "Python"
+
+# for letra in nombre:
+#     print(letra)            
+
+# colores = ["rojo","verde","azul"]
+
+# for color in colores:
+    # print(color)
+
+
+# for num in range(1,11):
+   
+#     print(f"{numero} x {num} = {num * numero}")
+
+
+
+#numero = int(input("Introduce un numero para ahorrar : "))
+# ahorro = 0
+# for mes in range(1,13):
+#     ahorro+=numero
+
+# print(ahorro)
+#num1 = range(1,100)
+
+# for num2 in range(1,11):
+#     print(num2)
+#     if(num2%2==0):
+#         print(num2)
+numero = 1
+while(numero<=10):
+    #print(numero)
+    # numero+=1
+
+    if(numero%2==0):
+       print(numero)
+    numero+=1
 
     
     
