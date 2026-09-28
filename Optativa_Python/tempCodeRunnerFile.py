@@ -1,2 +1,2 @@
-print(numero)
+ # print(numero)
     # numero+=1

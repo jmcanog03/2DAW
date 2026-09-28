@@ -184,20 +184,103 @@
 # print(ahorro)
 #num1 = range(1,100)
 
+
+# nota = 0
+# cantidad = 0
+# notasAprobadas =0
+# notasSuspensas =0
+# notaMedia = 0
+
+# while(nota != -1):
+        
+
+#     if(nota > 0):
+#        cantidad+=1
+    
+#     if(nota < 5 and nota !=-1):
+#       notasSuspensas+=1
+
+#     if(nota >=5 and nota!=-1):
+#         notasAprobadas+=1
+
+#     notaMedia+=nota
+
+#     nota = int(input("\nPon una nota o usa -1 para salir y te dire cuantas aprobadas y suspensas: "))
+    
+
+
+# print(f"Notas aprobadas {notasAprobadas}")
+# print(f"Notas suspensas : {notasSuspensas}")
+# print(f"Cantidad de notas introducidas: {cantidad}")
+# print(f"La nota media: {notaMedia/cantidad}")
+
+# filas = int(input("Filas"))
+
+# for fila in range(1,filas+1):
+#     for columnas in range(filas):
+#         print("*",end="")
+        
+#     print()
+    
+
 # for num2 in range(1,11):
 #     print(num2)
 #     if(num2%2==0):
 #         print(num2)
-numero = 1
-while(numero<=10):
-    #print(numero)
-    # numero+=1
 
-    if(numero%2==0):
-       print(numero)
-    numero+=1
 
+# numero = 1
+
+
+# while(numero<=10):
+    
+#     numero+=1i =0
+
+#     if(numero%2==0):
+#        print(numero)
+
+# numero = int(input("Introduce un numero positivo:  "))
+
+# while(numero >= 0):
+#     numero-=1
+#     print(numero+1)
     
     
-
+# print("¡Fin!")
     
+    
+    
+# lista = []
+
+# productos = input("Introduce un producto: ").lower()
+    
+# cantidad =0
+# while(productos != "fin"):
+    
+#     cantidad+=1;
+
+#     if(productos in lista):
+#         print("Introduce otro producto")
+#     else:
+#         lista.append(productos)
+          
+#     productos = input("Introduce un producto: ").lower()
+    
+
+# for i in range(len(lista)):
+    
+#     print(f"{i+1} . {lista[i]}")
+        
+
+
+# print(f"Total Productos: {cantidad}")
+
+
+dias_semana = ["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"]
+
+
+print(dias_semana[0])
+print(dias_semana[-1])
+print(len(dias_semana))
+print(dias_semana[0:5])
+print()

@@ -351,3 +351,132 @@ let resultado = contarApariciones(tarea,"Probar");
 console.log(`El elemento ${elemento1} , aparece ${resultado} veces`)
 
 
+const precios = [12,8,20]
+
+precios.forEach(function (precio){
+    console.log(`${precio} €`)
+})
+
+const temperaturas = [18,21,19,21]
+
+temperaturas.forEach(function (temperaturas,indice){
+    console.log(`Dia ${indice +1} : ${temperaturas}`)
+});
+
+const notas = [4,7,9,3,6]
+
+const aprobadas = notas.filter(notas =>{
+    return notas >= 5;
+})
+
+console.log(aprobadas)
+
+const nombre = ["Ana","Alejandro","Luis","Eva"]
+
+const cortos = nombres.filter(function (nombre){
+    if (nombre.length <=4) return nombre;
+})
+
+const mayusculas = cortos.map(function (nombre){
+    return nombre.toUpperCase()
+});
+
+console.log(mayusculas)
+
+const precio = [45,12,80,30,120,25]
+
+const preciosConIva = precio.map(function(precio){
+    return precio * 1.21
+})
+
+console.log(preciosConIva)
+
+
+const preciosmayor50 = precio.filter(function(precio){
+    if(precio >= 50) return precio;
+})
+
+console.log(preciosmayor50)
+
+const precioSuperiora100 = precio.find(function (precio){
+    if(precio > 100) return precio;
+})
+
+console.log(precioSuperiora100)
+
+const precioMenosDeVeinte = precio.some(function(precio){
+    if(precio < 20) return precio
+})
+
+console.log(precioMenosDeVeinte)
+
+const precioOrdenar = [...precio].sort(function(a,b){
+    return a - b
+})
+
+console.log(precioOrdenar)
+console.log(precio)
+
+const elementos = ["teclado", "ratón", "monitor", "impresora"]
+
+elementos.forEach(function(elementos,indice){
+    console.log(`Dispositivo ${indice +1} : ${elementos}`)
+})
+
+console.log()
+
+const estudiantes = ["Lucía", "Carlos", "Marta", "Diego"]
+
+
+estudiantes.forEach(function(estudiantes){
+    console.log(`Nombre ${estudiantes} esta presente`)
+    
+})
+console.log(`Hay ${estudiantes.length} estudiantes`)
+
+const medidas = [1.5, 2, 0.75, 3.2]
+
+const medidascentimetros = medidas.map(medidas => medidas*100)
+
+console.log(medidas)
+console.log(medidascentimetros)
+
+const lenguajes = ["javascript", "python", "java", "php"]
+
+const lenguajesMayusculas = lenguajes.map(lenguajes => lenguajes.toUpperCase())
+
+console.log(lenguajesMayusculas)
+
+const preciosnuevos = [50, 120, 35, 80]
+
+const descuentoPrecios = preciosnuevos.map(preciosnuevos => (preciosnuevos - (preciosnuevos * 0.20)).toFixed(2))
+
+console.log(descuentoPrecios)
+
+const pares = [13, 8, 21, 4, 16, 7, 10]
+
+const paresfiltrados = pares.filter(paresfiltrados => paresfiltrados%2==0)
+
+paresfiltrados.forEach(pares => console.log(pares))
+
+const lista = ["index.html", "app.js", "estilos.css", "validacion.js", "logo.png", "menu.js"]
+
+const terminadosenJS = lista.filter(lista => lista.endsWith(".js"))
+
+console.log(terminadosenJS)
+
+const temperatura = [18, 24, 31, 27, 35, 20, 29]
+
+const temperaturaIguales = temperatura.filter(temperatura => temperatura >=30)
+
+const mensajeTemperatura = temperaturaIguales.map(temperaturaIguales => console.log(`Temperatura elevada ${temperaturaIguales}`))
+
+const calificaciones = [7, 6, 4, 8, 3, 9]
+
+const calificacionesSuspensas = calificaciones.find(calificaciones => calificaciones<5)
+
+const calificacionesAprobadas = calificaciones.find(calificaciones => calificaciones>=5)
+
+console.log(calificacionesSuspensas)
+console.log(calificacionesAprobadas)
+
