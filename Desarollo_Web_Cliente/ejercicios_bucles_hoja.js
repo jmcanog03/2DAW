@@ -245,8 +245,8 @@ console.log(media)
 const puntuacion = [12, 27, 19, 31, 24]
 let max = puntuacion[0]
 
-for (let i =0; i < puntuacion.length; i++){
-    if(puntuacion[i] > max){
+for (let i = 0; i < puntuacion.length; i++) {
+    if (puntuacion[i] > max) {
         max = puntuacion[i];
     }
 }
@@ -254,9 +254,9 @@ console.log(max)
 
 const nombres = ["Ana", "Roberto", "Inés", "Alejandro", "Mar"]
 const nombres5 = []
-for (let i =0; i < nombres.length ; i++){
+for (let i = 0; i < nombres.length; i++) {
 
-    if(nombres[i].length > 5){
+    if (nombres[i].length > 5) {
         nombres5.push(nombres[i])
     }
 }
@@ -264,12 +264,12 @@ for (let i =0; i < nombres.length ; i++){
 console.log(nombres5)
 
 
-function eliminarElemento(lista, elemento){
-    for(let i =0; i < lista.length; i++){
-       let elementoeliminar = lista.indexOf(elemento)
+function eliminarElemento(lista, elemento) {
+    for (let i = 0; i < lista.length; i++) {
+        let elementoeliminar = lista.indexOf(elemento)
 
-        if(lista[i] === elemento){
-            lista.splice(elementoeliminar,1)
+        if (lista[i] === elemento) {
+            lista.splice(elementoeliminar, 1)
         }
     }
 
@@ -277,5 +277,77 @@ function eliminarElemento(lista, elemento){
 }
 
 console.log(eliminarElemento(nombres))
-console.log(eliminarElemento(nombres,"Roberto"))
+console.log(eliminarElemento(nombres, "Roberto"))
+
+
+const tarea = ["Diseñar", "Probar", "Publicar"];
+console.log(tarea);
+
+tarea.splice(1, 0, "Programar");
+
+console.log(tarea);
+
+
+let esIncluido = true
+
+function contiene(lista, elemento) {
+
+    for (let i = 0; i < lista.length; i++) {
+
+        if (lista.includes(elemento)) {
+            esIncluido = true;
+        } else {
+            esIncluido = false;
+        }
+    }
+
+    if (!esIncluido) {
+        console.log("No Disponible")
+    } else {
+        console.log("Disponible")
+    }
+}
+
+
+contiene(tarea, "Probar");
+
+let elemento = ""
+function rotarIzquierda(lista) {
+    for (let i = 0; i < lista.length; i++) {
+        elemento = lista[0];
+
+        if (lista[i] === elemento) {
+
+            lista.shift()
+
+            lista.push(elemento)
+        }
+    }
+
+    return lista;
+}
+
+console.log(rotarIzquierda(tarea));
+
+let contador = 0;
+let elemento1 = "";
+
+function contarApariciones(lista, elemento) {
+
+    for (let i = 0; i < lista.length; i++) {
+        if (lista[i] === elemento) {
+            contador++;
+            elemento1 = lista[i];
+        }
+
+        
+    }
+
+    return contador;
+}
+
+let resultado = contarApariciones(tarea,"Probar");
+
+console.log(`El elemento ${elemento1} , aparece ${resultado} veces`)
+
 
