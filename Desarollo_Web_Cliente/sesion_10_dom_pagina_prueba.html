@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tienda de informática</title>
+  <style>
+    body {
+      font-family: -apple-system, "Segoe UI", Arial, sans-serif;
+      max-width: 640px;
+      margin: 40px auto;
+      padding: 0 20px;
+      color: #10243D;
+      line-height: 1.5;
+    }
+    .destacado {
+      background: #FFF3D6;
+      padding: 8px 12px;
+      border-left: 4px solid #F4B942;
+    }
+    .caja-aviso {
+      padding: 12px 16px;
+      border: 1px solid #C9D8E6;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    .oculto {
+      display: none;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    li.producto {
+      margin-bottom: 6px;
+    }
+    li.agotado {
+      color: #94A3B8;
+      text-decoration: line-through;
+    }
+    img#foto {
+      max-width: 160px;
+      display: block;
+      margin: 16px 0;
+      border-radius: 6px;
+    }
+    .aviso {
+      margin-top: 48px;
+      padding: 12px 16px;
+      background: #EEF4F8;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #41576B;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="titulo">Tienda de informática</h1>
+  <p class="destacado">Envío gratuito en pedidos superiores a 50€.</p>
+  <p>Horario: de 9:00 a 20:00.</p>
+
+  <img id="foto" src="teclado.jpg" alt="Foto del teclado mecánico">
+  <a id="enlace" href="mailto:tienda@ejemplo.com">Contactar por email</a>
+
+  <h2 id="cabecera">Productos disponibles</h2>
+  <ul id="lista-productos">
+    <li class="producto">Teclado mecánico</li>
+    <li class="producto agotado">Ratón inalámbrico</li>
+    <li class="producto">Monitor 24"</li>
+    <li class="producto agotado">Auriculares</li>
+    <li class="producto">Webcam HD</li>
+  </ul>
+
+  <div id="aviso" class="oculto caja-aviso">¡Oferta especial esta semana!</div>
+
+  <p id="pie" name="contacto">Contacto: tienda@ejemplo.com</p>
+
+  <div class="aviso">
+    Página de pruebas · Sesión 10 · Modificar el DOM (contenido, atributos y clases)<br>
+    Abre la consola del navegador (F12 o clic derecho → Inspeccionar → Console) y
+    escribe ahí el código de cada diapositiva para comprobar el resultado.<br>
+    La imagen del teclado no se verá (no hay archivo teclado.jpg real): no afecta a los ejercicios,
+    solo se trabaja con sus atributos.
+  </div>
+  <script src="/Desarollo_Web_Cliente/sesion10.js"></script>
+</body>
+</html>

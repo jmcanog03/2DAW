@@ -1,0 +1,212 @@
+[
+  {
+    "id": 1,
+    "titulo": "El camino de los olivos",
+    "anio": 1884,
+    "estilo": "Realismo",
+    "descripcion": "Paisaje rural protagonizado por un camino rodeado de olivos."
+  },
+  {
+    "id": 2,
+    "titulo": "Retrato de una dama",
+    "anio": 1892,
+    "estilo": "Realismo",
+    "descripcion": "Retrato de una mujer de la alta sociedad de finales del siglo XIX."
+  },
+  {
+    "id": 3,
+    "titulo": "La plaza al amanecer",
+    "anio": 1901,
+    "estilo": "Modernismo",
+    "descripcion": "Escena urbana que representa una plaza al comienzo del día."
+  },
+  {
+    "id": 4,
+    "titulo": "Tarde en la costa",
+    "anio": 1910,
+    "estilo": "Impresionismo",
+    "descripcion": "Paisaje mediterráneo realizado mediante pinceladas rápidas y luminosas."
+  },
+  {
+    "id": 5,
+    "titulo": "La cosecha",
+    "anio": 1918,
+    "estilo": "Costumbrismo",
+    "descripcion": "Escena campesina que representa las labores de una jornada de cosecha."
+  },
+  {
+    "id": 6,
+    "titulo": "Flores de invierno",
+    "anio": 1924,
+    "estilo": "Expresionismo",
+    "descripcion": "Composición floral caracterizada por colores intensos y contrastados."
+  },
+  {
+    "id": 7,
+    "titulo": "La tormenta",
+    "anio": 1932,
+    "estilo": "Expresionismo",
+    "descripcion": "Paisaje dramático que representa un cielo cubierto por una tormenta."
+  },
+  {
+    "id": 8,
+    "titulo": "Naturaleza con frutas",
+    "anio": 1938,
+    "estilo": "Cubismo",
+    "descripcion": "Naturaleza muerta compuesta por frutas y objetos cotidianos."
+  },
+  {
+    "id": 9,
+    "titulo": "Formas en movimiento",
+    "anio": 1945,
+    "estilo": "Abstracción",
+    "descripcion": "Composición abstracta basada en líneas curvas y formas geométricas."
+  },
+  {
+    "id": 10,
+    "titulo": "Retrato de Elena",
+    "anio": 1950,
+    "estilo": "Realismo",
+    "descripcion": "Retrato femenino realizado con una paleta de colores suaves."
+  },
+  {
+    "id": 11,
+    "titulo": "Geometría azul",
+    "anio": 1957,
+    "estilo": "Arte abstracto",
+    "descripcion": "Composición geométrica dominada por diferentes tonalidades de azul."
+  },
+  {
+    "id": 12,
+    "titulo": "La ciudad nocturna",
+    "anio": 1962,
+    "estilo": "Expresionismo",
+    "descripcion": "Representación de una ciudad durante la noche mediante colores contrastados."
+  },
+  {
+    "id": 13,
+    "titulo": "Composición número 4",
+    "anio": 1969,
+    "estilo": "Abstracción",
+    "descripcion": "Obra abstracta formada por manchas, líneas y formas superpuestas."
+  },
+  {
+    "id": 14,
+    "titulo": "Figura sentada",
+    "anio": 1973,
+    "estilo": "Figurativo",
+    "descripcion": "Representación de una figura humana sentada en un espacio interior."
+  },
+  {
+    "id": 15,
+    "titulo": "El jardín secreto",
+    "anio": 1978,
+    "estilo": "Surrealismo",
+    "descripcion": "Escena onírica en la que diferentes elementos naturales aparecen combinados."
+  },
+  {
+    "id": 16,
+    "titulo": "Paisaje de otoño",
+    "anio": 1985,
+    "estilo": "Impresionismo",
+    "descripcion": "Paisaje natural dominado por tonos ocres y rojizos."
+  },
+  {
+    "id": 17,
+    "titulo": "Memoria digital",
+    "anio": 1992,
+    "estilo": "Arte contemporáneo",
+    "descripcion": "Obra que reflexiona sobre la relación entre tecnología y memoria."
+  },
+  {
+    "id": 18,
+    "titulo": "Círculos de luz",
+    "anio": 1998,
+    "estilo": "Arte abstracto",
+    "descripcion": "Composición formada por círculos de diferentes tamaños y colores."
+  },
+  {
+    "id": 19,
+    "titulo": "Arquitectura imposible",
+    "anio": 2002,
+    "estilo": "Surrealismo",
+    "descripcion": "Representación de un espacio arquitectónico imposible."
+  },
+  {
+    "id": 20,
+    "titulo": "Retrato en rojo",
+    "anio": 2006,
+    "estilo": "Figurativo",
+    "descripcion": "Retrato contemporáneo dominado por diferentes tonalidades de rojo."
+  },
+  {
+    "id": 21,
+    "titulo": "Bosque interior",
+    "anio": 2010,
+    "estilo": "Arte contemporáneo",
+    "descripcion": "Paisaje imaginario que combina elementos naturales y arquitectónicos."
+  },
+  {
+    "id": 22,
+    "titulo": "La conversación",
+    "anio": 2012,
+    "estilo": "Figurativo",
+    "descripcion": "Escena protagonizada por varias personas conversando en un café."
+  },
+  {
+    "id": 23,
+    "titulo": "Fragmentos",
+    "anio": 2014,
+    "estilo": "Abstracción",
+    "descripcion": "Composición abstracta basada en formas geométricas fragmentadas."
+  },
+  {
+    "id": 24,
+    "titulo": "Un día cualquiera",
+    "anio": 2016,
+    "estilo": "Costumbrismo",
+    "descripcion": "Escena cotidiana ambientada en una pequeña ciudad."
+  },
+  {
+    "id": 25,
+    "titulo": "Estructuras",
+    "anio": 2017,
+    "estilo": "Arte abstracto",
+    "descripcion": "Composición geométrica realizada mediante diferentes técnicas pictóricas."
+  },
+  {
+    "id": 26,
+    "titulo": "Luz sobre el valle",
+    "anio": 2018,
+    "estilo": "Impresionismo",
+    "descripcion": "Paisaje en el que la luz del atardecer ilumina un valle."
+  },
+  {
+    "id": 27,
+    "titulo": "El último maestro",
+    "anio": 2019,
+    "estilo": "Clasicismo",
+    "descripcion": "Obra contemporánea inspirada en las composiciones de la pintura clásica."
+  },
+  {
+    "id": 28,
+    "titulo": "Mirada azul",
+    "anio": 2021,
+    "estilo": "Figurativo",
+    "descripcion": "Retrato contemporáneo centrado en la expresión de los ojos."
+  },
+  {
+    "id": 29,
+    "titulo": "Universo de color",
+    "anio": 2023,
+    "estilo": "Arte abstracto",
+    "descripcion": "Obra abstracta basada en grandes superficies de colores vivos."
+  },
+  {
+    "id": 30,
+    "titulo": "Ciudad después de la lluvia",
+    "anio": 2025,
+    "estilo": "Arte contemporáneo",
+    "descripcion": "Escena urbana en la que las calles aparecen reflejadas tras la lluvia."
+  }
+]

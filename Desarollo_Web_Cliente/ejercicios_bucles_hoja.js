@@ -217,266 +217,347 @@
 // console.log(nombre1)
 // console.log(nombre2)
 
-const producto = ["monitor", "ratón", "teclado", "webcam"];
+// const producto = ["monitor", "ratón", "teclado", "webcam"];
 
-console.log(producto.includes("teclado"))
-console.log(producto.indexOf("teclado"))
+// console.log(producto.includes("teclado"))
+// console.log(producto.indexOf("teclado"))
 
-console.log(producto.includes("impresora"))
-console.log(producto.indexOf("impresora"))
+// console.log(producto.includes("impresora"))
+// console.log(producto.indexOf("impresora"))
 
-// el indexOf da -1 si lo que buscamos no esta dentro del array donde estamos buscando
+// // el indexOf da -1 si lo que buscamos no esta dentro del array donde estamos buscando
 
-const visitas = [120, 98, 135, 110, 142]
+// const visitas = [120, 98, 135, 110, 142]
 
-let total = 0;
-let media = 0;
-for (let i = 0; i < visitas.length; i++) {
-    total += visitas[i]
-
-
-
-}
-media = total / visitas.length
-
-console.log(total)
-console.log(media)
-
-const puntuacion = [12, 27, 19, 31, 24]
-let max = puntuacion[0]
-
-for (let i = 0; i < puntuacion.length; i++) {
-    if (puntuacion[i] > max) {
-        max = puntuacion[i];
-    }
-}
-console.log(max)
-
-const nombres = ["Ana", "Roberto", "Inés", "Alejandro", "Mar"]
-const nombres5 = []
-for (let i = 0; i < nombres.length; i++) {
-
-    if (nombres[i].length > 5) {
-        nombres5.push(nombres[i])
-    }
-}
-
-console.log(nombres5)
+// let total = 0;
+// let media = 0;
+// for (let i = 0; i < visitas.length; i++) {
+//     total += visitas[i]
 
 
-function eliminarElemento(lista, elemento) {
-    for (let i = 0; i < lista.length; i++) {
-        let elementoeliminar = lista.indexOf(elemento)
 
-        if (lista[i] === elemento) {
-            lista.splice(elementoeliminar, 1)
-        }
-    }
+// }
+// media = total / visitas.length
 
-    return lista;
-}
+// console.log(total)
+// console.log(media)
 
-console.log(eliminarElemento(nombres))
-console.log(eliminarElemento(nombres, "Roberto"))
+// const puntuacion = [12, 27, 19, 31, 24]
+// let max = puntuacion[0]
 
+// for (let i = 0; i < puntuacion.length; i++) {
+//     if (puntuacion[i] > max) {
+//         max = puntuacion[i];
+//     }
+// }
+// console.log(max)
 
-const tarea = ["Diseñar", "Probar", "Publicar"];
-console.log(tarea);
+// const nombres = ["Ana", "Roberto", "Inés", "Alejandro", "Mar"]
+// const nombres5 = []
+// for (let i = 0; i < nombres.length; i++) {
 
-tarea.splice(1, 0, "Programar");
+//     if (nombres[i].length > 5) {
+//         nombres5.push(nombres[i])
+//     }
+// }
 
-console.log(tarea);
-
-
-let esIncluido = true
-
-function contiene(lista, elemento) {
-
-    for (let i = 0; i < lista.length; i++) {
-
-        if (lista.includes(elemento)) {
-            esIncluido = true;
-        } else {
-            esIncluido = false;
-        }
-    }
-
-    if (!esIncluido) {
-        console.log("No Disponible")
-    } else {
-        console.log("Disponible")
-    }
-}
+// console.log(nombres5)
 
 
-contiene(tarea, "Probar");
+// function eliminarElemento(lista, elemento) {
+//     for (let i = 0; i < lista.length; i++) {
+//         let elementoeliminar = lista.indexOf(elemento)
 
-let elemento = ""
-function rotarIzquierda(lista) {
-    for (let i = 0; i < lista.length; i++) {
-        elemento = lista[0];
+//         if (lista[i] === elemento) {
+//             lista.splice(elementoeliminar, 1)
+//         }
+//     }
 
-        if (lista[i] === elemento) {
+//     return lista;
+// }
 
-            lista.shift()
+// console.log(eliminarElemento(nombres))
+// console.log(eliminarElemento(nombres, "Roberto"))
 
-            lista.push(elemento)
-        }
-    }
 
-    return lista;
-}
+// const tarea = ["Diseñar", "Probar", "Publicar"];
+// console.log(tarea);
 
-console.log(rotarIzquierda(tarea));
+// tarea.splice(1, 0, "Programar");
 
-let contador = 0;
-let elemento1 = "";
+// console.log(tarea);
 
-function contarApariciones(lista, elemento) {
 
-    for (let i = 0; i < lista.length; i++) {
-        if (lista[i] === elemento) {
-            contador++;
-            elemento1 = lista[i];
-        }
+// let esIncluido = true
+
+// function contiene(lista, elemento) {
+
+//     for (let i = 0; i < lista.length; i++) {
+
+//         if (lista.includes(elemento)) {
+//             esIncluido = true;
+//         } else {
+//             esIncluido = false;
+//         }
+//     }
+
+//     if (!esIncluido) {
+//         console.log("No Disponible")
+//     } else {
+//         console.log("Disponible")
+//     }
+// }
+
+
+// contiene(tarea, "Probar");
+
+// let elemento = ""
+// function rotarIzquierda(lista) {
+//     for (let i = 0; i < lista.length; i++) {
+//         elemento = lista[0];
+
+//         if (lista[i] === elemento) {
+
+//             lista.shift()
+
+//             lista.push(elemento)
+//         }
+//     }
+
+//     return lista;
+// }
+
+// console.log(rotarIzquierda(tarea));
+
+// let contador = 0;
+// let elemento1 = "";
+
+// function contarApariciones(lista, elemento) {
+
+//     for (let i = 0; i < lista.length; i++) {
+//         if (lista[i] === elemento) {
+//             contador++;
+//             elemento1 = lista[i];
+//         }
 
         
-    }
+//     }
 
-    return contador;
-}
+//     return contador;
+// }
 
-let resultado = contarApariciones(tarea,"Probar");
+// let resultado = contarApariciones(tarea,"Probar");
 
-console.log(`El elemento ${elemento1} , aparece ${resultado} veces`)
-
-
-const precios = [12,8,20]
-
-precios.forEach(function (precio){
-    console.log(`${precio} €`)
-})
-
-const temperaturas = [18,21,19,21]
-
-temperaturas.forEach(function (temperaturas,indice){
-    console.log(`Dia ${indice +1} : ${temperaturas}`)
-});
-
-const notas = [4,7,9,3,6]
-
-const aprobadas = notas.filter(notas =>{
-    return notas >= 5;
-})
-
-console.log(aprobadas)
-
-const nombre = ["Ana","Alejandro","Luis","Eva"]
-
-const cortos = nombres.filter(function (nombre){
-    if (nombre.length <=4) return nombre;
-})
-
-const mayusculas = cortos.map(function (nombre){
-    return nombre.toUpperCase()
-});
-
-console.log(mayusculas)
-
-const precio = [45,12,80,30,120,25]
-
-const preciosConIva = precio.map(function(precio){
-    return precio * 1.21
-})
-
-console.log(preciosConIva)
+// console.log(`El elemento ${elemento1} , aparece ${resultado} veces`)
 
 
-const preciosmayor50 = precio.filter(function(precio){
-    if(precio >= 50) return precio;
-})
+// const precios = [12,8,20]
 
-console.log(preciosmayor50)
+// precios.forEach(function (precio){
+//     console.log(`${precio} €`)
+// })
 
-const precioSuperiora100 = precio.find(function (precio){
-    if(precio > 100) return precio;
-})
+// const temperaturas = [18,21,19,21]
 
-console.log(precioSuperiora100)
+// temperaturas.forEach(function (temperaturas,indice){
+//     console.log(`Dia ${indice +1} : ${temperaturas}`)
+// });
 
-const precioMenosDeVeinte = precio.some(function(precio){
-    if(precio < 20) return precio
-})
+// const notas = [4,7,9,3,6]
 
-console.log(precioMenosDeVeinte)
+// const aprobadas = notas.filter(notas =>{
+//     return notas >= 5;
+// })
 
-const precioOrdenar = [...precio].sort(function(a,b){
-    return a - b
-})
+// console.log(aprobadas)
 
-console.log(precioOrdenar)
-console.log(precio)
+// const nombre = ["Ana","Alejandro","Luis","Eva"]
 
-const elementos = ["teclado", "ratón", "monitor", "impresora"]
+// const cortos = nombres.filter(function (nombre){
+//     if (nombre.length <=4) return nombre;
+// })
 
-elementos.forEach(function(elementos,indice){
-    console.log(`Dispositivo ${indice +1} : ${elementos}`)
-})
+// const mayusculas = cortos.map(function (nombre){
+//     return nombre.toUpperCase()
+// });
+
+// console.log(mayusculas)
+
+// const precio = [45,12,80,30,120,25]
+
+// const preciosConIva = precio.map(function(precio){
+//     return precio * 1.21
+// })
+
+// console.log(preciosConIva)
+
+
+// const preciosmayor50 = precio.filter(function(precio){
+//     if(precio >= 50) return precio;
+// })
+
+// console.log(preciosmayor50)
+
+// const precioSuperiora100 = precio.find(function (precio){
+//     if(precio > 100) return precio;
+// })
+
+// console.log(precioSuperiora100)
+
+// const precioMenosDeVeinte = precio.some(function(precio){
+//     if(precio < 20) return precio
+// })
+
+// console.log(precioMenosDeVeinte)
+
+// const precioOrdenar = [...precio].sort(function(a,b){
+//     return a - b
+// })
+
+// console.log(precioOrdenar)
+// console.log(precio)
+
+// const elementos = ["teclado", "ratón", "monitor", "impresora"]
+
+// elementos.forEach(function(elementos,indice){
+//     console.log(`Dispositivo ${indice +1} : ${elementos}`)
+// })
+
+// console.log()
+
+// const estudiantes = ["Lucía", "Carlos", "Marta", "Diego"]
+
+
+// estudiantes.forEach(function(estudiantes){
+//     console.log(`Nombre ${estudiantes} esta presente`)
+    
+// })
+// console.log(`Hay ${estudiantes.length} estudiantes`)
+
+// const medidas = [1.5, 2, 0.75, 3.2]
+
+// const medidascentimetros = medidas.map(medidas => medidas*100)
+
+// console.log(medidas)
+// console.log(medidascentimetros)
+
+// const lenguajes = ["javascript", "python", "java", "php"]
+
+// const lenguajesMayusculas = lenguajes.map(lenguajes => lenguajes.toUpperCase())
+
+// console.log(lenguajesMayusculas)
+
+// const preciosnuevos = [50, 120, 35, 80]
+
+// const descuentoPrecios = preciosnuevos.map(preciosnuevos => (preciosnuevos - (preciosnuevos * 0.20)).toFixed(2))
+
+// console.log(descuentoPrecios)
+
+// const pares = [13, 8, 21, 4, 16, 7, 10]
+
+// const paresfiltrados = pares.filter(paresfiltrados => paresfiltrados%2==0)
+
+// paresfiltrados.forEach(pares => console.log(pares))
+
+// const lista = ["index.html", "app.js", "estilos.css", "validacion.js", "logo.png", "menu.js"]
+
+// const terminadosenJS = lista.filter(lista => lista.endsWith(".js"))
+
+// console.log(terminadosenJS)
+
+// const temperatura = [18, 24, 31, 27, 35, 20, 29]
+
+// const temperaturaIguales = temperatura.filter(temperatura => temperatura >=30)
+
+// const mensajeTemperatura = temperaturaIguales.map(temperaturaIguales => console.log(`Temperatura elevada ${temperaturaIguales}`))
+
+// const calificaciones = [7, 6, 4, 8, 3, 9]
+
+// const calificacionesSuspensas = calificaciones.find(calificaciones => calificaciones<5)
+
+// const calificacionesAprobadas = calificaciones.find(calificaciones => calificaciones>=5)
+
+// console.log(calificacionesSuspensas)
+// console.log(calificacionesAprobadas)
+
+const productos = document.querySelectorAll(".producto") 
+
+productos.forEach(elemento => console.log(elemento.textContent))
 
 console.log()
 
-const estudiantes = ["Lucía", "Carlos", "Marta", "Diego"]
+// const cabecera = document.getElementById("cabecera")
+
+// console.log(cabecera.textContent)
+
+// const lista = document.getElementsByTagName("li")
+
+// console.log(lista.length)
+
+// const agotado = document.querySelectorAll(".agotado")
+
+// agotado.forEach(elemento => console.log(elemento.textContent))
+
+// const titulo = document.getElementById("titulo")
+// console.log(titulo.textContent)
+
+// const destacado = document.getElementsByClassName("destacado")
+// console.log(destacado[0].textContent)
+
+// const cabecera = document.querySelector("#cabecera")
+// console.log(cabecera.textContent)
 
 
-estudiantes.forEach(function(estudiantes){
-    console.log(`Nombre ${estudiantes} esta presente`)
-    
-})
-console.log(`Hay ${estudiantes.length} estudiantes`)
+// const productoagotado = document.querySelector(".agotado")
 
-const medidas = [1.5, 2, 0.75, 3.2]
+// console.log(productoagotado.textContent)
 
-const medidascentimetros = medidas.map(medidas => medidas*100)
+// const liproductos = document.querySelectorAll("li.producto")
 
-console.log(medidas)
-console.log(medidascentimetros)
+// liproductos.forEach(elemento => console.log(elemento.textContent))
 
-const lenguajes = ["javascript", "python", "java", "php"]
+const elemento = document.getElementById("no existe")
 
-const lenguajesMayusculas = lenguajes.map(lenguajes => lenguajes.toUpperCase())
+// if(elemento.textContent === null){
+//     console.log("es null")
 
-console.log(lenguajesMayusculas)
+// }else{
+//     console.log("no null")
+// }
 
-const preciosnuevos = [50, 120, 35, 80]
 
-const descuentoPrecios = preciosnuevos.map(preciosnuevos => (preciosnuevos - (preciosnuevos * 0.20)).toFixed(2))
+const li = document.getElementsByTagName("li")
 
-console.log(descuentoPrecios)
+for(let i =0; i < li.length; i++){
+    console.log(li[i])
+}
 
-const pares = [13, 8, 21, 4, 16, 7, 10]
+const titulo1 = document.getElementById("titulo")
+const titulo2 = document.querySelector("#titulo")
 
-const paresfiltrados = pares.filter(paresfiltrados => paresfiltrados%2==0)
+if(titulo1===titulo2){
+    console.log("son iguales")
+}else{
+    console.log("no son iguales")
+}
 
-paresfiltrados.forEach(pares => console.log(pares))
+const agotado = document.querySelectorAll(".agotado").length
+console.log(agotado)
 
-const lista = ["index.html", "app.js", "estilos.css", "validacion.js", "logo.png", "menu.js"]
 
-const terminadosenJS = lista.filter(lista => lista.endsWith(".js"))
+const contacto = document.querySelector('[name="contacto"]')
+console.log(contacto.length)
+console.log(contacto.textContent)
 
-console.log(terminadosenJS)
 
-const temperatura = [18, 24, 31, 27, 35, 20, 29]
+// const cambiarTitulo = document.getElementById("titulo").textContent="Tienda de Informatica . Liquidación total";
 
-const temperaturaIguales = temperatura.filter(temperatura => temperatura >=30)
+// console.log(cambiarTitulo)
 
-const mensajeTemperatura = temperaturaIguales.map(temperaturaIguales => console.log(`Temperatura elevada ${temperaturaIguales}`))
+// const aviso = document.querySelector(".destacado")
 
-const calificaciones = [7, 6, 4, 8, 3, 9]
+// aviso.innerHTML = ("<strong>Envio Gratis</strong>")
 
-const calificacionesSuspensas = calificaciones.find(calificaciones => calificaciones<5)
 
-const calificacionesAprobadas = calificaciones.find(calificaciones => calificaciones>=5)
 
-console.log(calificacionesSuspensas)
-console.log(calificacionesAprobadas)
 

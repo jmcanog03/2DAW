@@ -284,3 +284,41 @@ print(dias_semana[-1])
 print(len(dias_semana))
 print(dias_semana[0:5])
 print()
+
+
+
+# frase = input("Introduce una frase: ").lower()
+
+# palabra = frase.split()
+# larga = palabra[0]
+
+# for p in palabra:
+    
+#     if(len(p) > len(larga)):
+#         larga = p
+
+# print(f"la palabra mas larga es: {larga}")
+
+
+# print("-".join(sorted(palabra)))
+contador = 0;
+nombre = input("Introduce tu nombre: ").lower()  
+lista = []
+while(nombre != "fin"): 
+    nota = input("Introduce una nota: ")
+    lista.append([nombre,nota])
+    lista.sort()
+    if(int(nota) >=5):
+        contador+=1
+    nombre = input("Introduce tu nombre: ").lower()  
+
+print(f"La lista de alumnos y su nota es: {lista}")
+print(f"Han aprobado : {contador}")
+
+
+
+
+
+
+
+

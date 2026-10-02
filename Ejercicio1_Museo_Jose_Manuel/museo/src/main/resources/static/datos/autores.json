@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "nombre": "Alejandro Montiel",
+    "nacimiento": 1852,
+    "fallecimiento": 1921,
+    "nacionalidad": "Española",
+    "biografia": "Pintor español conocido por sus paisajes y escenas rurales."
+  },
+  {
+    "id": 2,
+    "nombre": "Clara Valdés",
+    "nacimiento": 1861,
+    "fallecimiento": 1935,
+    "nacionalidad": "Española",
+    "biografia": "Artista especializada en retratos y escenas de interior."
+  },
+  {
+    "id": 3,
+    "nombre": "Eduardo Ferrer",
+    "nacimiento": 1870,
+    "fallecimiento": 1942,
+    "nacionalidad": "Española",
+    "biografia": "Pintor vinculado al modernismo y a las escenas urbanas."
+  },
+  {
+    "id": 4,
+    "nombre": "Isabel Romero",
+    "nacimiento": 1882,
+    "fallecimiento": 1956,
+    "nacionalidad": "Española",
+    "biografia": "Destacó por sus composiciones de temática mediterránea."
+  },
+  {
+    "id": 5,
+    "nombre": "Mateo Sánchez",
+    "nacimiento": 1890,
+    "fallecimiento": 1968,
+    "nacionalidad": "Española",
+    "biografia": "Artista dedicado principalmente al paisaje y al costumbrismo."
+  },
+  {
+    "id": 6,
+    "nombre": "Elena Campos",
+    "nacimiento": 1895,
+    "fallecimiento": 1977,
+    "nacionalidad": "Española",
+    "biografia": "Pintora caracterizada por el uso de colores intensos."
+  },
+  {
+    "id": 7,
+    "nombre": "Julián Ortega",
+    "nacimiento": 1901,
+    "fallecimiento": 1982,
+    "nacionalidad": "Española",
+    "biografia": "Uno de los principales representantes del expresionismo local."
+  },
+  {
+    "id": 8,
+    "nombre": "María Robles",
+    "nacimiento": 1908,
+    "fallecimiento": 1990,
+    "nacionalidad": "Española",
+    "biografia": "Pintora especializada en naturalezas muertas."
+  },
+  {
+    "id": 9,
+    "nombre": "Fernando Aguirre",
+    "nacimiento": 1912,
+    "fallecimiento": 1988,
+    "nacionalidad": "Española",
+    "biografia": "Artista que combinó la pintura figurativa con elementos abstractos."
+  },
+  {
+    "id": 10,
+    "nombre": "Teresa Molina",
+    "nacimiento": 1918,
+    "fallecimiento": 2001,
+    "nacionalidad": "Española",
+    "biografia": "Conocida por sus retratos y composiciones de pequeño formato."
+  },
+  {
+    "id": 11,
+    "nombre": "Pablo Duarte",
+    "nacimiento": 1922,
+    "fallecimiento": 1999,
+    "nacionalidad": "Española",
+    "biografia": "Pintor de vanguardia interesado en la geometría y el color."
+  },
+  {
+    "id": 12,
+    "nombre": "Carmen Esteban",
+    "nacimiento": 1928,
+    "fallecimiento": 2010,
+    "nacionalidad": "Española",
+    "biografia": "Artista conocida por sus paisajes urbanos."
+  },
+  {
+    "id": 13,
+    "nombre": "Rafael Prieto",
+    "nacimiento": 1931,
+    "fallecimiento": 2015,
+    "nacionalidad": "Española",
+    "biografia": "Pintor de estilo abstracto y experimental."
+  },
+  {
+    "id": 14,
+    "nombre": "Lucía Navarro",
+    "nacimiento": 1935,
+    "fallecimiento": 2020,
+    "nacionalidad": "Española",
+    "biografia": "Pintora dedicada a la representación de figuras humanas."
+  },
+  {
+    "id": 15,
+    "nombre": "Antonio Beltrán",
+    "nacimiento": 1940,
+    "fallecimiento": 2018,
+    "nacionalidad": "Española",
+    "biografia": "Artista influido por el surrealismo y la pintura simbólica."
+  },
+  {
+    "id": 16,
+    "nombre": "Beatriz León",
+    "nacimiento": 1944,
+    "fallecimiento": null,
+    "nacionalidad": "Española",
+    "biografia": "Pintora contemporánea especializada en paisajes naturales."
+  },
+  {
+    "id": 17,
+    "nombre": "Gabriel Santos",
+    "nacimiento": 1948,
+    "fallecimiento": null,
+    "nacionalidad": "Española",
+    "biografia": "Artista contemporáneo que combina técnicas tradicionales y digitales."
+  },
+  {
+    "id": 18,
+    "nombre": "Sofía Marín",
+    "nacimiento": 1952,
+    "fallecimiento": null,
+    "nacionalidad": "Española",
+    "biografia": "Pintora dedicada al arte abstracto y las composiciones cromáticas."
+  },
+  {
+    "id": 19,
+    "nombre": "Vicente Lara",
+    "nacimiento": 1956,
+    "fallecimiento": null,
+    "nacionalidad": "Española",
+    "biografia": "Artista interesado en la arquitectura y los espacios urbanos."
+  },
+  {
+    "id": 20,
+    "nombre": "Nuria Castillo",
+    "nacimiento": 1960,
+    "fallecimiento": null,
+    "nacionalidad": "Española",
+    "biografia": "Pintora contemporánea especializada en retratos."
+  },
+  {
+    "id": 21,
+    "nombre": "Diego Paredes",
+    "nacimiento": 1963,
+    "fallecimiento": null,
+    "nacionalidad": "Española",
+    "biografia": "Artista que explora la relación entre naturaleza y espacio."
+  },
+  {
+    "id": 22,
+    "nombre": "Laura Hidalgo",
+    "nacimiento": 1967,
+    "fallecimiento": null,
+    "nacionalidad": "Española",
+    "biografia": "Pintora conocida por sus composiciones figurativas."
+  },
+  {
+    "id": 23,
+    "nombre": "Miguel Ríos",
+    "nacimiento": 1970,
+    "fallecimiento": null,
+    "nacionalidad": "Española",
+    "biografia": "Artista contemporáneo dedicado a la pintura abstracta."
+  },
+  {
+    "id": 24,
+    "nombre": "Ana Pastor",
+    "nacimiento": 1974,
+    "fallecimiento": null,
+    "nacionalidad": "Española",
+    "biografia": "Pintora especializada en escenas cotidianas."
+  },
+  {
+    "id": 25,
+    "nombre": "Héctor Vidal",
+    "nacimiento": 1978,
+    "fallecimiento": null,
+    "nacionalidad": "Española",
+    "biografia": "Artista que combina pintura, geometría y técnicas mixtas."
+  },
+  {
+    "id": 26,
+    "nombre": "Sara Lozano",
+    "nacimiento": 1981,
+    "fallecimiento": null,
+    "nacionalidad": "Española",
+    "biografia": "Pintora contemporánea centrada en el paisaje y la luz."
+  },
+  {
+    "id": 27,
+    "nombre": "Daniel Moreno",
+    "nacimiento": 1985,
+    "fallecimiento": null,
+    "nacionalidad": "Española",
+    "biografia": "Artista interesado en la reinterpretación de estilos clásicos."
+  },
+  {
+    "id": 28,
+    "nombre": "Irene Vega",
+    "nacimiento": 1988,
+    "fallecimiento": null,
+    "nacionalidad": "Española",
+    "biografia": "Pintora contemporánea dedicada al retrato y al arte figurativo."
+  },
+  {
+    "id": 29,
+    "nombre": "Álvaro Crespo",
+    "nacimiento": 1990,
+    "fallecimiento": null,
+    "nacionalidad": "Española",
+    "biografia": "Artista joven interesado en la abstracción y el color."
+  },
+  {
+    "id": 30,
+    "nombre": "Marta Soler",
+    "nacimiento": 1993,
+    "fallecimiento": null,
+    "nacionalidad": "Española",
+    "biografia": "Artista contemporánea que trabaja principalmente con paisajes y escenas urbanas."
+  }
+]
