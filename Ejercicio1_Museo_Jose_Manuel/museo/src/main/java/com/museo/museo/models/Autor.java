@@ -70,11 +70,7 @@ public class Autor {
     }
 
 
-    public int get(int id2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'get'");
-    }
-
+   
     
 
 }

@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.museo.museo.models.Autor;
-import com.museo.museo.repositories.Autorrepositories;
+import com.museo.museo.repositories.AutorRepositories;
 
 @Service 
-public class Autorservices {
+public class AutorServices {
 
-    private Autorrepositories autorrepositories;
-    public Autorservices(Autorrepositories autorrepositories){
+    private AutorRepositories autorrepositories;
+    public AutorServices(AutorRepositories autorrepositories){
         this.autorrepositories = autorrepositories;
     }
 
@@ -32,7 +32,7 @@ public class Autorservices {
         List <Autor> autores = autorrepositories.lista();
 
         for (Autor autor : autores) {
-            if(autor.get(id) == id){
+            if(autor.getId() == id){
                 return autor;
             }
         }

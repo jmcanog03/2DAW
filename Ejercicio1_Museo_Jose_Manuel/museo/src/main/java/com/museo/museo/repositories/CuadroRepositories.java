@@ -8,7 +8,7 @@ import com.museo.museo.models.Cuadro;
 import com.museo.museo.utils.Lector;
 
 @Repository
-public class Cuadrorepositories {
+public class CuadroRepositories {
     public List<Cuadro> lista() {
 
         return Lector.leerObras();

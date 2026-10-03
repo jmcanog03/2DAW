@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <html xmlns:th="http://www.thymeleaf.org">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutorID</title>
+</head>
+<body>
+    
+    <ul>
+        <li th:each="cuadro: ${cuadroID}" th:text="${cuadro.titulo}"></li>
+    </ul>
+</body>
+</html>

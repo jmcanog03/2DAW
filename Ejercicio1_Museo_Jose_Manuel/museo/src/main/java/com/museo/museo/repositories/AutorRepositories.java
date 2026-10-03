@@ -9,7 +9,7 @@ import com.museo.museo.models.Autor;
 import com.museo.museo.utils.Lector;
 
 @Repository
-public class Autorrepositories {
+public class AutorRepositories {
     public List<Autor> lista() {
 
         return Lector.leerAutores();
