@@ -43,3 +43,37 @@ const avisar = document.getElementById("aviso");
 avisar.classList.add("destacado")
 avisar.classList.remove("oculto")
 // aviso.classList.add("caja-aviso")
+
+const lista = document.getElementById("lista-productos")
+
+const nuevo = document.createElement("li")
+
+nuevo.textContent = "Cable USB-C"
+
+lista.append(nuevo);
+
+const titulo = document.getElementById("titulo")
+
+titulo.style.backgroundColor = ("green")
+
+const nuevo2 = document.createElement("li");
+
+nuevo2.textContent = "Oferta Relampago"
+
+const viejo = document.querySelector("li")
+
+lista.insertBefore(nuevo2,viejo)
+
+const primerElementoAgotado= document.querySelector(".agotado")
+
+primerElementoAgotado.remove()
+
+const nuevo3 = document.createElement("li");
+
+nuevo3.textContent = "Activo"
+
+nuevo3.classList.add("producto")
+
+const actualAgotado = lista.querySelector(".agotado")
+
+lista.replaceChild(nuevo3,actualAgotado)
