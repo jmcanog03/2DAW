@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <html xmlns:th="http://www.thymeleaf.org">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/museo/src/main/resources/static/raiz.css">
     <title>Raiz</title>
 </head>
 <body>
@@ -15,6 +16,7 @@
     </ul>
     
     <h2>Cuadros</h2>
+
     <ul>
         <li th:each="cuadro: ${cuadros}" th:text="${cuadro.titulo}"></li>
     </ul>

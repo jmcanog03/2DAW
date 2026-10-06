@@ -1,16 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en", xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <html xmlns:th="http://www.thymeleaf.org">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/raiz.css}">
     <title>AutorID</title>
 </head>
 <body>
     
-    <ul>
+    <!-- <ul>
         <li th:each="autor: ${autorID}" th:text="${autor.nombre}"></li>
+    </ul> -->
 
-    </ul>
+        <!-- <table>
+            <tr th:each=" autor: ${autorID}">
+                <td th:text="|Nombre: ${autor.nombre}|"></td>
+                <td th:text="|Nacionalidad: ${autor.nacionalidad}|"></td>
+                <td th:text="|Biografia: ${autor.biografia}|"></td>
+            </tr>
+
+        </table> -->
+
+    <!-- <ul>
+        <li th:each="autor: ${autorID}" th:text="|Nombre: ${autor.nombre}|">
+                
+
+        </li>
+        
+     </ul> -->
+
+     <div th:each="autor: ${autorID}">
+        
+            <!-- <ul>
+                <td th:text="|Nombre: ${autor.nombre}|"></td>
+                <td th:text="|Nacionalidad: ${autor.nacionalidad}|"></td>
+                <td th:text="|Biografia: ${autor.biografia}|"></td>
+            </ul> -->
+            
+            <table id="tabla">
+                
+                <tr>
+                    <td>ID</td>
+                    <td>Nombre</td>
+                    <td>Nacionalidad</td>
+                </tr>
+
+                <tr th:object="${autor}">
+                    <td th:text="${autor.id}"></td>
+                    <td th:text="${autor.nombre}"></td>
+                    <td th:text="${autor.nacionalidad}"></td>
+                </tr>
+
+            </table>
+    </div>
+     
 </body>
 </html>

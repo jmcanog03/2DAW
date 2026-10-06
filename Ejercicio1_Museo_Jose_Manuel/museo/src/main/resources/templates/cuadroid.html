@@ -8,8 +8,29 @@
 </head>
 <body>
     
-    <ul>
+    <!-- <ul>
         <li th:each="cuadro: ${cuadroID}" th:text="${cuadro.titulo}"></li>
-    </ul>
+        <li th:text="${cuadro.}"></li>
+    </ul> -->
+
+     <!-- <table>
+        <tr th:each="cuadro: ${cuadroID}">
+            <td th:text="|Nombre del cuadro: ${cuadro.titulo}|" class="espacio"></td>
+            <td th:text="|Estilo: ${cuadro.estilo}|" class="espacio"></td>
+            <td th:text="|Decripcion: ${cuadro.descripcion}|" class="espacio"></td>
+        </tr>
+    </table> -->
+
+    <div th:each="cuadro: ${cuadroID}">
+        <div th:object="${cuadro}">
+            <ul>
+                <li th:text="|Título: ${cuadro.titulo}|"></li><br>
+                <li th:text="|Estilo: ${cuadro.estilo}|"></li><br>
+                <li th:text="|Descripción: ${cuadro.descripcion}|"></li><br>
+            </ul>
+        </div>
+     </div>
+
+
 </body>
 </html>

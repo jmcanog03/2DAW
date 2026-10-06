@@ -10,13 +10,23 @@
 </head>
 
 <body>
-    <table>
+    <!-- <table>
         <tr th:each="cuadro: ${cuadros}">
             <td th:text="|Nombre del cuadro: ${cuadro.titulo}|" class="espacio"></td>
             <td th:text="|Estilo: ${cuadro.estilo}|" class="espacio"></td>
             <td th:text="|Decripcion: ${cuadro.descripcion}|" class="espacio"></td>
         </tr>
-    </table>
+    </table> -->
+     <div th:each="cuadro: ${cuadros}">
+        <div th:object="${cuadro}">
+            <ul>
+                <li th:text="|Título: ${cuadro.titulo}|"></li><br>
+                <li th:text="|Estilo: ${cuadro.estilo}|"></li><br>
+                <li th:text="|Descripción: ${cuadro.descripcion}|"></li><br>
+                <li th:text="|Anio: ${cuadro.anio}|"></li><br>
+            </ul>
+        </div>
+     </div>
 </body>
 
 </html>
