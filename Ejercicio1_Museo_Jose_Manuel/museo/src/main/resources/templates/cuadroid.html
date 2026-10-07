@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <html xmlns:th="http://www.thymeleaf.org">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/raiz.css}">
     <title>AutorID</title>
 </head>
 <body>
@@ -21,7 +22,7 @@
         </tr>
     </table> -->
 
-    <div th:each="cuadro: ${cuadroID}">
+    <!-- <div th:each="cuadro: ${cuadroID}">
         <div th:object="${cuadro}">
             <ul>
                 <li th:text="|Título: ${cuadro.titulo}|"></li><br>
@@ -29,7 +30,38 @@
                 <li th:text="|Descripción: ${cuadro.descripcion}|"></li><br>
             </ul>
         </div>
-     </div>
+     </div> -->
+
+     <!-- <table id="tabla">
+            <tr>
+                    <td>ID</td>
+                    <td>Titulo</td>
+                    <td>Estilo</td>
+                    <td>Descripcion</td>
+                    <td>anio</td>
+            </tr>
+        </table> -->
+
+
+        <table id="tabla">
+
+                <tr>
+                    <td>ID</td>
+                    <td>Titulo</td>
+                    <td>Estilo</td>
+                    <td>Descripcion</td>
+                    <td>anio</td>
+                </tr>
+
+                <tr th:each="cuadro: ${cuadroID}">
+                    <td th:text="${cuadro.id}"></td>
+                    <td th:text="${cuadro.titulo}"></td>
+                    <td th:text="${cuadro.estilo}"></td>
+                    <td th:text="${cuadro.descripcion}"></td>
+                    <td th:text="${cuadro.anio}"></td>       
+                </tr>
+
+            </table>
 
 
 </body>

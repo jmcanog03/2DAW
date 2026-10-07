@@ -5,28 +5,32 @@
     <meta charset="UTF-8">
     <html xmlns:th="http://www.thymeleaf.org">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/cuadro.css">
+    <link rel="stylesheet" th:href="@{/raiz.css}">
     <title>Cuadros</title>
 </head>
 
 <body>
-    <!-- <table>
-        <tr th:each="cuadro: ${cuadros}">
-            <td th:text="|Nombre del cuadro: ${cuadro.titulo}|" class="espacio"></td>
-            <td th:text="|Estilo: ${cuadro.estilo}|" class="espacio"></td>
-            <td th:text="|Decripcion: ${cuadro.descripcion}|" class="espacio"></td>
-        </tr>
-    </table> -->
-     <div th:each="cuadro: ${cuadros}">
-        <div th:object="${cuadro}">
-            <ul>
-                <li th:text="|Título: ${cuadro.titulo}|"></li><br>
-                <li th:text="|Estilo: ${cuadro.estilo}|"></li><br>
-                <li th:text="|Descripción: ${cuadro.descripcion}|"></li><br>
-                <li th:text="|Anio: ${cuadro.anio}|"></li><br>
-            </ul>
-        </div>
-     </div>
+            
+    <table id="tabla">
+
+                <tr>
+                    <td>ID</td>
+                    <td>Titulo</td>
+                    <td>Estilo</td>
+                    <td>Descripcion</td>
+                    <td>anio</td>
+                </tr>
+
+                <tr th:each="cuadro: ${cuadros}">
+                    <td th:text="${cuadro.id}"></td>
+                    <td th:text="${cuadro.titulo}"></td>
+                    <td th:text="${cuadro.estilo}"></td>
+                    <td th:text="${cuadro.descripcion}"></td>
+                    <td th:text="${cuadro.anio}"></td>       
+                </tr>
+
+    </table>
+    
 </body>
 
 </html>

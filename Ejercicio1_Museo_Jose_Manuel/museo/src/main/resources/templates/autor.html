@@ -4,21 +4,26 @@
     <meta charset="UTF-8">
     <html xmlns:th="http://www.thymeleaf.org">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/raiz.css}">
     <title>Autores</title>
 </head>
 <body>
-        <table>
-            <tr th:each=" autor: ${autores}">
+        <table id="tabla">
 
-                <td th:text="|nombre: ${autor.nombre}|"></td>
-                <td th:text="${autor.nacionalidad}"></td>
-                <td th:text="${autor.biografia}"></td>
-                
-                
-                
+                <tr>
+                    <td>ID</td>
+                    <td>Nombre</td>
+                    <td>Nacionalidad</td>
+                    <td>Biografia</td>
+                </tr>
 
-            </tr>
+                <tr th:each="autor: ${autores}">
+                    <td th:text="${autor.id}"></td>
+                    <td th:text="${autor.nombre}"></td>
+                    <td th:text="${autor.nacionalidad}"></td>
+                    <td th:text="${autor.biografia}"></td>    
+                </tr>
 
-        </table>
+    </table>
 </body>
 </html>

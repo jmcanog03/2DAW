@@ -7,52 +7,23 @@
     <title>AutorID</title>
 </head>
 <body>
-    
-    <!-- <ul>
-        <li th:each="autor: ${autorID}" th:text="${autor.nombre}"></li>
-    </ul> -->
 
-        <!-- <table>
-            <tr th:each=" autor: ${autorID}">
-                <td th:text="|Nombre: ${autor.nombre}|"></td>
-                <td th:text="|Nacionalidad: ${autor.nacionalidad}|"></td>
-                <td th:text="|Biografia: ${autor.biografia}|"></td>
-            </tr>
+    <table id="tabla">
 
-        </table> -->
-
-    <!-- <ul>
-        <li th:each="autor: ${autorID}" th:text="|Nombre: ${autor.nombre}|">
-                
-
-        </li>
-        
-     </ul> -->
-
-     <div th:each="autor: ${autorID}">
-        
-            <!-- <ul>
-                <td th:text="|Nombre: ${autor.nombre}|"></td>
-                <td th:text="|Nacionalidad: ${autor.nacionalidad}|"></td>
-                <td th:text="|Biografia: ${autor.biografia}|"></td>
-            </ul> -->
-            
-            <table id="tabla">
-                
                 <tr>
                     <td>ID</td>
                     <td>Nombre</td>
                     <td>Nacionalidad</td>
+                    <td>Biografia</td>
                 </tr>
 
-                <tr th:object="${autor}">
+                <tr th:each="autor: ${autorID}">
                     <td th:text="${autor.id}"></td>
                     <td th:text="${autor.nombre}"></td>
                     <td th:text="${autor.nacionalidad}"></td>
+                    <td th:text="${autor.biografia}"></td>    
                 </tr>
-
-            </table>
-    </div>
+    </table>
      
 </body>
 </html>

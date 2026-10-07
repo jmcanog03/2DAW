@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <html xmlns:th="http://www.thymeleaf.org">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/museo/src/main/resources/static/raiz.css">
+    <link rel="stylesheet" th:href="@{/raiz.css}">
     <title>Raiz</title>
 </head>
 <body>
 
-    <h2>Autores</h2>
+    <!-- <h2>Autores</h2>
 
     <ul>
         <li th:each="autor: ${autores}" th:text="${autor.nombre}"></li>
@@ -19,7 +19,54 @@
 
     <ul>
         <li th:each="cuadro: ${cuadros}" th:text="${cuadro.titulo}"></li>
-    </ul>
+    </ul> -->
+
+    <h2>Autores</h2>
+    <table id="tabla">
+
+                <tr>
+                    <td>ID</td>
+                    <td>Nombre</td>
+                    <td>Nacionalidad</td>
+                    <td>Biografia</td>
+                </tr>
+
+                <tr th:each="autor: ${autores}">
+                    <td th:text="${autor.id}"></td>
+                    <td th:text="${autor.nombre}"></td>
+                    <td th:text="${autor.nacionalidad}"></td>
+                    <td th:text="${autor.biografia}"></td>    
+                </tr>
+
+    </table>
+
+    <br>
+    <br>
+
+    <h2>Cuadros</h2>
+    <table id="tabla">
+
+                <tr>
+                    <td>ID</td>
+                    <td>Titulo</td>
+                    <td>Estilo</td>
+                    <td>Descripcion</td>
+                    <td>anio</td>
+                </tr>
+
+                <tr th:each="cuadro: ${cuadros}">
+                    <td th:text="${cuadro.id}"></td>
+                    <td th:text="${cuadro.titulo}"></td>
+                    <td th:text="${cuadro.estilo}"></td>
+                    <td th:text="${cuadro.descripcion}"></td>
+                    <td th:text="${cuadro.anio}"></td>       
+                </tr>
+
+    </table>
+
+
+
+    
 
 
 </body>
