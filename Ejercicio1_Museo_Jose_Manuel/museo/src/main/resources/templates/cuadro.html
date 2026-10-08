@@ -2,15 +2,18 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <html xmlns:th="http://www.thymeleaf.org">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/raiz.css}">
-    <title>Cuadros</title>
+    <div th:replace="fragmento :: metadatos"></div>
 </head>
 
 <body>
-            
+    <header>
+
+        <div th:replace="fragmento :: cabecera">
+
+        </div>
+
+    </header>
+    <br>
     <table id="tabla">
 
                 <tr>
@@ -26,7 +29,8 @@
                     <td th:text="${cuadro.titulo}"></td>
                     <td th:text="${cuadro.estilo}"></td>
                     <td th:text="${cuadro.descripcion}"></td>
-                    <td th:text="${cuadro.anio}"></td>       
+                    <td th:text="${cuadro.anio}"></td>
+                    <td><button><a th:href="@{/cuadro/{id}(id=${cuadro.id})}">Detalle</a></button></td>    
                 </tr>
 
     </table>

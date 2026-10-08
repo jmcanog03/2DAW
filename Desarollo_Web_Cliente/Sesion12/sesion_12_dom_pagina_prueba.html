@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tienda de informática</title>
+  <style>
+    body {
+      font-family: -apple-system, "Segoe UI", Arial, sans-serif;
+      max-width: 640px;
+      margin: 40px auto;
+      padding: 0 20px;
+      color: #10243D;
+      line-height: 1.5;
+    }
+    .destacado {
+      background: #FFF3D6;
+      padding: 8px 12px;
+      border-left: 4px solid #F4B942;
+    }
+    .caja-aviso {
+      padding: 12px 16px;
+      border: 1px solid #C9D8E6;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    .oculto {
+      display: none;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    li.producto {
+      margin-bottom: 6px;
+      cursor: pointer;
+    }
+    li.agotado {
+      color: #94A3B8;
+      text-decoration: line-through;
+    }
+    img#foto {
+      max-width: 160px;
+      display: block;
+      margin: 16px 0;
+      border-radius: 6px;
+    }
+    button#boton-oferta {
+      background: #18A0AE;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+    button#boton-oferta:hover {
+      background: #148490;
+    }
+    form#formulario-busqueda {
+      margin-top: 28px;
+      display: flex;
+      gap: 8px;
+    }
+    #buscador {
+      flex: 1;
+      padding: 8px 10px;
+      border: 1px solid #C9D8E6;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    form#formulario-busqueda button {
+      padding: 8px 14px;
+      border: 1px solid #10243D;
+      background: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .aviso {
+      margin-top: 48px;
+      padding: 12px 16px;
+      background: #EEF4F8;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #41576B;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="titulo">Tienda de informática</h1>
+  <p class="destacado">Envío gratuito en pedidos superiores a 50€.</p>
+  <p>Horario: de 9:00 a 20:00.</p>
+
+  <button id="boton-oferta">Ver oferta</button>
+
+  <img id="foto" src="teclado.jpg" alt="Foto del teclado mecánico">
+  <a id="enlace" href="mailto:tienda@ejemplo.com">Contactar por email</a>
+
+  <form id="formulario-busqueda">
+    <input id="buscador" type="text" placeholder="Buscar producto...">
+    <button type="submit">Buscar</button>
+  </form>
+
+  <h2 id="cabecera">Productos disponibles</h2>
+  <ul id="lista-productos">
+    <li class="producto">Teclado mecánico</li>
+    <li class="producto agotado">Ratón inalámbrico</li>
+    <li class="producto">Monitor 24"</li>
+    <li class="producto agotado">Auriculares</li>
+    <li class="producto">Webcam HD</li>
+  </ul>
+
+  <div id="aviso" class="oculto caja-aviso">¡Oferta especial esta semana!</div>
+
+  <p id="pie" name="contacto">Contacto: tienda@ejemplo.com</p>
+
+  <div class="aviso">
+    Página de pruebas · Sesión 12 · Eventos en JavaScript<br>
+    Abre la consola del navegador (F12 o clic derecho → Inspeccionar → Console) y
+    escribe ahí el código de cada diapositiva para comprobar el resultado.<br>
+    El botón "Ver oferta", el formulario de búsqueda y los productos de la lista
+    ya están en la página: solo falta conectarles el JavaScript de cada ejercicio.
+  </div>
+
+  <script src="sesion12.js"></script>
+</body>
+</html>

@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <html xmlns:th="http://www.thymeleaf.org">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/raiz.css}">
-    <title>Autores</title>
+    <div th:replace="~{fragmento :: metadatos}"></div>
 </head>
+
 <body>
+    <header>
+
+        <div th:replace="~{fragmento :: cabecera}">
+
+        </div>
+
+    </header>
+
+    <body>
         <table id="tabla">
 
-                <tr>
-                    <td>ID</td>
-                    <td>Nombre</td>
-                    <td>Nacionalidad</td>
-                    <td>Biografia</td>
-                </tr>
+            <tr>
+                <td>ID</td>
+                <td>Nombre</td>
+                <td>Nacionalidad</td>
+                <td>Biografia</td>
+            </tr>
 
-                <tr th:each="autor: ${autores}">
-                    <td th:text="${autor.id}"></td>
-                    <td th:text="${autor.nombre}"></td>
-                    <td th:text="${autor.nacionalidad}"></td>
-                    <td th:text="${autor.biografia}"></td>    
-                </tr>
+            <tr th:each="autor: ${autores}">
+                <td th:text="${autor.id}"></td>
+                <td th:text="${autor.nombre}"></td>
+                <td th:text="${autor.nacionalidad}"></td>
+                <td th:text="${autor.biografia}"></td>
+                <td><button><a th:href="@{/autor/{id}(id=${autor.id})}">Detalle</a></button></td>
+            </tr>
 
-    </table>
-</body>
+        </table>
+
+
+    </body>
+
 </html>

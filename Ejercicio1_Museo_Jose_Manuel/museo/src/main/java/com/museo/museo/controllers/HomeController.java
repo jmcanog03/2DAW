@@ -25,7 +25,12 @@ public class HomeController {
 
 
     @GetMapping("")
-    public String list3autorescuadros(Model model) {
+    public String listfragmento(Model model) {
+        return "fragmento";
+    }
+
+    @GetMapping("/raiz")
+    public String list3autorescuadros2(Model model) {
         model.addAttribute("autores", autorServices.get3Autores());
         model.addAttribute("cuadros", cuadroServices.get3Cuadros());
         return "raiz";
