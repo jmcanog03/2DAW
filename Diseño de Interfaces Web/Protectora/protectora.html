@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protectora Patitas</title>
+  <!-- Crea estilos.css en esta carpeta y enlázalo aquí -->
+  <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+  <header class="cabecera">
+    <h1>Protectora Patitas</h1>
+    <p>Encuentra a tu nuevo mejor amigo</p>
+  </header>
+
+  <main class="contenido">
+    <h2>En adopción</h2>
+
+    <article class="tarjeta destacada">
+      <p class="etiqueta">¡Adopción urgente!</p>
+      <img src="perro.jpg" alt="Foto de Toby">
+      <h3>Toby</h3>
+      <p class="datos">Perro · 8 años · Tranquilo y muy cariñoso</p>
+      <a href="#" class="boton">Conocer a Toby</a>
+    </article>
+
+    <article class="tarjeta">
+      <img src="gato.jpg" alt="Foto de Luna">
+      <h3>Luna</h3>
+      <p class="datos">Gata · 2 años · Juguetona y curiosa</p>
+      <a href="#" class="boton">Conocer a Luna</a>
+    </article>
+
+    <article class="tarjeta">
+      <img src="conejo.jpg" alt="Foto de Copo">
+      <h3>Copo</h3>
+      <p class="datos">Conejo · 1 año · Le encanta la zanahoria</p>
+      <a href="#" class="boton">Conocer a Copo</a>
+    </article>
+  </main>
+
+  <footer class="pie">
+    <p>Protectora Patitas · Calle del Parque, 12</p>
+  </footer>
+
+  <!--
+    EJERCICIO SESIÓN 4: UNIDADES Y MODELO DE CAJA
+    No hace falta tocar el HTML. Escribe en estilos.css:
+
+    PARTE A
+    1. Reinicio: todas las cajas con box-sizing: border-box, y el body sin margen.
+    2. La cabecera: que mida el 40% del alto de la ventana (vh), con fondo de color,
+       texto centrado y un padding de 2rem.
+    3. El main (.contenido): ancho máximo de 700px, centrado con margin auto
+       y con un padding de 1rem.
+    4. Las tarjetas: padding de 1.5rem, borde de 2px, esquinas redondeadas
+       y 1.5rem de separación entre una tarjeta y la siguiente.
+    5. Las imágenes: que ocupen el 100% del ancho de su tarjeta.
+    6. Los textos: el h3 a 1.75rem y los párrafos .datos a 1rem.
+    7. Los botones (.boton): display inline-block, padding de 0.5em 1.5em,
+       con fondo, sin subrayado y con esquinas redondeadas.
+    8. La tarjeta destacada: borde de 4px de otro color. Su etiqueta (.etiqueta),
+       como inline-block, con fondo y un padding de 0.25em 0.75em.
+    9. El pie (.pie): padding de 2rem y 3rem de separación con el contenido.
+
+    RETO: haz que solo el botón de la tarjeta destacada sea más grande cambiando
+    ÚNICAMENTE su font-size. Si en la tarea 7 usaste em, el padding crecerá solo.
+
+    PARTE B · Calcula (sin ordenador) y comprueba después con el inspector:
+    a) Caja con width 300px, padding 20px y border 4px, en content-box.
+       ¿Cuánto mide de ancho la caja visible?
+    b) La misma caja, en border-box. ¿Cuánto mide?
+    c) Con el html a 16px, un elemento con font-size 1.5rem y padding 2em.
+       ¿Cuántos píxeles mide su padding? ¿Y si fuera 2rem?
+    d) Un padre de 600px, un hijo de width 50% y un nieto de width 50%.
+       ¿Cuánto mide el nieto?
+    e) ¿Qué significa margin: 5px 10px 15px 20px? Di cuánto margen hay en cada lado.
+  -->
+</body>
+
+</html>

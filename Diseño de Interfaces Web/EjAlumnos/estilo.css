@@ -1,0 +1,46 @@
+h2{
+    color: blue;
+
+}
+
+.destacado{
+    background-color: yellow;
+}
+
+#cabecera{
+    color: white;
+    background-color: blue;
+}
+
+h1,h2{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#cabecera h1,li a{
+    color: white;
+    text-decoration: none;
+}
+
+main > p{
+    border-left: 10px solid blue;
+}
+
+h2 + p{
+    font-weight: bold;
+}
+
+#cartelera li:first-child{
+    font-weight: bold;
+}
+
+#cartelera li:last-child{
+    font-style: italic;
+}
+
+#cartelera li:nth-child(even){
+    background-color: gray;
+}
+
+a:hover{
+    background-color: red;
+}

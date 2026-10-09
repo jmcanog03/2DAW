@@ -1,0 +1,60 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.cabecera{
+    height: 40vh;
+    background-color: chocolate;
+    text-align: center;
+}
+
+.contenido{
+    max-width: 700px;
+    margin:  auto;
+    padding: 1rem;
+}
+
+
+
+img{
+    width: 100%;
+}
+
+h3{
+    font-size: 1.5rem;
+}
+
+.datos{
+    font-size: 1.rem;
+}
+
+.boton{
+    display: inline-block;
+    padding: 0.5rem,1.5em;
+    background-color: black;
+    text-decoration: none;
+    border-radius: 12px orange;
+    color: white;
+}
+
+.destacada{
+    border: 4px blue;
+}
+
+.etiqueta{
+    display: inline-block;
+    background-color: yellowgreen;
+    padding: 0.25em,0.75em;
+}
+
+.tarjeta{
+    padding: 1rem;
+    border: 5px solid orange;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.pie{
+    padding: 2rem,3rem;
+}

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TecnoShop</title>
+  <style>
+    :root {
+      --navy: #10243D;
+      --navy2: #16314F;
+      --teal: #18A0AE;
+      --teal-dark: #128089;
+      --gold: #F4B942;
+      --gold-dark: #C97A1A;
+      --bg: #FAF8F3;
+      --card: #FFFFFF;
+      --line: #E4E0D6;
+      --muted: #6B7A8C;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--navy);
+      line-height: 1.5;
+    }
+
+    header.topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      background: var(--navy);
+      color: white;
+      padding: 14px 24px;
+      box-shadow: 0 2px 10px rgba(16, 36, 61, 0.25);
+    }
+
+    .marca {
+      font-size: 19px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    #buscador {
+      flex: 1;
+      max-width: 360px;
+      padding: 9px 14px;
+      border-radius: 20px;
+      border: none;
+      font-size: 14px;
+      outline: none;
+    }
+
+    #buscador:focus {
+      box-shadow: 0 0 0 3px rgba(24, 160, 174, 0.55);
+    }
+
+    .carrito-pill {
+      margin-left: auto;
+      background: var(--teal);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    main.layout {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 28px;
+      max-width: 1080px;
+      margin: 32px auto;
+      padding: 0 24px;
+      align-items: start;
+    }
+
+    h1.titulo-seccion {
+      grid-column: 1 / -1;
+      font-size: 22px;
+      margin: 0 0 4px;
+      color: var(--navy);
+    }
+
+    p.subtitulo-seccion {
+      grid-column: 1 / -1;
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .rejilla {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 18px;
+    }
+
+    .producto {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px 16px 16px;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(16, 36, 61, 0.06);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.2s ease;
+    }
+
+    .producto:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(16, 36, 61, 0.12);
+    }
+
+    .producto.favorito-activo {
+      border-color: var(--gold);
+      border-width: 2px;
+      background: linear-gradient(180deg, #FFFBF0 0%, #FFFFFF 60%);
+    }
+
+    .producto.oculto {
+      display: none;
+    }
+
+    .btn-favorito {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 19px;
+      cursor: pointer;
+      color: var(--gold-dark);
+      line-height: 1;
+      padding: 4px;
+    }
+
+    .icono {
+      font-size: 40px;
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #EEF4F8;
+      border-radius: 50%;
+    }
+
+    .producto h3 {
+      margin: 0 0 4px;
+      font-size: 15px;
+      color: var(--navy);
+    }
+
+    .producto .precio {
+      margin: 0 0 14px;
+      font-weight: 700;
+      color: var(--teal-dark);
+      font-size: 15px;
+    }
+
+    .btn-anadir {
+      width: 100%;
+      background: var(--teal);
+      color: white;
+      border: none;
+      padding: 9px 10px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .btn-anadir:hover {
+      background: var(--teal-dark);
+    }
+
+    aside.panel-carrito {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px 18px 20px;
+      position: sticky;
+      top: 86px;
+    }
+
+    aside.panel-carrito h2 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      color: var(--navy);
+    }
+
+    #carrito-lista {
+      min-height: 40px;
+      margin-bottom: 14px;
+    }
+
+    .carrito-vacio {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13.5px;
+      font-style: italic;
+    }
+
+    .carrito-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 13.5px;
+      padding: 7px 0;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .carrito-item:last-child {
+      border-bottom: none;
+    }
+
+    .carrito-item .nombre-item {
+      color: var(--navy);
+    }
+
+    .carrito-item .precio-item {
+      color: var(--teal-dark);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .btn-vaciar {
+      width: 100%;
+      background: white;
+      color: var(--navy);
+      border: 1px solid var(--line);
+      padding: 9px 10px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-vaciar:hover {
+      background: #F3F0E9;
+    }
+
+    .aviso-final {
+      max-width: 1080px;
+      margin: 8px auto 48px;
+      padding: 14px 24px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .aviso-final code {
+      background: #EEF4F8;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-family: "SFMono-Regular", Consolas, monospace;
+    }
+
+    @media (max-width: 720px) {
+      main.layout {
+        grid-template-columns: 1fr;
+      }
+
+      aside.panel-carrito {
+        position: static;
+      }
+
+      header.topbar {
+        flex-wrap: wrap;
+      }
+
+      #buscador {
+        order: 3;
+        max-width: none;
+        flex-basis: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+    <div class="marca">🛍️ <span>TecnoShop</span></div>
+    <input id="buscador" type="text" placeholder="Buscar producto...">
+    <div class="carrito-pill">
+      🛒 <span id="carrito-contador">0 productos</span> · <span id="carrito-total">0,00 €</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <h1 class="titulo-seccion">Catálogo</h1>
+    <p class="subtitulo-seccion">Minipráctica de repaso · eventos y objetos</p>
+
+    <section class="rejilla" id="rejilla-productos">
+      <article class="producto" id="producto-1">
+        <button class="btn-favorito" id="favorito-1" aria-label="Marcar como favorito">☆</button>
+        <div class="icono">⌨️</div>
+        <h3>Teclado mecánico</h3>
+        <p class="precio">45,00 €</p>
+        <button class="btn-anadir" id="anadir-1">Añadir al carrito</button>
+      </article>
+
+      <article class="producto" id="producto-2">
+        <button class="btn-favorito" id="favorito-2" aria-label="Marcar como favorito">☆</button>
+        <div class="icono">🖱️</div>
+        <h3>Ratón inalámbrico</h3>
+        <p class="precio">20,00 €</p>
+        <button class="btn-anadir" id="anadir-2">Añadir al carrito</button>
+      </article>
+
+      <article class="producto" id="producto-3">
+        <button class="btn-favorito" id="favorito-3" aria-label="Marcar como favorito">☆</button>
+        <div class="icono">🖥️</div>
+        <h3>Monitor 24"</h3>
+        <p class="precio">180,00 €</p>
+        <button class="btn-anadir" id="anadir-3">Añadir al carrito</button>
+      </article>
+
+      <article class="producto" id="producto-4">
+        <button class="btn-favorito" id="favorito-4" aria-label="Marcar como favorito">☆</button>
+        <div class="icono">🎧</div>
+        <h3>Auriculares</h3>
+        <p class="precio">60,00 €</p>
+        <button class="btn-anadir" id="anadir-4">Añadir al carrito</button>
+      </article>
+
+      <article class="producto" id="producto-5">
+        <button class="btn-favorito" id="favorito-5" aria-label="Marcar como favorito">☆</button>
+        <div class="icono">📷</div>
+        <h3>Webcam HD</h3>
+        <p class="precio">35,00 €</p>
+        <button class="btn-anadir" id="anadir-5">Añadir al carrito</button>
+      </article>
+    </section>
+
+    <aside class="panel-carrito">
+      <h2>Tu carrito</h2>
+      <div id="carrito-lista">
+        <p class="carrito-vacio">Tu carrito está vacío.</p>
+      </div>
+      <button class="btn-vaciar" id="vaciar-carrito">Vaciar carrito</button>
+    </aside>
+  </main>
+
+  <p class="aviso-final">
+    Minipráctica de repaso · Eventos y objetos en JavaScript<br>
+    El HTML y el CSS de esta página ya están terminados: tu trabajo es programar en JavaScript los
+    eventos y los métodos del objeto <code>carrito</code> para que todo funcione de verdad.
+  </p>
+
+  <script>
+    // Escribe aqsrcuí tu código, ejercicio a ejercicio
+    // Catálogo de partida (ya está listo, no hace falta tocarlo)
+    const productos = [
+      { id: 1, nombre: "Teclado mecánico", precio: 45, favorito: false },
+      { id: 2, nombre: "Ratón inalámbrico", precio: 20, favorito: false },
+      { id: 3, nombre: "Monitor 24\"", precio: 180, favorito: false },
+      { id: 4, nombre: "Auriculares", precio: 60, favorito: false },
+      { id: 5, nombre: "Webcam HD", precio: 35, favorito: false }
+    ];
+
+    // Referencias a elementos de la página (ya están listas, no hace falta tocarlas)
+    const rejilla = document.getElementById("rejilla-productos");
+    const buscador = document.getElementById("buscador");
+    const carritoLista = document.getElementById("carrito-lista");
+    const carritoContador = document.getElementById("carrito-contador");
+    const carritoTotal = document.getElementById("carrito-total");
+    const vaciarBtn = document.getElementById("vaciar-carrito");
+
+    const carrito = {
+      items: [],
+      anadirProductos: function (producto) {
+        this.items.push(producto);
+      },
+
+
+    };
+
+    rejilla.addEventListener("click", function (event) {
+      if (event.target.classList.contains("btn-anadir")) {
+        const id = Number(event.target.id.replace("anadir-", ""));
+        //  alert("identificador" + id)
+        const producto = productos.find(p => p.id === id);
+        carrito.anadirProductos(producto);
+        actualizarCarrito();
+      }
+
+      if (event.target.classList.contains("btn-favorito")) {
+        const id = Number(event.target.id.replace("favorito-", ""));
+        const producto = productos.find(p => p.id === id);
+        producto.favorito = !producto.favorito;
+        document.getElementById("producto-" + id).classList.toggle("favorito-activo");
+        event.target.textContent = producto.favorito ? "★" : "☆";
+      }
+      
+    });
+
+    function pintarCarrito() {
+      carritoLista.innerHTML = ""
+
+      carrito.items.forEach(item => {
+
+        const fila = document.createElement("producto")
+
+        fila.textContent = item.nombre + "_" + item.precio + " €"
+
+        carritoLista.append(fila)
+      })
+    }
+
+    carrito.total = function () {
+
+      let suma = 0;
+
+      this.items.forEach(item => suma += item.precio);
+
+      return suma;
+
+    }
+
+
+    function actualizarCarrito() {
+      pintarCarrito()
+      carritoContador.textContent = carrito.items.length + " productos"
+      carritoTotal.textContent = carrito.total() + " €"
+    }
+
+    buscador.addEventListener("input", function (event) {
+      const texto = event.target.value.toLowerCase();
+      productos.forEach(producto => {
+        const tarjeta = document.getElementById("producto-" + producto.id)
+        const coincide = producto.nombre.toLowerCase().includes(texto);
+        tarjeta.classList.toggle("oculto", !coincide)
+      });
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

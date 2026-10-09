@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cine de verano</title>
+  <!-- Crea estilos.css en esta carpeta y enlázalo aquí -->
+   <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+  <header id="cabecera">
+    <h1>Cine de verano</h1>
+    <nav>
+      <ul>
+        <li><a href="#cartelera">Cartelera</a></li>
+        <li><a href="#precios">Precios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <p>Todas las sesiones empiezan a las 22:00 en la plaza mayor.</p>
+
+    <section id="cartelera">
+      <h2>Cartelera</h2>
+      <p>Estas son las películas de esta semana.</p>
+      <p>Las puertas abren media hora antes.</p>
+      <ol class="peliculas">
+        <li>Lunes: una de aventuras</li>
+        <li>Martes: una de animación</li>
+        <li>Miércoles: un clásico en blanco y negro</li>
+        <li>Jueves: una comedia</li>
+        <li>Viernes: una de ciencia ficción</li>
+      </ol>
+    </section>
+
+    <section id="precios">
+      <h2>Precios</h2>
+      <p>La entrada general cuesta 3 €.</p>
+      <p class="destacado">Los miércoles, entrada gratuita para estudiantes.</p>
+      <p>Consulta el <a href="#">reglamento</a> antes de venir.</p>
+    </section>
+
+    <p class="destacado">Si llueve, la sesión se traslada al salón de actos.</p>
+  </main>
+
+  <footer id="contacto">
+    <p>Organiza: <a href="#">Asociación de vecinos</a></p>
+  </footer>
+
+  <!--
+    EJERCICIO SESIÓN 3: SELECTORES
+    Regla de oro: NO se puede tocar el HTML. Nada de añadir clases ni ids:
+    hay que elegir cada elemento con el selector adecuado.
+
+    PARTE A · Escribe en estilos.css una regla para cada tarea.
+    1. (etiqueta)     Todos los h2, de color teal.
+    2. (clase)        Los elementos con la clase "destacado", con fondo amarillo claro.
+    3. (id)           La cabecera (id "cabecera"), con fondo oscuro y texto blanco.
+    4. (agrupar)      El h1 y los h2, con la letra Georgia. Una sola regla.
+    5. (descendiente) Los enlaces del menú (dentro de nav), blancos y sin subrayado.
+                      Los demás enlaces de la página no deben cambiar.
+    6. (hijo)         Los párrafos que son hijos DIRECTOS de main, con un borde
+                      a la izquierda. Deben ser solo 2 párrafos.
+    7. (adyacente)    El párrafo que va justo después de cada h2, en negrita.
+    8. (posición)     En la lista de películas: la primera en negrita, la última
+                      en cursiva y las pares con fondo gris claro.
+    9. (hover)        Al pasar el ratón por un enlace del menú, que cambie su fondo.
+
+    RETO: consigue que el párrafo "destacado" de la sección Precios tenga el texto
+    rojo, pero el otro "destacado" (el de la lluvia) no.
+
+    PARTE B · Predice antes de probar. Escribe tu respuesta en un comentario
+    de tu CSS y después compruébala en el navegador.
+    a) Si escribes   h2 { color: red; }   DEBAJO de tu regla de la tarea 1,
+       ¿de qué color salen los h2? ¿Por qué?
+    b) Si escribes   #cartelera h2 { color: purple; }   ARRIBA del todo,
+       ¿de qué color sale el h2 de la cartelera? ¿Por qué?
+    c) En la tarea 3 has puesto texto blanco a la cabecera, pero no al h1.
+       ¿Por qué el h1 sale blanco?
+  -->
+</body>
+
+</html>
