@@ -30,7 +30,7 @@
             <td th:text="${cuadro.estilo}"></td>
             <td th:text="${cuadro.descripcion}"></td>
             <td th:text="${cuadro.anio}"></td>
-            <td><button><a th:href="@{/cuadro/{id}(id=${cuadro.id})}">Detalle</a></button></td>
+            <td><button><a id="btn-detalle" th:href="@{/cuadro/{id}(id=${cuadro.id})}">Detalle</a></button></td>
         </tr>
 
     </table>

@@ -31,7 +31,7 @@
                 <td th:text="${autor.nombre}"></td>
                 <td th:text="${autor.nacionalidad}"></td>
                 <td th:text="${autor.biografia}"></td>
-                <td><button><a th:href="@{/autor/{id}(id=${autor.id})}">Detalle</a></button></td>
+                <td><button><a id="btn-detalle" th:href="@{/autor/{id}(id=${autor.id})}">Detalle</a></button></td>
             </tr>
 
         </table>
