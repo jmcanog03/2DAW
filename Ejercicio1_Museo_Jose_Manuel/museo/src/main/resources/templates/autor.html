@@ -15,6 +15,7 @@
     </header>
 
     <body>
+        <br>
         <table id="tabla">
 
             <tr>
@@ -24,7 +25,8 @@
                 <td>Biografia</td>
             </tr>
 
-            <tr th:each="autor: ${autores}">
+            <tr th:each="autor: ${autores}"
+            th:class="${autor.fallecimiento == null ? 'vivo' : 'fallecido'}">
                 <td th:text="${autor.id}"></td>
                 <td th:text="${autor.nombre}"></td>
                 <td th:text="${autor.nacionalidad}"></td>
@@ -34,6 +36,14 @@
 
         </table>
 
+
+        <footer>
+
+            <div th:replace="~{fragmento :: pie}">
+
+            </div>
+
+        </footer>
 
     </body>
 

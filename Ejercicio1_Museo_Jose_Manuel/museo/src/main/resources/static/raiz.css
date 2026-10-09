@@ -1,10 +1,19 @@
 #tabla{
-    background-color: red;
+    background-color: aqua;
     width: 100%;
 }
 
 td{
     padding: 12px 16px;
-    background-color: aqua;
     font-size: 14px;
+}
+
+.vivo{
+    background-color: #46C760;
+    color: white;
+}
+
+.fallecido{
+    background-color: #C74646;
+    color: white;
 }

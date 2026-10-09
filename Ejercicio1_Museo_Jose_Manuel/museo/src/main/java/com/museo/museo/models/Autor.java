@@ -6,15 +6,18 @@ public class Autor {
     private int fechanacimiento;
     private String nacionalidad;
     private String biografia;
+    private Integer fallecimiento;
 
 
-    public Autor(int id, String nombre, int fechanacimiento, String nacionalidad, String biografia) {
+    public Autor(int id, String nombre, int fechanacimiento, String nacionalidad, String biografia, Integer fallecimineto) {
         this.id = id;
         this.nombre = nombre;
         this.fechanacimiento = fechanacimiento;
         this.nacionalidad = nacionalidad;
         this.biografia = biografia;
+        this.fallecimiento = fallecimineto;
     }
+
 
 
     public int getId() {
@@ -57,6 +60,16 @@ public class Autor {
         this.biografia = biografia;
     }
 
+    public Integer getFallecimiento() {
+        return this.fallecimiento;
+    }
+
+    public void setFallecimiento(Integer fallecimiento) {
+        this.fallecimiento = fallecimiento;
+    }
+    
+
+
 
     @Override
     public String toString() {
@@ -66,8 +79,10 @@ public class Autor {
             ", fechanacimiento='" + getFechanacimiento() + "'" +
             ", nacionalidad='" + getNacionalidad() + "'" +
             ", biografia='" + getBiografia() + "'" +
+            ", fallecimiento='" + getFallecimiento() + "'" +
             "}";
     }
+   
 
 
    

@@ -1,37 +1,48 @@
 <!DOCTYPE html>
-<html lang="en", xmlns:th="http://www.thymeleaf.org">
+<html lang="en" , xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <div th:replace="fragmento :: metadatos"></div>
+    <div th:replace="~{fragmento :: metadatos}"></div>
 </head>
 
 <body>
     <header>
 
-        <div th:replace="fragmento :: cabecera">
+        <div th:replace="~{fragmento :: cabecera}">
 
         </div>
 
     </header>
 
 
-<body>
+    <body>
 
-    <table id="tabla">
+        <br>
+        <table id="tabla">
 
-                <tr>
-                    <td>ID</td>
-                    <td>Nombre</td>
-                    <td>Nacionalidad</td>
-                    <td>Biografia</td>
-                </tr>
+            <tr>
+                <td>ID</td>
+                <td>Nombre</td>
+                <td>Nacionalidad</td>
+                <td>Biografia</td>
+            </tr>
 
-                <tr th:each="autor: ${autorID}">
-                    <td th:text="${autor.id}"></td>
-                    <td th:text="${autor.nombre}"></td>
-                    <td th:text="${autor.nacionalidad}"></td>
-                    <td th:text="${autor.biografia}"></td>    
-                </tr>
-    </table>
+            <tr th:each="autor: ${autorID}"
+                th:class="${autor.fallecimiento == null ? 'vivo' : 'fallecido'}"                   >
+                <td th:text="${autor.id}"></td>
+                <td th:text="${autor.nombre}"></td>
+                <td th:text="${autor.nacionalidad}"></td>
+                <td th:text="${autor.biografia}"></td>
+            </tr>
+        </table>
+
+        <footer>
+
+            <div th:replace="~{fragmento :: pie}">
+
+            </div>
+
+        </footer>
      
 </body>
 </html>

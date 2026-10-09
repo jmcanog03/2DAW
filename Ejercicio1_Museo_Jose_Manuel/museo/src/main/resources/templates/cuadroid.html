@@ -1,72 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <div th:replace="fragmento :: metadatos"></div>
+    <div th:replace="~{fragmento :: metadatos}"></div>
 </head>
 
 <body>
     <header>
 
-        <div th:replace="fragmento :: cabecera">
+        <div th:replace="~{fragmento :: cabecera}">
 
         </div>
 
     </header>
-<body>
-    
-    <!-- <ul>
-        <li th:each="cuadro: ${cuadroID}" th:text="${cuadro.titulo}"></li>
-        <li th:text="${cuadro.}"></li>
-    </ul> -->
 
-     <!-- <table>
-        <tr th:each="cuadro: ${cuadroID}">
-            <td th:text="|Nombre del cuadro: ${cuadro.titulo}|" class="espacio"></td>
-            <td th:text="|Estilo: ${cuadro.estilo}|" class="espacio"></td>
-            <td th:text="|Decripcion: ${cuadro.descripcion}|" class="espacio"></td>
-        </tr>
-    </table> -->
+    <body>
 
-    <!-- <div th:each="cuadro: ${cuadroID}">
-        <div th:object="${cuadro}">
-            <ul>
-                <li th:text="|Título: ${cuadro.titulo}|"></li><br>
-                <li th:text="|Estilo: ${cuadro.estilo}|"></li><br>
-                <li th:text="|Descripción: ${cuadro.descripcion}|"></li><br>
-            </ul>
-        </div>
-     </div> -->
-
-     <!-- <table id="tabla">
-            <tr>
-                    <td>ID</td>
-                    <td>Titulo</td>
-                    <td>Estilo</td>
-                    <td>Descripcion</td>
-                    <td>anio</td>
-            </tr>
-        </table> -->
-
+        <br>
 
         <table id="tabla">
 
-                <tr>
-                    <td>ID</td>
-                    <td>Titulo</td>
-                    <td>Estilo</td>
-                    <td>Descripcion</td>
-                    <td>anio</td>
-                </tr>
+            <tr>
+                <td>ID</td>
+                <td>Titulo</td>
+                <td>Estilo</td>
+                <td>Descripcion</td>
+                <td>anio</td>
+            </tr>
 
-                <tr th:each="cuadro: ${cuadroID}">
-                    <td th:text="${cuadro.id}"></td>
-                    <td th:text="${cuadro.titulo}"></td>
-                    <td th:text="${cuadro.estilo}"></td>
-                    <td th:text="${cuadro.descripcion}"></td>
-                    <td th:text="${cuadro.anio}"></td>       
-                </tr>
+            <tr th:each="cuadro: ${cuadroID}">
+                <td th:text="${cuadro.id}"></td>
+                <td th:text="${cuadro.titulo}"></td>
+                <td th:text="${cuadro.estilo}"></td>
+                <td th:text="${cuadro.descripcion}"></td>
+                <td th:text="${cuadro.anio}"></td>
+            </tr>
 
-            </table>
+        </table>
+
+
+        <footer>
+
+            <div th:replace="~{fragmento :: pie}">
+
+            </div>
+
+        </footer>
 
 
 </body>
