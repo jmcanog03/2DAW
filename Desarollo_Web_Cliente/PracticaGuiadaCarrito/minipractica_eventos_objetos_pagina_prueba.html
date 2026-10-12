@@ -409,7 +409,7 @@
         document.getElementById("producto-" + id).classList.toggle("favorito-activo");
         event.target.textContent = producto.favorito ? "★" : "☆";
       }
-      
+
     });
 
     function pintarCarrito() {
@@ -451,12 +451,14 @@
       });
     });
 
-    carrito.vaciar = function(){
+    carrito.vaciar = function () {
       carrito.items = []
     }
 
-    vaciarBtn.addEventListener("click",function(){
+    vaciarBtn.addEventListener("click", function () {
       carritoLista.innerHTML = ""
+      carritoContador.textContent = "0 productos"
+      carritoTotal.textContent = "0,00 €"
       carrito.vaciar()
     })
 
