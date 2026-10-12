@@ -6,8 +6,11 @@
 td{
     padding: 12px 16px;
     font-size: 14px;
+    border: 2px solid black;
 }
-
+tr{
+    border: 2px solid black;
+}
 .vivo{
     background-color: #46C760;
     color: white;

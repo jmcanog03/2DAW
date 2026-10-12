@@ -417,7 +417,7 @@
 
       carrito.items.forEach(item => {
 
-        const fila = document.createElement("producto")
+        const fila = document.createElement("li")
 
         fila.textContent = item.nombre + "_" + item.precio + " €"
 
@@ -451,7 +451,14 @@
       });
     });
 
+    carrito.vaciar = function(){
+      carrito.items = []
+    }
 
+    vaciarBtn.addEventListener("click",function(){
+      carritoLista.innerHTML = ""
+      carrito.vaciar()
+    })
 
 
 
