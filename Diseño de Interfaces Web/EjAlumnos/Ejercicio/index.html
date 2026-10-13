@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafetería La Taza</title>
+  <!-- Crea estilos.css en esta carpeta y enlázalo aquí -->
+  <link rel="stylesheet" href="solucion.css">
+</head>
+
+<body>
+  <header class="cabecera">
+    <p class="logo">La Taza</p>
+    <nav class="menu">
+      <a href="#">Inicio</a>
+      <a href="#">Carta</a>
+      <a href="#">Reservas</a>
+      <a href="#">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="portada">
+    <h1>El mejor café del barrio</h1>
+    <p>Recién tostado cada mañana</p>
+  </section>
+
+  <section class="ventajas">
+    <div class="ventaja">
+      <h2>Café de origen</h2>
+      <p>Granos seleccionados de pequeños productores.</p>
+    </div>
+    <div class="ventaja">
+      <h2>Repostería casera</h2>
+      <p>Bizcochos y galletas hechos aquí cada día.</p>
+    </div>
+    <div class="ventaja">
+      <h2>Wifi gratis</h2>
+      <p>Trae tu portátil y quédate el tiempo que quieras.</p>
+    </div>
+  </section>
+
+  <section class="carta">
+    <h2>Nuestra carta</h2>
+    <div class="plato"><span>Café solo</span><span>1,20 €</span></div>
+    <div class="plato"><span>Café con leche</span><span>1,50 €</span></div>
+    <div class="plato"><span>Capuchino</span><span>2,00 €</span></div>
+    <div class="plato"><span>Tarta de zanahoria</span><span>3,50 €</span></div>
+  </section>
+
+  <section class="etiquetas">
+    <span>Sin gluten</span>
+    <span>Leche vegetal</span>
+    <span>Para llevar</span>
+    <span>Terraza</span>
+    <span>Admitimos mascotas</span>
+    <span>Pago con tarjeta</span>
+    <span>Desayunos</span>
+    <span>Meriendas</span>
+  </section>
+
+  <form class="boletin">
+    <label for="correo">Tu correo</label>
+    <input type="email" id="correo" placeholder="nombre@ejemplo.com">
+    <button type="submit">Suscribirme</button>
+  </form>
+
+  <footer class="pie">
+    <p>Cafetería La Taza</p>
+    <p>Calle Mayor, 5</p>
+    <p>Abierto de 8:00 a 20:00</p>
+  </footer>
+
+  <!--
+    EJERCICIO FLEXBOX: LA CAFETERÍA
+    No hace falta tocar el HTML. En cada tarea, piensa primero
+    quién es el CONTENEDOR (el padre) y quiénes son los ELEMENTOS (los hijos).
+
+    1. Cabecera: el logo a la izquierda y el menú a la derecha,
+       centrados en vertical. (.cabecera)
+    2. Menú: los enlaces en fila, con 2rem de separación entre ellos. (.menu)
+    3. Portada: 60vh de alto, con el título y el texto en columna
+       y centrados en horizontal y en vertical. (.portada)
+    4. Ventajas: las tres tarjetas en fila, con 2rem de separación
+       y todas del mismo ancho. (.ventajas y .ventaja)
+    5. Carta: en cada plato, el nombre a la izquierda y el precio
+       a la derecha. (.plato)
+    6. Etiquetas: en fila, con separación, y que bajen a otra línea
+       cuando no quepan. (.etiquetas)
+    7. Boletín: etiqueta, campo y botón en fila, alineados en vertical;
+       el campo ocupa todo el espacio que sobra. (.boletin)
+    8. Pie: los tres textos en columna y centrados. (.pie)
+
+    RETO: sin tocar el HTML, haz que las tarjetas de ventajas aparezcan
+    en orden inverso (Wifi gratis la primera).
+  -->
+</body>
+
+</html>

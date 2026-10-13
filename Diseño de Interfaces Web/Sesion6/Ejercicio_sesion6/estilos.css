@@ -1,0 +1,151 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    font-family: Arial,sans-serif;
+    color: #1d3557;
+    background-color: #f6f4ef;
+}
+
+section,.principal{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.cabecera{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #1d3557;
+}
+
+.logo{
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f4a261;
+}
+
+.menu{
+    display: flex;
+    gap: 2rem;
+}
+
+.menu a{
+    color: white;
+    text-decoration: none;
+}
+
+.intro{
+    text-align: center;
+}
+
+.lista-instrumentos{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    gap: 1.5rem;
+}
+
+.instrumento{
+    padding: 1rem 1.5rem;
+    background-color: white;
+    border-top: 6px solid #e76f51;
+    border-radius: 8px;
+}
+
+.instrumento h3{
+    margin-top: 0;
+}
+
+.lista-profesores{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 1.5rem;
+    text-align: center;
+}
+
+.inicial{
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    line-height: 80px;
+    font-size: 2rem;
+    color: white;
+    background-color: #2a9d8f;
+    border-radius: 50%;
+}
+
+.principal{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+.horario{
+    padding: 0 1.5rem;
+    background-color: #e9f5f3;
+    border-radius: 8px;
+}
+
+
+
+.lista-conciertos{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 1rem;
+}
+
+.concierto{
+    padding: 1rem;
+    color: white;
+    background-color: #2a9d8f;
+    border-radius: 8px;
+}
+
+.concierto h3{
+    margin: 0;
+}
+
+.fecha{
+    margin: 0;
+    font-weight: bold;
+}
+
+.destacado{
+    background-color: #e76f51;
+}
+
+.concierto:nth-child(1){
+    grid: 1/3;
+}
+
+.concierto:nth-child(2){
+    grid: 3/5;
+}
+
+
+.pie{
+    padding: 2rem;
+    color: white;
+    background-color: #1d3557;
+}
+
+.columnas-pie{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.pie h3{
+    color: #f4a261;
+}
+
+.copyright{
+    text-align: center;
+}

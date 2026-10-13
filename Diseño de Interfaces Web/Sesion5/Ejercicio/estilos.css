@@ -1,0 +1,127 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #3b2a20;
+    background-color: #fbf7f2;
+}
+
+section,
+form{
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.cabecera{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #3b2a20;
+}
+
+.logo{
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f2c48d;
+}
+
+.menu{
+    display: flex;
+    gap: 2rem;
+
+}
+
+.menu a{
+    color: white;
+    text-decoration: none;
+}
+
+.portada{
+    height: 60vh;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #c8a27a;
+    color: white;
+}
+
+.portada h1{
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+.ventajas{
+    display: flex;
+    gap: 2rem;
+}
+
+.ventaja{
+    flex: 1;
+    background-color: white;
+    border: 2px solid #e6d8c8;
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.ventaja h2{
+    margin-top: 0;
+    font-size: 1.25rem;
+}
+
+.plato{
+    display: flex;
+    justify-content: space-between;
+    padding:0.75rem 0rem;
+    border-bottom: 1px dashed #c8a27a;
+}
+
+.etiquetas{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.etiquetas span{
+    background-color: #f2c48d;
+    padding: 0.25em 0.75em;
+    border-radius: 999px;
+}
+
+.boletin{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.boletin input{
+    flex: 1;
+    padding: 0.5rem;
+}
+
+.boletin button{
+    padding: 0.5rem 1.5rem;
+    background-color: #3b2a20;
+    color: white;
+    border: none;
+}
+
+.pie{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-color: #3b2a20;;
+    color: white;
+}
+
+.pie p{
+    margin: 0.25rem 0;
+}
