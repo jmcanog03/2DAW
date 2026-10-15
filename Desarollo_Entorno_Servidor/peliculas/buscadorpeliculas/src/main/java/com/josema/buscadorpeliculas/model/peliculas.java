@@ -4,11 +4,13 @@ public class peliculas {
     private int id;
     private String titulo;
     private Integer anio;
+    private boolean vista;
 
-    public peliculas(int id, String titulo, Integer anio) {
+    public peliculas(int id, String titulo, Integer anio, boolean vista) {
         this.id = id;
         this.titulo = titulo;
         this.anio = anio;
+        this.vista = vista;
     }
 
     public int getId() {
@@ -33,6 +35,18 @@ public class peliculas {
 
     public void setAnio(Integer anio) {
         this.anio = anio;
+    }
+
+    public boolean isVista() {
+        return this.vista;
+    }
+
+    public boolean getVista() {
+        return this.vista;
+    }
+
+    public void setVista(boolean vista) {
+        this.vista = vista;
     }
 
     @Override

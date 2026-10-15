@@ -25,7 +25,7 @@ public class peliculaController {
     @PostMapping("/")
     public String Peliculas(@RequestParam(required = false) String nombre,
             @RequestParam(required = false) Integer anio, @RequestParam(required = false) String titulo,
-            @RequestParam(required = false) Integer id, Model model) {
+            @RequestParam(required = false) Integer id,@RequestParam(required = false) Boolean vista, Model model) {
         // model.addAttribute("pelicula",peliculaRepositories.getPeliculas());
         if (id != null) {
             model.addAttribute("pelicula", peliculaRepositories.getIdPeliculas(id));
@@ -33,8 +33,10 @@ public class peliculaController {
             model.addAttribute("pelicula", peliculaRepositories.getAnioPeliculas(anio));
         }else if(titulo !=null && !titulo.isBlank()){
              model.addAttribute("pelicula", peliculaRepositories.getTitulo(titulo));
+        }else if(Boolean.TRUE.equals(vista)){
+             model.addAttribute("pelicula", peliculaRepositories.getVista());
         }else{
-             model.addAttribute("pelicula", peliculaRepositories.getPeliculas());
+             model.addAttribute("pelicula", peliculaRepositories.getNotVista());
         }
 
         
