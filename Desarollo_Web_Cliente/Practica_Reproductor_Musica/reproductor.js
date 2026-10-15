@@ -13,6 +13,7 @@ favorita: false, archivo: "audio/cancion-5.mp3" }
 const listaCanciones = document.getElementById("lista-canciones");
 const buscador = document.getElementById("buscador");
 const botonPlay = document.getElementById("boton-play");
+const botonSiguiente = document.getElementById("boton-siguiente");
 const ahoraSuenaTitulo = document.getElementById("ahora-suena-titulo");
 const ahoraSuenaArtista = document.getElementById("ahora-suena-artista");
 const ahoraSuenaIcono = document.getElementById("ahora-suena-icono");
@@ -54,6 +55,15 @@ const reproductor = {
         this.reproduciendo = true;
         audioCancion.play()
         pintarAhoraSuena()
+    }),
+
+    siguiente:(function(){
+         const id = Math.floor(Math.random()*canciones.length)
+         canciones.forEach(cancion => {
+            if(cancion.id == id +1){
+                this.reproducirCancion(cancion)
+            }
+         });
     })
 
 
@@ -77,11 +87,15 @@ listaCanciones.addEventListener("click",function(event){
          if(cancion.favorita){
             reproductor.meterFavoritas(cancion)
             resumenFavoritas.textContent = reproductor.favoritas.length + " favoritos"
+            listaFavoritos()
          }else{
             reproductor.quitarFavoritas(cancion)
             resumenFavoritas.textContent = reproductor.favoritas.length + " favoritos"
+            listaFavoritos()
          }
     }
+
+    
 })
 
 
@@ -113,6 +127,9 @@ botonPlay.addEventListener("click", function(){
     }
 })
 
+botonSiguiente.addEventListener("click",function(){
+     reproductor.siguiente()
+})
 
 buscador.addEventListener("input", function(event){
     const texto = event.target.value.toLowerCase()
@@ -124,4 +141,13 @@ buscador.addEventListener("input", function(event){
     });
 
 })
+
+function listaFavoritos(){
+    favoritasLista.innerHTML = ""
+    reproductor.favoritas.forEach(favorita => {
+        const elementoLista = document.createElement("p")
+        elementoLista.textContent = favorita.titulo;
+        favoritasLista.append(elementoLista)
+    });
+}
 
