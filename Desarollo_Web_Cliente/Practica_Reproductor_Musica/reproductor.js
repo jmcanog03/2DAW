@@ -25,6 +25,7 @@ const audioCancion = document.getElementById("audio-cancion");
 const reproductor = {
     cancionActual : null,
     reproduciendo : false,
+    favoritas: [],
 
     reproducirCancion:(function(cancion){
         this.cancionActual = cancion
@@ -34,6 +35,14 @@ const reproductor = {
         audioCancion.play()
         pintarAhoraSuena()
     }),
+
+    meterFavoritas:function(cancion){
+        this.favoritas.push(cancion)
+    },
+
+    quitarFavoritas:function(cancion){
+        this.favoritas.pop(cancion)
+    },
 
     pausar:(function(){
             this.reproduciendo = false
@@ -55,6 +64,23 @@ listaCanciones.addEventListener("click",function(event){
         const id = Number(event.target.id.replace("reproducir-",""))
         const cancion = canciones.find(cancion => {return cancion.id == id})
         reproductor.reproducirCancion(cancion)
+    }
+
+    if(event.target.classList.contains("btn-like")){
+         const id = Number(event.target.id.replace("like-",""))
+         const elemento = document.querySelector("#cancion-" +id)
+         const cancion = canciones.find(cancion => {return cancion.id == id})
+         cancion.favorita = !cancion.favorita
+         elemento.classList.toggle("favorita-activa")
+         event.target.textContent = cancion.favorita ? "❤" : "♡"
+
+         if(cancion.favorita){
+            reproductor.meterFavoritas(cancion)
+            resumenFavoritas.textContent = reproductor.favoritas.length + " favoritos"
+         }else{
+            reproductor.quitarFavoritas(cancion)
+            resumenFavoritas.textContent = reproductor.favoritas.length + " favoritos"
+         }
     }
 })
 
@@ -98,3 +124,4 @@ buscador.addEventListener("input", function(event){
     });
 
 })
+
