@@ -5,25 +5,29 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.josema.buscadorpeliculas.model.peliculas;
+import com.josema.buscadorpeliculas.model.Peliculas;
+import com.josema.buscadorpeliculas.model.Peliculas2;
 
 @Repository
 
 public class peliculaRepositories {
 
-    public List<peliculas> getPeliculas() {
+    public List<Peliculas> getPeliculas() {
 
         return List.of(
-                new peliculas(1, "Spider-Man Brand New Day", 2002, true),
-                new peliculas(0, "Hulk", 2003, false));
+                new Peliculas(1, "Spider-Man Brand New Day", 2002, true),
+                new Peliculas(0, "Hulk", 2003, false));
 
     }
 
-    public List<peliculas> getIdPeliculas(int id) {
-        List<peliculas> resultado = new ArrayList<>();
-        List<peliculas> pelis = getPeliculas();
+    
+    
 
-        for (peliculas peliculas : pelis) {
+    public List<Peliculas> getIdPeliculas(int id) {
+        List<Peliculas> resultado = new ArrayList<>();
+        List<Peliculas> pelis = getPeliculas();
+
+        for (Peliculas peliculas : pelis) {
             if (peliculas.getId() == id) {
                 resultado.add(peliculas);
             }
@@ -32,11 +36,11 @@ public class peliculaRepositories {
         return resultado;
     }
 
-    public List<peliculas> getAnioPeliculas(Integer anio) {
-        List<peliculas> resultado = new ArrayList<>();
-        List<peliculas> pelis = getPeliculas();
+    public List<Peliculas> getAnioPeliculas(Integer anio) {
+        List<Peliculas> resultado = new ArrayList<>();
+        List<Peliculas> pelis = getPeliculas();
 
-        for (peliculas peliculas : pelis) {
+        for (Peliculas peliculas : pelis) {
             if (peliculas.getAnio().equals(anio)) {
                 resultado.add(peliculas);
             }
@@ -45,11 +49,11 @@ public class peliculaRepositories {
         return resultado;
     }
 
-    public List<peliculas> getTitulo(String titulo) {
-        List<peliculas> resultado = new ArrayList<>();
-        List<peliculas> pelis = getPeliculas();
+    public List<Peliculas> getTitulo(String titulo) {
+        List<Peliculas> resultado = new ArrayList<>();
+        List<Peliculas> pelis = getPeliculas();
 
-        for (peliculas peliculas : pelis) {
+        for (Peliculas peliculas : pelis) {
             if (peliculas.getTitulo().toLowerCase().contains(titulo.toLowerCase())) {
                 resultado.add(peliculas);
             }
@@ -58,11 +62,11 @@ public class peliculaRepositories {
         return resultado;
     }
 
-    public List<peliculas> getVista() {
-        List<peliculas> resultado = new ArrayList<>();
-        List<peliculas> pelis = getPeliculas();
+    public List<Peliculas> getVista() {
+        List<Peliculas> resultado = new ArrayList<>();
+        List<Peliculas> pelis = getPeliculas();
 
-        for (peliculas peliculas : pelis) {
+        for (Peliculas peliculas : pelis) {
             if (peliculas.getVista()) {
                 resultado.add(peliculas);
             }
@@ -71,11 +75,11 @@ public class peliculaRepositories {
         return resultado;
     }
 
-    public List<peliculas> getNotVista() {
-        List<peliculas> resultado = new ArrayList<>();
-        List<peliculas> pelis = getPeliculas();
+    public List<Peliculas> getNotVista() {
+        List<Peliculas> resultado = new ArrayList<>();
+        List<Peliculas> pelis = getPeliculas();
 
-        for (peliculas peliculas : pelis) {
+        for (Peliculas peliculas : pelis) {
             if (!peliculas.getVista()) {
                 resultado.add(peliculas);
             }
@@ -83,5 +87,7 @@ public class peliculaRepositories {
 
         return resultado;
     }
+
+   
 
 }

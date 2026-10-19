@@ -1,18 +1,24 @@
 package com.josema.buscadorpeliculas.model;
 
-public class peliculas {
+public class Peliculas2 {
     private int id;
     private String titulo;
     private Integer anio;
     private boolean vista;
 
-    public peliculas(int id, String titulo, Integer anio, boolean vista) {
+
+    public Peliculas2() {
+    }
+
+
+    public Peliculas2(int id, String titulo, Integer anio, boolean vista) {
         this.id = id;
         this.titulo = titulo;
         this.anio = anio;
         this.vista = vista;
     }
 
+   
     public int getId() {
         return this.id;
     }
