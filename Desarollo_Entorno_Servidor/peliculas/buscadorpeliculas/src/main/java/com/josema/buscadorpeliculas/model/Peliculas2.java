@@ -1,13 +1,19 @@
 package com.josema.buscadorpeliculas.model;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 public class Peliculas2 {
     private int id;
 
     @NotBlank(message = "EL titulo no puede estar vacio")
+    @Size(min = 3 , max = 10, message = "No puede tener longitud menos de 3 y maximo 10")
     private String titulo;
 
+    @NotNull(message = "Tiene que ser mayor que 0")
+    
     private Integer anio;
     
     private boolean vista;
@@ -57,9 +63,7 @@ public class Peliculas2 {
         return this.vista;
     }
 
-    public void setVista(boolean vista) {
-        this.vista = vista;
-    }
+    
 
     @Override
     public String toString() {

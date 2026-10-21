@@ -32,8 +32,10 @@ public class peliculaController2 {
     }
 
     @GetMapping("/recibir")
-    public String getFormulario(@Valid  @ModelAttribute Peliculas2 pelicula2 ,BindingResult result) {
+    
+    public String getFormulario(@Valid  @ModelAttribute("pelicula2") Peliculas2 pelicula2 ,BindingResult result , Model model) {
         if(result.hasErrors()){
+            model.addAttribute("pelicula3", peliculaRepositories.getPeliculas());
             return "pelicula2";
         }
         // model.addAttribute("pelicula", peliculaRepositories.getPeliculas());

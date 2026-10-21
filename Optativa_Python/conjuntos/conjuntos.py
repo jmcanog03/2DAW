@@ -38,3 +38,23 @@
 # else:
 #     print("la palabra no se repite")
 
+vocales = {"a","e","i","o","u"}
+frase = input("Introduce una frase ")
+
+palabras = frase.split()
+
+print(f"Frase {frase}")
+conjuntoLetras = set(palabras)
+
+usadas = set()
+noUsadas = set()
+listaLetras = sorted(conjuntoLetras)
+for v in vocales:
+    
+    if(listaLetras.count(v)):
+        usadas.add(v)
+    else:
+        noUsadas.add(v)
+
+print(f"Usadas {usadas}")
+print(f"noUsadas {noUsadas}")
