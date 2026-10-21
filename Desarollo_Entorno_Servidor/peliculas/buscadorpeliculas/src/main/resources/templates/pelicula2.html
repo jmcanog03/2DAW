@@ -10,6 +10,7 @@
 
        <label for="Titulo">Titulo</label>
         <input type="text" th:field="*{titulo}">
+        <span th:if="${#fields.hasErrors('titulo')}" th:error="${*titulo}"></span>
 
         <label for="anio">Anio</label>
         <select th:field="*{anio}">

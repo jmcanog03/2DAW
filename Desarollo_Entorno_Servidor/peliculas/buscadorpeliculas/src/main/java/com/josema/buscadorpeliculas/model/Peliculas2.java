@@ -1,9 +1,15 @@
 package com.josema.buscadorpeliculas.model;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class Peliculas2 {
     private int id;
+
+    @NotBlank(message = "EL titulo no puede estar vacio")
     private String titulo;
+
     private Integer anio;
+    
     private boolean vista;
 
 
