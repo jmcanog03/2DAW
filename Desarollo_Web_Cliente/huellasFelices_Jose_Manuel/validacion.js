@@ -42,7 +42,7 @@ function validarTelefono(telefono) {
 
 function validarEdad(edad){
     const valido = edad.checkValidity()
-    if(edad >=18){
+    if(edad.value >=18){
         edad.classList.toggle("valido",valido);
     }else{
         edad.classList.toggle("invalido",!valido);
@@ -59,12 +59,17 @@ function validarMascota(mascota){
     return valido;
 }
 
-function validarPreviaMascota(mascota){
-    const valido = document.querySelector('input[name="experiencia"]:checked');
+function validarPreviaMascota(){
+    const seleccionado = document.querySelector('input[name="experiencia"]:checked');
 
-    if(!valido){
+    if(!seleccionado){
         return null;
     }else{
-        
+        return seleccionado.value;
     }
 }
+
+
+
+
+
