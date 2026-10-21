@@ -418,12 +418,17 @@
     const textoResumen = document.getElementById("texto-resumen");
     const modalidad = document.getElementById("campo-modalidad");
     const botonModalidad = document.getElementById("boton-anadir-modalidad");
+    const checkbox_normas = document.getElementById("checkbox-normas")
+    const boton_inscribirse = document.getElementById("boton-inscribirse")
+    const nivel = document.querySelectorAll('input[name="nivel"]')
+    const textoConfirmacion = document.getElementById("texto-confirmacion")
+    const panel = document.getElementById("panel-confirmacion")
 
-    function actualizarResumen(){
-      textoResumen.textContent = "el nick es " + campoNick.value + " la modalidad elegida es " + modalidad.value +  " y el nivel marcado es " + form.nivel.value
+    function actualizarResumen() {
+      textoResumen.textContent = "el nick es " + campoNick.value + " la modalidad elegida es " + modalidad.value + " y el nivel marcado es " + form.nivel.value
     }
-  
-    botonModalidad.addEventListener("click",function(){
+
+    botonModalidad.addEventListener("click", function () {
       const nuevo = document.createElement("option")
       nuevo.value = "nuevo";
       nuevo.textContent = "nuevo";
@@ -432,42 +437,94 @@
       actualizarResumen();
     })
 
-    function nivelSeleccionado(){
+    function nivelSeleccionado() {
       const seleccionado = document.querySelector('input[name="nivel"]:checked');
-      if(seleccionado){
+      if (seleccionado) {
         return seleccionado.value
-      }else{
-        return seleccionado.value = "null"
+      } else {
+        return null
       }
     }
 
-    function validarCampo(campo){
+    function validarCampo(campo) {
       const valido = campo.checkValidity();
-      campo.classList.toggle("valido",valido);
-      campo.classList.toggle("invalido",!valido);
-      return valido;
+      campo.classList.toggle("valido", valido);
+      campo.classList.toggle("invalido", !valido);
+      
     }
 
-    campoNombre.addEventListener("blur",function(){
+    campoNombre.addEventListener("blur", function () {
       validarCampo(campoNombre);
+      comprobarFormulario()
     });
 
-     campoNick.addEventListener("blur",function(event){
+    campoNick.addEventListener("blur", function (event) {
       validarCampo(campoNick)
+      comprobarFormulario()
     })
 
-     campoEmail.addEventListener("blur",function(event){
+    campoEmail.addEventListener("blur", function (event) {
       validarCampo(campoEmail)
+      comprobarFormulario()
     })
 
-    modalidad.addEventListener("change",function(){
+    modalidad.addEventListener("change", function () {
       validarCampo(modalidad)
+      comprobarFormulario()
+    })
+
+    checkbox_normas.addEventListener("change",function(){
+      validarCampo(checkbox_normas)
+      comprobarFormulario()
+    })
+
+    nivel.forEach(function(norma){
+      norma.addEventListener("change",function(){
+        comprobarFormulario()
+      })
     })
 
 
     nivelSeleccionado()
     actualizarResumen()
 
+    function comprobarFormulario() {
+      if (campoNombre.classList.contains("valido") && campoNick.classList.contains("valido")
+        && campoEmail.classList.contains("valido") && modalidad.classList.contains("valido")
+      && nivelSeleccionado()!=null && checkbox_normas.checked) {
+          boton_inscribirse.disabled = false
+          boton_inscribirse.classList.add("activo")
+      } else {
+        boton_inscribirse.disabled = true
+        boton_inscribirse.classList.remove("activo")
+      }
+    }
+
+    form.addEventListener("submit",function(event){
+      event.preventDefault()
+      textoConfirmacion.textContent = campoNick.value
+      panel.classList.add("visible")
+      form.reset()
+
+      campoNombre.classList.remove("valido")
+      campoNombre.classList.remove("invalido")
+
+      campoNick.classList.remove("valido")
+      campoNick.classList.remove("invalido")
+
+      campoEmail.classList.remove("valido")
+      campoEmail.classList.remove("invalido")
+
+      modalidad.classList.remove("valido")
+      modalidad.classList.remove("invalido")
+
+
+
+      actualizarResumen()
+      comprobarFormulario()
+      
+    })
+    
 
 
   </script>
