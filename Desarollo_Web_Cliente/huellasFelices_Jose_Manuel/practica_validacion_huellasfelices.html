@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HuellasFelices · Solicitud de adopción</title>
+<style>
+  :root {
+    --navy: #10243D;
+    --navy2: #16314F;
+    --teal: #18A0AE;
+    --teal-dark: #128089;
+    --gold: #F4B942;
+    --green: #2E8B57;
+    --green-bg: #EAF7EF;
+    --red: #D64550;
+    --red-bg: #FCEAEC;
+    --bg: #FAF8F3;
+    --card: #FFFFFF;
+    --line: #E4E0D6;
+    --muted: #6B7A8C;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--navy);
+    line-height: 1.5;
+  }
+  header.topbar {
+    background: var(--navy);
+    color: white;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 19px;
+    font-weight: 700;
+  }
+  main {
+    max-width: 640px;
+    margin: 32px auto;
+    padding: 0 24px 48px;
+  }
+  #presentacion {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+    color: white;
+    border-radius: 16px;
+    padding: 24px 26px;
+    margin-bottom: 24px;
+  }
+  #presentacion h1 { margin: 0 0 6px; font-size: 21px; }
+  #presentacion p { margin: 0; color: #CBD6E2; font-size: 13.5px; }
+
+  #formulario-adopcion-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 26px 28px 28px;
+  }
+  #formulario-adopcion-card h2 { margin: 0 0 18px; font-size: 17px; }
+
+  #formulario-adopcion label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 16px 0 5px;
+  }
+  #formulario-adopcion label:first-child { margin-top: 0; }
+  #formulario-adopcion input[type="text"],
+  #formulario-adopcion input[type="email"],
+  #formulario-adopcion input[type="number"],
+  #formulario-adopcion select {
+    display: block;
+    width: 100%;
+    padding: 10px 13px;
+    border: 2px solid var(--line);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    background: var(--bg);
+    color: var(--navy);
+    outline: none;
+  }
+  #formulario-adopcion input:focus, #formulario-adopcion select:focus { border-color: var(--teal); }
+  #formulario-adopcion input.valido, #formulario-adopcion select.valido {
+    border-color: var(--green);
+    background: var(--green-bg);
+  }
+  #formulario-adopcion input.invalido, #formulario-adopcion select.invalido {
+    border-color: var(--red);
+    background: var(--red-bg);
+  }
+
+  .fila-radio { margin: 6px 0 0; font-size: 13.5px; }
+  #formulario-adopcion .fila-radio label { display: inline; font-weight: 400; margin: 0 16px 0 4px; }
+  .fila-radio input[type="radio"] { accent-color: var(--teal); }
+
+  .fila-checkbox { margin: 20px 0 0; display: flex; align-items: flex-start; gap: 8px; font-size: 13.5px; }
+  .fila-checkbox input { margin-top: 2px; accent-color: var(--teal); }
+  #formulario-adopcion .fila-checkbox label { display: inline; font-weight: 400; margin: 0; }
+
+  #boton-adoptar {
+    display: block;
+    width: 100%;
+    margin-top: 24px;
+    background: var(--line);
+    color: var(--muted);
+    border: none;
+    padding: 13px;
+    border-radius: 8px;
+    font-size: 14.5px;
+    font-weight: 700;
+    cursor: not-allowed;
+  }
+  #boton-adoptar.activo { background: var(--teal); color: white; cursor: pointer; }
+  #boton-adoptar.activo:hover { background: var(--teal-dark); }
+
+  #panel-confirmacion {
+    display: none;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--green);
+    border-radius: 14px;
+    padding: 22px 26px;
+    margin-top: 20px;
+  }
+  #panel-confirmacion.visible { display: block; }
+  #panel-confirmacion h2 { margin: 0 0 6px; font-size: 16px; color: var(--green); }
+  #panel-confirmacion p { margin: 0; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<header class="topbar">🐾 HuellasFelices</header>
+
+<main>
+  <div id="presentacion">
+    <h1>Solicitud de adopción</h1>
+    <p>Rellena tus datos. Comprobamos cada campo en cuanto sales de él.</p>
+  </div>
+
+  <div id="formulario-adopcion-card">
+    <h2>Formulario de solicitud</h2>
+
+    <form id="formulario-adopcion">
+      <label for="campo-nombre">Nombre completo</label>
+      <input type="text" id="campo-nombre" required>
+
+      <label for="campo-email">Correo electrónico</label>
+      <input type="email" id="campo-email" required>
+
+      <label for="campo-telefono">Teléfono (9 dígitos)</label>
+      <input type="text" id="campo-telefono" required>
+
+      <label for="campo-edad">Edad</label>
+      <input type="number" id="campo-edad" min="18" required>
+
+      <label for="campo-mascota">Tipo de mascota</label>
+      <select id="campo-mascota" required>
+        <option value="" disabled selected>Elige un tipo de mascota</option>
+        <option value="perro">Perro</option>
+        <option value="gato">Gato</option>
+        <option value="conejo">Conejo</option>
+        <option value="otro">Otro</option>
+      </select>
+
+      <div class="fila-radio">
+        <span style="font-size:13px; font-weight:600;">¿Tienes experiencia previa con mascotas?</span><br>
+        <input type="radio" name="experiencia" value="si" id="experiencia-si">
+        <label for="experiencia-si">Sí</label>
+        <input type="radio" name="experiencia" value="no" id="experiencia-no">
+        <label for="experiencia-no">No</label>
+      </div>
+
+      <div class="fila-checkbox">
+        <input type="checkbox" id="checkbox-compromiso">
+        <label for="checkbox-compromiso">Me comprometo a cuidar responsablemente de la mascota que adopte.</label>
+      </div>
+
+      <button type="submit" id="boton-adoptar" disabled>Enviar solicitud</button>
+    </form>
+  </div>
+
+  <div id="panel-confirmacion">
+    <h2>¡Solicitud enviada!</h2>
+    <p id="texto-confirmacion">Gracias por tu solicitud.</p>
+  </div>
+</main>
+
+<script src="validacion.js">
+
+</script>
+</body>
+</html>
