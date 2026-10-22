@@ -322,3 +322,72 @@ img{
     max-width: 30rem;
 }
 
+aside{
+    border: 1px solid #e1e1e1;
+    padding: 2rem;
+    align-self: start;
+    text-align: left;
+}
+
+aside ul{
+    list-style: none;
+}
+
+aside li{
+    border-bottom: 1px solid #e1e1e1;
+    padding: 1rem 0 1rem 0;
+    
+}
+
+aside li:last-of-type{
+    border-bottom: none;
+}
+
+.contenido-entrada-blog{
+    width: 60rem;
+    text-align: left;
+    margin: 0 auto;
+}
+
+.formulario{
+    max-width: 60rem;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.formulario fieldset{
+        border: 1px,solid black;
+        margin-bottom: 2rem;
+}
+
+.formulario legend{
+    width: 100%;
+    background-color: #005485;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 900;
+    padding: 1rem;
+    margin-bottom: 4rem;
+}
+
+.campo{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2rem;
+}
+
+.campo label{
+    flex-basis: 10rem;
+}
+
+.campo input:not([type="radio"]),.campo textarea,.campo select{
+    flex: 1;
+    border: 1px,solid, #e1e1e1;
+    padding: 1rem;
+}
+
+.campo:focus{
+    outline: none;
+    border: 1px,solid,#037bc0;
+}

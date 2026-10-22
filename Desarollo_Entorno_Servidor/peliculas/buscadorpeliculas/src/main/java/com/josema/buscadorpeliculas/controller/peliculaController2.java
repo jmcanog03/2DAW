@@ -37,8 +37,8 @@ public class peliculaController2 {
         return "pelicula2";
     }
 
-    @PostMapping("/recibir")
-    public String getFormulario(@Valid  @ModelAttribute Peliculas2 pelicula2 ,BindingResult result , Model model, RedirectAttributes redirect) {
+    @GetMapping("/recibir")
+    public String getFormulario(@Valid  @ModelAttribute("pelicula2") Peliculas2 pelicula2 ,BindingResult result , Model model, RedirectAttributes redirect) {
         if(result.hasErrors()){
             model.addAttribute("pelicula3", peliculaRepositories.getPeliculas());
             return "pelicula2";
