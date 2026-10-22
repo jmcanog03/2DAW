@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <form method="get">
+
+       <label for="Titulo">Titulo</label>
+        <input type="text" th:field="*{titulo}">
+        <span th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></span>
+
+        <label for="anio">Anio</label>
+        <select th:field="*{anio}">
+            <option value="" th:selected="${anio == null}">Todos los anios</option>
+            <option value="1900">1900</option>
+            <option value="2002">2002</option>
+            <option value="2003">2003</option>
+        </select>
+        
+        <label for="vista">Pelicula vista?</label>
+        <input type="checkbox" th:field="*{vista}" value="true" checked>
+
+        <label for="ID">ID</label>
+        <input type="number" th:field="*{id}">
+
+        <button type="submit">Enviar Formulario</button>
+    </form>
+</body>
+</html>

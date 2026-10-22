@@ -62,6 +62,12 @@ public class peliculaRepositories {
         return resultado;
     }
 
+    public List<Peliculas2> agregarPeliculas(Peliculas2 pelicula2){
+            List<Peliculas2> listaPeliculas = new ArrayList<>();
+            listaPeliculas.add(pelicula2);
+            return listaPeliculas;
+    }
+
     public List<Peliculas> getVista() {
         List<Peliculas> resultado = new ArrayList<>();
         List<Peliculas> pelis = getPeliculas();
