@@ -3,7 +3,7 @@ const email = document.getElementById("email");
 const telefono = document.getElementById("campo-telefono");
 const edad = document.getElementById("campo-edad");
 const tipoMascota = document.getElementById("campo-mascota");
-
+const checkbox = document.getElementById("checkbox-compromiso");
 function validarNombre(campo) {
     const campo = campo.checkValidity();
     nombre = campo.trim()
@@ -61,13 +61,47 @@ function validarMascota(mascota){
 
 function validarPreviaMascota(){
     const seleccionado = document.querySelector('input[name="experiencia"]:checked');
-
+    
     if(!seleccionado){
         return null;
     }else{
         return seleccionado.value;
     }
 }
+
+function validarChecbox(){
+
+    if(!checkbox.cheked){
+        return null;
+    }else{
+        return checkbox.value;
+    }
+}
+
+
+nombre.addEventListener("blur",function(){
+    validarNombre(nombre)
+})
+
+email.addEventListener("blur",function(){
+    validarEmail(email)
+})
+
+telefono.addEventListener("blur",function(){
+    validarTelefono(telefono)
+})
+
+edad.addEventListener("blur",function(){
+    validarEdad(edad)
+})
+
+tipoMascota.addEventListener("blur",function(){
+    validarMascota(tipoMascota)
+})
+
+checkbox.addEventListener("blur",function(){
+    validarChecbox(checkbox);
+})
 
 
 
