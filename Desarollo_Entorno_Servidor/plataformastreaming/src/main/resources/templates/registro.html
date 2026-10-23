@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <html xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <style>
+        .formulario{
+            display: flex;
+            margin: 0 auto;
+            flex-direction: column;
+            max-width: 60rem;
+            flex-wrap: wrap;
+        }
+
+        fieldset{
+            display: grid;
+            grid-template-columns: 1fr,1fr;
+            gap: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <form th:action="@{/inicio}" method="post" class="formulario">
+        <fieldset>
+            <legend>Registrarse</legend>
+            <label for="nombreusuario">Nombre de Usuario</label>
+            <input type="text" name="nombreusuario" id="nombreusuario" required>
+
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" id="nombre" required>
+
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+
+            <label for="telefono">Telefono</label>
+            <input type="tel" name="telefono" id="telefono" required>
+
+            <label for="fecha">Fecha de Nacimiento</label>
+            <input type="date" name="fecha" id="fecha" required>
+
+            <label for="categoria">
+                <select name="categoria" id="categoria" required>
+                    <option value="">Elige subscripcion</option>
+                    <option value="premium">Premium</option>
+                    <option value="premium">Con Publicidad</option>
+                    <option value="premium">Gratuito</option>
+                </select>
+            </label>
+
+            <button type="submit">Enviar Formulario</button>
+        </fieldset>
+    </form>
+    
+</body>
+</html>

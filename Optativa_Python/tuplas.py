@@ -22,4 +22,7 @@ corredorOrdenados = sorted(corredores)
 for corredor in corredorOrdenados:
     
     print(f"corredor {corredor[1]},y su tiempo que es {corredor[0]} y su posicion es {corredorOrdenados.index(corredor)}")
+    
+    
+    
 
