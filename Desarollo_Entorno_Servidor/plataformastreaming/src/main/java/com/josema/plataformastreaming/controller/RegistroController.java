@@ -17,10 +17,6 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
-
-
-
 @Controller
 @RequestMapping("/registro")
 public class RegistroController {
@@ -32,26 +28,27 @@ public class RegistroController {
 
     @GetMapping("")
     public String getUsuario(Model model) {
+        model.addAttribute("usuario", new Usuario());
         model.addAttribute("usaurio", usuarioservices.getUusarios());
         return "registro";
     }
 
-
     @PostMapping("")
-    public String postMethodName(@Valid @ModelAttribute("usuario") Usuario usuario, BindingResult result,RedirectAttributes redirec,Model model) {
-        
-        if(result.hasErrors()){
+    public String postMethodName(@Valid @ModelAttribute("usuario") Usuario usuario, BindingResult result,
+            RedirectAttributes redirec, Model model) {
+        if (result.hasErrors()) {
             return "registro";
         }
-        
-        if(!usuarioservices.comprobarRegistro(usuario)){
+
+        if (!usuarioservices.comprobarRegistro(usuario)) {
+
             return "registro";
         }
+
+        redirec.addFlashAttribute("mensaje", "Usuario registrado correctamente");
 
         return "redirect:/inicio";
-        
-        
+
     }
-    
-    
+
 }

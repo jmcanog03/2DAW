@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busqueda</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        border: 1px solid black;
+        padding: 8px;
+    }
+</style>
+
+<body>
+
+    <h1>Usuario Encontrado</h1>
+
+    <table>
+        <tr>
+            <th>Nombre Usuario</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Fecha</th>
+            <th>Categoria</th>
+        </tr>
+
+        <tr>
+            <!--<td th:object="${usuario}"></td> -->
+            <td th:text="${usuario.nombreUsuario}"></td>
+            <td th:text="${usuario.nombre}"></td>
+            <td th:text="${usuario.email}"></td>
+            <td th:text="${usuario.fecha}"></td>
+            <td th:text="${usuario.categoria}"></td>
+        </tr>
+    </table>
+
+    <a th:href="@{/principal}">Volver al inicio</a>
+</body>
+
+</html>

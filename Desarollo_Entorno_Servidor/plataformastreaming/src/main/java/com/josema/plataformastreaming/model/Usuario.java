@@ -3,17 +3,52 @@ package com.josema.plataformastreaming.model;
 import java.sql.Date;
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
 public class Usuario {
-    private String nombreusuario;
+
+    @NotBlank
+    private String nombreUsuario;
+
+    @NotBlank
+    @Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ ]+$")
     private String nombre;
+
+    @NotBlank
+    @Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ ]+$")
+    private String apellidos;
+
+    @Email
+    @NotBlank
     private String email;
+
+    @Pattern(regexp = "^[0-9]{9}")
+    @NotBlank
     private String telefono;
+
+    @Past
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @NotNull
     private LocalDate fecha;
+
+    @NotBlank
     private String categoria;
 
-    public Usuario(String nombreusuario, String nombre, String email, String telefono, LocalDate fecha, String categoria) {
-        this.nombreusuario = nombreusuario;
+    public Usuario() {
+    }
+
+    public Usuario(String nombreUsuario, String nombre, String apellidos, String email, String telefono,
+            LocalDate fecha, String categoria) {
+        this.nombreUsuario = nombreUsuario;
         this.nombre = nombre;
+        this.apellidos = apellidos;
         this.email = email;
         this.telefono = telefono;
         this.fecha = fecha;
@@ -21,11 +56,11 @@ public class Usuario {
     }
 
     public String getNombreUsuario() {
-        return this.nombreusuario;
+        return this.nombreUsuario;
     }
 
     public void setNombreUsuario(String nombreUsuario) {
-        this.nombreusuario = nombreUsuario;
+        this.nombreUsuario = nombreUsuario;
     }
 
     public String getNombre() {
@@ -34,6 +69,14 @@ public class Usuario {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getApellidos() {
+        return this.apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public String getEmail() {
@@ -73,6 +116,7 @@ public class Usuario {
         return "{" +
                 " nombreUsuario='" + getNombreUsuario() + "'" +
                 ", nombre='" + getNombre() + "'" +
+                ", apellidos='" + getApellidos() + "'" +
                 ", email='" + getEmail() + "'" +
                 ", telefono='" + getTelefono() + "'" +
                 ", fecha='" + getFecha() + "'" +

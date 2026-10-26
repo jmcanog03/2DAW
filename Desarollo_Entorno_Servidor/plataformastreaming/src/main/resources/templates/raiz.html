@@ -6,20 +6,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina Principal</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+
+        th,td{
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
 </head>
 
 <body>
     <h1>Todos los Usuarios Registrados en la plataforma</h1>
 
-    <ul th:each=" usuario: ${usuario}">
-        <li th:object="${usuario}"></li>
-        <li th:text="${usuario.nombreusuario}"></li>
-        <li th:text="${usuario.nombre}"></li>
-        <li th:text="${usuario.email}"></li>
-        <li th:text="${usuario.fecha}"></li>
-        <li th:text="${usuario.categoria}"></li>
+    <table>
+        <tr>
+            <th>Nombre Usuario</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Fecha</th>
+            <th>Categoria</th>
+        </tr>
+        <tr th:each=" usuario: ${usuario}">
+            <!--<td th:object="${usuario}"></td> -->
+            <td th:text="${usuario.nombreUsuario}"></td>
+            <td th:text="${usuario.nombre}"></td>
+            <td th:text="${usuario.email}"></td>
+            <td th:text="${usuario.fecha}"></td>
+            <td th:text="${usuario.categoria}"></td>
+        </tr>
+    </table>
 
-    </ul>
+    <a th:href="@{/inicio}" id="mensaje">Volver al inicio</a>
+    <a th:href="@{/registro}" id="mensaje">Volver al registro</a>
 </body>
 
 </html>

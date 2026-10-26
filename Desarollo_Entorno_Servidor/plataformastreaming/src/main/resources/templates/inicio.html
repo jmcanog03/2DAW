@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <html xmlns:th="http://www.thymeleaf.org">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesion</title>
+     <style>
+        .formulario {
+
+            margin: 0 auto;
+
+            max-width: 60rem;
+        }
+
+        fieldset {
+            display: grid;
+            grid-template-columns: 1fr, 1fr;
+            gap: 2rem;
+        }
+
+        .enlace{
+            display: block;
+            margin: 2rem auto 0;
+            width: fit-content;
+        }
+
+        #mensaje{
+            display: block;
+            text-align: center;
+            margin: 2rem auto 0;
+            width: 100%;
+        }
+    </style>
+
+</head>
+<body>
+    <form th:action="@{/inicio/busqueda}" method="get" class="formulario" th:object="${usuario}">
+        <fieldset>
+            <legend>Inicio de Sesion</legend>
+
+            <label for="nombreusuario">Nombre de Usuario</label>
+            <input type="text" th:field="*{nombreUsuario}" id="nombreUsuario">
+
+            <button type="submit">Buscar Usuario</button>
+        </fieldset>
+    </form>
+
+    <a th:href="@{/principal}" class="enlace">Volver al inicio</a>
+
+    <p th:if="${mensaje}" th:text="${mensaje}" id="mensaje">Registro Correcto</p>
+</body>
+</html>

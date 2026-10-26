@@ -1,58 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <html xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
     <style>
-        .formulario{
-            display: flex;
+        .formulario {
+
             margin: 0 auto;
-            flex-direction: column;
+
             max-width: 60rem;
-            flex-wrap: wrap;
         }
 
-        fieldset{
+        fieldset {
             display: grid;
-            grid-template-columns: 1fr,1fr;
+            grid-template-columns: 1fr, 1fr;
             gap: 2rem;
+        }
+
+         #mensaje{
+            display: block;
+            text-align: center;
+            margin: 2rem auto 0;
+            width: 100%;
         }
     </style>
 </head>
+
 <body>
 
-    <form th:action="@{/inicio}" method="post" class="formulario">
+    <form th:action="@{/registro}" method="post" class="formulario" th:object="${usuario}">
         <fieldset>
             <legend>Registrarse</legend>
-            <label for="nombreusuario">Nombre de Usuario</label>
-            <input type="text" name="nombreusuario" id="nombreusuario" required>
+            <label for="nombreUsuario">Nombre de Usuario</label>
+            <input type="text" th:field="*{nombreUsuario}">
+            <span th:if="${#fields.hasErrors('nombreUsuario')}" th:errors="*{nombreUsuario}"></span>
 
             <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" id="nombre" required>
+            <input type="text" th:field="*{nombre}" id="nombre">
+            <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+
+             <label for="apellidos">Apellidos</label>
+            <input type="text" th:field="*{apellidos}" id="apellidos">
+            <span th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"></span>
 
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" required>
+            <input type="email" th:field="*{email}" id="email">
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
 
             <label for="telefono">Telefono</label>
-            <input type="tel" name="telefono" id="telefono" required>
+            <input type="tel" th:field="*{telefono}" id="telefono">
+            <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></span>
 
             <label for="fecha">Fecha de Nacimiento</label>
-            <input type="date" name="fecha" id="fecha" required>
+            <input type="date" th:field="*{fecha}" id="fecha">
+            <span th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></span>
 
             <label for="categoria">
-                <select name="categoria" id="categoria" required>
+                <select th:field="*{categoria}" id="categoria">
                     <option value="">Elige subscripcion</option>
                     <option value="premium">Premium</option>
                     <option value="premium">Con Publicidad</option>
                     <option value="premium">Gratuito</option>
                 </select>
             </label>
+            <span th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></span>
 
             <button type="submit">Enviar Formulario</button>
         </fieldset>
     </form>
-    
+
+    <a th:href="@{/principal}" id="mensaje">Volver al inicio</a>
+
 </body>
+
 </html>

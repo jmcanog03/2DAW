@@ -24,29 +24,22 @@ public class usuarioRepositories {
     }
 
     public boolean registro(Usuario usuario){
-        boolean esta = false;
-
-        for (int i = 0; i < listaUsuarios.size(); i++) {
-            if(listaUsuarios.contains(usuario)){
-                esta = true;
-            }else{
-                esta = false;
+        for (Usuario usuario2 : listaUsuarios) {
+            if(usuario2.getNombreUsuario().equalsIgnoreCase(usuario.getNombreUsuario())){
+                return false;
             }
         }
 
-        return esta;
+        return true;
     }
 
     public boolean inicioSesion(Usuario usuario){
-        boolean esta = false;
         for (Usuario usuario2 : listaUsuarios) {
             if(usuario2.getNombreUsuario().equalsIgnoreCase(usuario.getNombreUsuario())){
-                esta = true;
-            }else{
-                esta = false;
+                return true;
             }
         }
 
-        return esta;
+        return false;
     }
 }

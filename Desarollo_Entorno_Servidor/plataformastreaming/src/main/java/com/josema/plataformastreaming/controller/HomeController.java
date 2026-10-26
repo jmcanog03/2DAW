@@ -11,7 +11,7 @@ import com.josema.plataformastreaming.services.usuarioServices;
 
 
 @Controller 
-@RequestMapping("")
+@RequestMapping("/principal")
 public class HomeController {
 
     private usuarioServices usuarioservices;

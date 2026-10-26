@@ -33,10 +33,22 @@ public class usuarioServices {
         return usuariorepositories.getUsuarios();
     }
 
-    public Usuario validarInicioSesion(Usuario usuario2) {
+    public Boolean validarInicioSesion(Usuario usuario2) {
+        boolean esta = false;
         if (!usuariorepositories.inicioSesion(usuario2)) {
-            return usuario2;
+            return esta = false;
         }
+
+        return esta = true;
+    }
+
+    public Usuario BusquedaUsuario(Usuario usuario){
+       for (Usuario usuario2: usuariorepositories.getUsuarios()) {
+            if(usuario2.getNombreUsuario().equalsIgnoreCase(usuario.getNombreUsuario())){
+                return usuario2;
+            }
+       }
+
 
         return null;
     }
