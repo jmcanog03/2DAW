@@ -41,7 +41,6 @@ public class RegistroController {
         }
 
         if (!usuarioservices.comprobarRegistro(usuario)) {
-
             return "registro";
         }
 

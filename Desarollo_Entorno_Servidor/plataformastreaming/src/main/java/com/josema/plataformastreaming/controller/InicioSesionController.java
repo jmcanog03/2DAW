@@ -1,5 +1,6 @@
 package com.josema.plataformastreaming.controller;
 
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,6 +11,7 @@ import com.josema.plataformastreaming.model.Usuario;
 import com.josema.plataformastreaming.services.usuarioServices;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -28,8 +30,8 @@ public class InicioSesionController {
         return "inicio";
     }
 
-    @GetMapping("/busqueda")
-    public String getUsuario(Model model, @ModelAttribute("usuario") Usuario usuario) {
+    @PostMapping("/busqueda")
+    public String getUsuario(Model model, @ModelAttribute("usuario") Usuario usuario, BindingResult result) {
 
         if (usuarioservices.validarInicioSesion(usuario)) {
             Usuario encontrado = usuarioservices.BusquedaUsuario(usuario);
@@ -42,8 +44,8 @@ public class InicioSesionController {
 
         }
 
+        model.addAttribute("error", "El usuario no existe");
         return "inicio";
-
     }
 
 }

@@ -35,18 +35,21 @@
 
 </head>
 <body>
-    <form th:action="@{/inicio/busqueda}" method="get" class="formulario" th:object="${usuario}">
+    <form th:action="@{/inicio/busqueda}" method="post" class="formulario" th:object="${usuario}">
         <fieldset>
             <legend>Inicio de Sesion</legend>
 
             <label for="nombreusuario">Nombre de Usuario</label>
             <input type="text" th:field="*{nombreUsuario}" id="nombreUsuario">
 
+
             <button type="submit">Buscar Usuario</button>
         </fieldset>
     </form>
 
     <a th:href="@{/principal}" class="enlace">Volver al inicio</a>
+    
+     <p th:if="${error}" th:text="${error}" id="mensaje">Error no existe el usuario</p>
 
     <p th:if="${mensaje}" th:text="${mensaje}" id="mensaje">Registro Correcto</p>
 </body>

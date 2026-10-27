@@ -42,13 +42,12 @@ public class usuarioServices {
         return esta = true;
     }
 
-    public Usuario BusquedaUsuario(Usuario usuario){
-       for (Usuario usuario2: usuariorepositories.getUsuarios()) {
-            if(usuario2.getNombreUsuario().equalsIgnoreCase(usuario.getNombreUsuario())){
+    public Usuario BusquedaUsuario(Usuario usuario) {
+        for (Usuario usuario2 : usuariorepositories.getUsuarios()) {
+            if (usuario2.getNombreUsuario().equalsIgnoreCase(usuario.getNombreUsuario())) {
                 return usuario2;
             }
-       }
-
+        }
 
         return null;
     }

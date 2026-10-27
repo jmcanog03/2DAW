@@ -5,6 +5,9 @@ import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.josema.plataformastreaming.validation.MayorDeEdad;
+import com.josema.plataformastreaming.validation.NombreUsuario;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -15,6 +18,8 @@ import jakarta.validation.constraints.Size;
 public class Usuario {
 
     @NotBlank
+    @NotNull
+    @NombreUsuario
     private String nombreUsuario;
 
     @NotBlank
@@ -36,6 +41,7 @@ public class Usuario {
     @Past
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @NotNull
+    @MayorDeEdad
     private LocalDate fecha;
 
     @NotBlank
