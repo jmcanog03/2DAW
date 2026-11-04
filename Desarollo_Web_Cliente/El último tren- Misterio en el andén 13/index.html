@@ -122,13 +122,25 @@
                 <p id="mensajevacio3"></p>
             </div>
 
-            <button type="submit" id="ir-Taquilla">Ir a la Taquilla</button>
+            <button type="submit" id="ir-taquilla">Ir a la Taquilla</button>
         </div>
 
         <div id="taquilla" class="despacho activa">
             <h3>Tienes que intentar abrir con 3 numeros la combinacion de taquilla del jefe de la estacion</h3>
-            <input type="number" name="numeroTaquilla" id="numeroTaquilla">
-            <button type="submit">Comprobar código de la taquilla</button>
+            <nav>
+                <p class="vidas">Vidas</p>
+            </nav>
+
+            <input type="number" name="numeroTaquilla" id="numeroTaquilla" required
+                placeholder="Introduce 3 cifras para abrir la taquilla">
+            <button type="button" id="comprobarTaquilla">Comprobar código de la taquilla recuerda las pistas</button>
+            <p id="mensajeConfirmacionTaquilla"></p>
+        </div>
+
+        <div id="derrota" class="despacho">
+            <h2>Has perdido</h2>
+            <p>Te has quedado sin vidas y el misterio del tren sigue sin resolverse</p>
+            <button type="button" id="volverInicio">Volver al Inicio</button>
         </div>
 
 

@@ -6,6 +6,7 @@ const botonFormulario = document.getElementById("boton-formulario")
 const sectionDespacho = document.getElementById("despacho")
 const sectionAnden = document.getElementById("anden")
 const sectionTaquilla = document.getElementById("taquilla")
+const sectionDerrota = document.getElementById("derrota")
 
 // OBJETOS 
 const objetoReloj = document.getElementById("reloj")
@@ -14,6 +15,9 @@ const objetoBillete = document.getElementById("billete")
 
 const nombreForm = document.getElementById("nombre")
 const idDetective = document.getElementById("id")
+const botonComprobarTaquilla = document.getElementById("comprobarTaquilla")
+const numeroTaquilla = document.getElementById("numeroTaquilla")
+const mensajeConfirmacionTaquilla = document.getElementById("mensajeConfirmacionTaquilla")
 
 // VIDAS DE CADA SECCION
 const vidas = document.querySelectorAll(".vidas")
@@ -33,8 +37,11 @@ const pistaBillete = document.getElementById("pistaBillete")
 const botonReloj = document.getElementById("investigarReloj")
 
 const botonAnden = document.getElementById("ir-anden")
+const botonTaquilla = document.getElementById("ir-taquilla")
+const botonInicio = document.getElementById("volverInicio")
 
 // SEÑALES
+const senales = document.getElementById("senales")
 const senalViaLibre = document.getElementById("vialibre")
 const senalPrecaucion = document.getElementById("precaucion")
 const senalAlto = document.getElementById("alto")
@@ -53,20 +60,17 @@ sectionDespacho.classList.remove("activa")
 sectionAnden.classList.remove("activa")
 sectionTaquilla.classList.remove("activa")
 
+
+
 // PARA NADA
 
 formulario.addEventListener("submit", function (event) {
     event.preventDefault()
     if (validarNombre(nombreForm)) {
-        sectionDespacho.classList.remove("despacho")
         sectionDespacho.classList.add("activa")
         formulario.classList.remove("activa")
         header.classList.remove("activa")
         sectionAnden.classList.remove("activa")
-    } else {
-        formulario.classList.add("activa")
-        header.classList.add("activa")
-        sectionDespacho.classList.remove("activa")
     }
 })
 
@@ -108,7 +112,7 @@ function mostrarObjetos() {
 
 
 botonReloj.addEventListener("click", function () {
-    
+
     mostrarObjetos()
 })
 
@@ -157,6 +161,12 @@ const detective = {
     quitarVidas: function () {
         this.vidasDetective = this.vidasDetective - 1
         this.AnadirVidas()
+
+        if(this.vidasDetective === 0){
+            const sectionActiva = document.querySelector(".despacho.activa")
+            sectionActiva.classList.remove("activa")
+            sectionDerrota.classList.add("activa")
+        }
     }
 
 }
@@ -169,8 +179,6 @@ nombreForm.addEventListener("blur", function () {
 
 botonAnden.addEventListener("click", function () {
     sectionDespacho.classList.remove("activa")
-    sectionDespacho.classList.add("despacho")
-    sectionAnden.classList.remove("despacho")
     sectionAnden.classList.add("activa")
 })
 
@@ -238,5 +246,48 @@ vacio3.addEventListener("drop", function (event) {
     }
 })
 
+function comprobarCodigoTaquilla() {
+    // let numero =0;
+    // numeroTaquilla.addEventListener("input",function(event){
+    //     numero = event.target.value
+    // })
 
+       if (numeroTaquilla.value == 967) {
+            mensajeConfirmacionTaquilla.textContent = "!!!HAS ACERTADO!!!!"
+        } else {
+            mensajeConfirmacionTaquilla.textContent = "NO HAS ACERTADO SE TE QUITARA UNA VIDA"
+            detective.quitarVidas()
+            detective.AnadirVidas()
+        }
+}
 
+botonTaquilla.addEventListener("click", function () {
+    sectionDespacho.classList.remove("activa")
+    sectionAnden.classList.remove("activa")
+    sectionTaquilla.classList.add("activa")
+})
+
+botonComprobarTaquilla.addEventListener("click",function(){
+    comprobarCodigoTaquilla()
+})
+
+botonInicio.addEventListener("click",function(){
+    sectionDerrota.classList.remove("activa")
+    sectionDespacho.classList.remove("activa")
+    sectionAnden.classList.remove("activa")
+    sectionTaquilla.classList.remove("activa")
+    formulario.classList.add("activa")
+    header.classList.add("activa")
+    detective.vidasDetective = 4
+    detective.AnadirVidas()
+    numeroTaquilla.value = ""
+    mensajeConfirmacionTaquilla.textContent = ""
+    mensajevacio1.textContent = ""
+    mensajevacio2.textContent = ""
+    mensajevacio3.textContent = ""
+    senales.appendChild(senalViaLibre)
+    senales.appendChild(senalPrecaucion)
+    senales.appendChild(senalAlto)
+    detective.nombre = ""
+
+})
