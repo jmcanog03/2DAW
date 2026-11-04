@@ -53,7 +53,7 @@ sectionDespacho.classList.remove("activa")
 sectionAnden.classList.remove("activa")
 sectionTaquilla.classList.remove("activa")
 
-
+// PARA NADA
 
 formulario.addEventListener("submit", function (event) {
     event.preventDefault()
