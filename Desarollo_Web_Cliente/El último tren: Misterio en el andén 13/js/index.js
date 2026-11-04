@@ -54,6 +54,7 @@ sectionAnden.classList.remove("activa")
 sectionTaquilla.classList.remove("activa")
 
 
+
 formulario.addEventListener("submit", function (event) {
     event.preventDefault()
     if (validarNombre(nombreForm)) {
