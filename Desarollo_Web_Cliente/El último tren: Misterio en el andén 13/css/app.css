@@ -1,0 +1,448 @@
+/* .despacho{
+    display: none;
+    
+}
+
+.despacho.activa{
+    display: block;
+}
+
+.contenedor-formulario{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+#boton-formulario{
+    background-color: rgb(134, 219, 219);
+    color: red;
+}
+
+#boton-formulario:hover{
+    background-color: orange;
+    color: white;
+    transition: 1s;
+}
+
+#header h1{
+    text-align: center;
+}
+
+#header p{
+    margin-bottom: 3rem;
+    font-size: 1.3rem;
+} 
+
+.valido{
+    border: 2px solid green;
+}
+
+.invalido{
+    border: 2px solid red;
+}
+
+
+
+td{
+    padding: 0.5rem;
+    border-spacing: 1rem;
+}
+
+#objetos{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 0.5rem;
+}
+
+#titulo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#ir-anden{
+    margin-top: 10rem;
+    margin-left: 30rem;
+
+}
+
+#vacio1{
+    width: 100px;
+    height: 80px;
+    border: 2px solid black;
+    margin-left: 2rem;
+    padding: 2rem.0.0.0;
+}
+
+#vacio2{
+    width: 100px;
+    height: 80px;
+    border: 2px solid black;
+    margin-left: 2rem;
+    padding: 2rem.0.0.0;
+}
+
+#vacio3{
+    width: 100px;
+    height: 80px;
+    border: 2px solid black;
+    margin-left: 2rem;
+    padding: 2rem.0.0.0;
+}
+
+#senales{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 50rem;
+
+}
+
+#cuadros{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+}
+ */
+
+
+/* ===== ESTILOS GENERALES ===== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #f4eee2;
+    background:
+        radial-gradient(circle at top, #26394a 0%, #111c28 45%, #080e15 100%);
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #e8c77a;
+    line-height: 1.3;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.3rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+}
+
+h3 {
+    font-size: 1.3rem;
+}
+
+p {
+    color: #d8dce0;
+}
+
+/* ===== CABECERA ===== */
+
+header {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: linear-gradient(135deg, #172635, #263b4b);
+    border-bottom: 3px solid #b99143;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.35);
+}
+
+header p {
+    max-width: 750px;
+    margin: 0.8rem auto;
+}
+
+/* ===== CONTENIDO PRINCIPAL ===== */
+
+main {
+    width: min(1100px, 92%);
+    margin: 2.5rem auto;
+}
+
+main>div {
+    margin-bottom: 2rem;
+}
+
+/* ===== MOSTRAR Y OCULTAR FASES ===== */
+
+.despacho {
+    display: none;
+}
+
+.despacho.activa {
+    display: block;
+}
+
+/* ===== FORMULARIO ===== */
+
+#formulario-inicio {
+    max-width: 550px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #192735;
+    border: 1px solid #526575;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.contenedor-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+label {
+    color: #e8c77a;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    color: #f4eee2;
+    background: #0d1720;
+    border: 2px solid #526575;
+    border-radius: 6px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #e8c77a;
+    box-shadow: 0 0 0 3px rgba(232, 199, 122, 0.15);
+}
+
+/* Estados de validación */
+
+.valido {
+    border-color: #53bd83 !important;
+    background-color: #10291f;
+}
+
+.invalido {
+    border-color: #e06464 !important;
+    background-color: #301919;
+}
+
+/* ===== BOTONES ===== */
+
+button {
+    padding: 0.8rem 1.3rem;
+    margin-top: 0.8rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #111820;
+    background: #e8c77a;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+button:hover:not(:disabled) {
+    background: #f5d995;
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    color: #8b9298;
+    background: #3b454e;
+    cursor: not-allowed;
+}
+
+/* ===== TÍTULO Y VIDAS ===== */
+
+#titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #526575;
+}
+
+#titulo h2,
+#titulo h3 {
+    margin: 0;
+}
+
+.vidas {
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+    color: #ff8b8b;
+    background: #301919;
+    border: 1px solid #8c4242;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* ===== DESPACHO Y OBJETOS ===== */
+
+#despacho {
+    padding: 2rem;
+    background: rgba(25, 39, 53, 0.95);
+    border: 1px solid #526575;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+#objetos {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.2rem;
+    margin: 1.5rem 0;
+}
+
+#objetos>div {
+    padding: 1.2rem;
+    background: #223342;
+    border: 1px solid #526575;
+    border-radius: 10px;
+}
+
+#objetos h3 {
+    margin-top: 0;
+}
+
+#objetos p {
+    font-size: 0.95rem;
+}
+
+/* ===== ANDÉN Y SEÑALES ===== */
+
+#anden {
+    padding: 2rem;
+    background: rgba(25, 39, 53, 0.95);
+    border: 1px solid #526575;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+#anden>h1 {
+    text-align: center;
+}
+
+#senales {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+#senales p {
+    min-width: 150px;
+    padding: 1rem 1.5rem;
+    margin: 0;
+    text-align: center;
+    color: #111820;
+    background: #e8c77a;
+    border: 2px solid #b99143;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: grab;
+    user-select: none;
+}
+
+#senales p:active {
+    cursor: grabbing;
+}
+
+/* Espacios donde se sueltan las señales */
+
+#cuadros {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+#cuadros p[id^="vacio"] {
+    min-height: 100px;
+    margin: 0;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #e8c77a;
+    background: #0d1720;
+    border: 2px dashed #b99143;
+    border-radius: 8px;
+}
+
+/* Mensajes de cada espacio */
+
+#cuadros p[id^="mensajevacio"] {
+    min-height: 2rem;
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* ===== TAQUILLA ===== */
+
+#taquilla {
+    padding: 2rem;
+    margin-top: 2rem;
+    background: rgba(25, 39, 53, 0.95);
+    border: 1px solid #526575;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+#taquilla input {
+    max-width: 250px;
+    display: block;
+    margin: 1rem auto;
+    text-align: center;
+}
+
+/* ===== DISEÑO RESPONSIVE ===== */
+
+@media (max-width: 700px) {
+    header {
+        padding: 2rem 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    #titulo {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #objetos {
+        grid-template-columns: 1fr;
+    }
+
+    #cuadros {
+        grid-template-columns: 1fr;
+    }
+
+    #senales {
+        flex-direction: column;
+    }
+
+    #senales p {
+        width: 100%;
+    }
+
+    #despacho,
+    #anden,
+    #taquilla {
+        padding: 1.2rem;
+    }
+}

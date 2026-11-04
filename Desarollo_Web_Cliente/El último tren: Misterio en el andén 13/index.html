@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Último Tren | Misterio del Andén 13</title>
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+
+<body>
+
+    <header class="despacho activa" id="header">
+        <h1>El Último Tren</h1>
+        <p>Misterio en el Andén 13</p>
+        <p>
+            Hola! bienvenido al juego el Ultimo Tren Misterio del Anden 13,
+            este juego consiste en descubrir quien ha saboteado el tren,
+            tendras que investigar a 3 sospechosos una revisora , el mecanico
+            y un pasajero que viaja con una maleta oculta , tienes 15 minutos para
+            investigar la estacion ,resolver las pistas y descubrir quien ha saboteado
+            el tren si consigues resolver el misterio sin que se agote el tiempo o te equivocas
+            el tren desparecera en la oscuridad sin que hayas resuelto el scape room.
+        </p>
+    </header>
+
+    <main>
+        <!--FASE 1 DEL PROYECTO-->
+        <div>
+            <form id="formulario-inicio" class="despacho activa">
+                <div class="contenedor-formulario">
+                    <label for="nombre">Nombre del Detective</label>
+                    <input type="text" name="nombre" id="nombre" required>
+
+
+                    <label for="id">Codigo de identificacion opcional</label>
+                    <input type="number" name="id" id="id">
+
+                    <button type="submit" id="boton-formulario" disabled>Comenzar Investigación</button>
+                </div>
+            </form>
+        </div>
+
+        <!--FASE 2 DEL PROYECTO-->
+
+        <div id="despacho" class="despacho activa">
+            <div id="titulo">
+                <h2>Estás en el despacho del jefe de la estación</h2>
+                <nav>
+                    <p class="vidas">Vidas</p>
+                </nav>
+            </div>
+
+            <p>
+                Se ha producido un apagon y han saboteado el sistema de señales,
+                y ha robado la llave que permite abrir la via de salida, el jefe
+                de estación ha desaparecido , debes investigar al mecanico, a la revisora y
+                al pasajero con una maleta extraña , tienes 15 minutos para investigar la estación,
+                resolver las pistas y descubrir quien ha saboteado el tren.
+            </p>
+
+            <p>Objetos</p>
+
+            <div id="objetos">
+                <div>
+                    <h3 id="reloj"></h3>
+                    <p id="descripcionReloj"></p>
+                    <p id="pistaReloj"></p>
+                </div>
+
+                <div>
+                    <h3 id="nota"></h3>
+                    <p id="descripcionNota"></p>
+                    <p id="pistaNota"></p>
+                </div>
+
+                <div>
+                    <h3 id="billete"></h3>
+                    <p id="descripcionBillete"></p>
+                    <p id="pistaBillete"></p>
+                </div>
+
+                <button type="button" id="investigarReloj">Investigar</button>
+
+
+                <!-- <p id="reloj"></p> , <p id="descripcion"></p>
+                <p id="nota"></p>   , <p id="descripcion"></p>
+                <p id="billete"></p> , <p id="descripcion"></p>
+                <p id="llave"></p> , <p id="descripcion"></p> -->
+            </div>
+
+            <button type="submit" id="ir-anden">Ir al Andén</button>
+        </div>
+
+        <!-- FASE 3 DEL PROYECTO -->
+
+        <div id="anden" class="despacho activa">
+            <h1>anden</h1>
+
+            <div id="titulo">
+                <h3>Arrastra cada señal hasta el espacio que le corresponde para restablecer el orden
+                    y permitir que el tren salga
+                </h3>
+
+                <nav>
+                    <p class="vidas">Vidas</p>
+                </nav>
+            </div>
+
+            <div id="senales">
+                <p id="vialibre" draggable="true">Via Libre</p>
+                <p id="precaucion" draggable="true">Precaucion</p>
+                <p id="alto" draggable="true">Alto</p>
+            </div>
+
+            <div id="cuadros">
+                <p id="vacio1"></p>
+                <p id="mensajevacio1"></p>
+                <p id="vacio2"></p>
+                <p id="mensajevacio2"></p>
+                <p id="vacio3"></p>
+                <p id="mensajevacio3"></p>
+            </div>
+
+            <button type="submit" id="ir-Taquilla">Ir a la Taquilla</button>
+        </div>
+
+        <div id="taquilla" class="despacho activa">
+            <h3>Tienes que intentar abrir con 3 numeros la combinacion de taquilla del jefe de la estacion</h3>
+            <input type="number" name="numeroTaquilla" id="numeroTaquilla">
+            <button type="submit">Comprobar código de la taquilla</button>
+        </div>
+
+
+    </main>
+
+    <script src="/js/index.js"></script>
+
+</body>
+
+</html>
