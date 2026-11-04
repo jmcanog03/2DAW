@@ -55,7 +55,7 @@
                 Se ha producido un apagon y han saboteado el sistema de señales,
                 y ha robado la llave que permite abrir la via de salida, el jefe
                 de estación ha desaparecido , debes investigar al mecanico, a la revisora y
-                al pasajero con una maleta extraña , tienes 15 minutos para investigar la estación,
+                al pasajero con una maleta extraña , tienes 4 vidas para investigar la estación,
                 resolver las pistas y descubrir quien ha saboteado el tren.
             </p>
 
@@ -89,7 +89,7 @@
                 <p id="llave"></p> , <p id="descripcion"></p> -->
             </div>
 
-            <button type="submit" id="ir-anden">Ir al Andén</button>
+            <button type="submit" id="ir-anden" disabled>Ir al Andén</button>
         </div>
 
         <!-- FASE 3 DEL PROYECTO -->
@@ -122,7 +122,7 @@
                 <p id="mensajevacio3"></p>
             </div>
 
-            <button type="submit" id="ir-taquilla">Ir a la Taquilla</button>
+            <button type="submit" id="ir-taquilla" disabled>Ir a la Taquilla</button>
         </div>
 
         <div id="taquilla" class="despacho activa">
@@ -135,13 +135,40 @@
                 placeholder="Introduce 3 cifras para abrir la taquilla">
             <button type="button" id="comprobarTaquilla">Comprobar código de la taquilla recuerda las pistas</button>
             <p id="mensajeConfirmacionTaquilla"></p>
+
+            <button type="button" id="ir-retofinal" disabled>Ir al reto final</button>
         </div>
+
+        <div id="reto-final" class="despacho activa">
+            <div id="titulo">
+                <h3>Has reunido todas las pruebas es hora de saber quien saboteo al tren</h3>
+                <nav>
+                    <p class="vidas">Vidas</p>
+                </nav>
+            </div>
+
+            <select name="" id="personaje">
+                <option value="">Elige al sospechoso</option>
+                <option value="revisora">Revisora</option>
+                <option value="pasajero">Pasajero</option>
+                <option value="mecanico">Mecanico</option>
+            </select>
+
+            <button type="button" id="acusar">Acusar</button>
+            <p id="resultadoAcusacion"></p>
+        </div>
+
+        <div id="victoria" class="despacho">
+            <h3>has ganado</h3>
+        </div>
+
 
         <div id="derrota" class="despacho">
             <h2>Has perdido</h2>
             <p>Te has quedado sin vidas y el misterio del tren sigue sin resolverse</p>
             <button type="button" id="volverInicio">Volver al Inicio</button>
         </div>
+
 
 
     </main>

@@ -7,11 +7,16 @@ const sectionDespacho = document.getElementById("despacho")
 const sectionAnden = document.getElementById("anden")
 const sectionTaquilla = document.getElementById("taquilla")
 const sectionDerrota = document.getElementById("derrota")
+const sectionRetoFinal = document.getElementById("reto-final")
+const sectionVictoria = document.getElementById("victoria")
 
 // OBJETOS 
 const objetoReloj = document.getElementById("reloj")
 const objetoNota = document.getElementById("nota")
 const objetoBillete = document.getElementById("billete")
+const personajeAcusacion = document.getElementById("personaje")
+const botonAcusacion = document.getElementById("acusar")
+const mensajeAcusacion = document.getElementById("resultadoAcusacion")
 
 const nombreForm = document.getElementById("nombre")
 const idDetective = document.getElementById("id")
@@ -39,12 +44,14 @@ const botonReloj = document.getElementById("investigarReloj")
 const botonAnden = document.getElementById("ir-anden")
 const botonTaquilla = document.getElementById("ir-taquilla")
 const botonInicio = document.getElementById("volverInicio")
+const botonRetoFinal = document.getElementById("ir-retofinal")
 
 // SEÑALES
 const senales = document.getElementById("senales")
 const senalViaLibre = document.getElementById("vialibre")
 const senalPrecaucion = document.getElementById("precaucion")
 const senalAlto = document.getElementById("alto")
+
 // CUADROS PARA SOLTAR LAS SEÑALES ESTAN VACIOS
 const vacio1 = document.getElementById("vacio1")
 const vacio2 = document.getElementById("vacio2")
@@ -55,10 +62,14 @@ const mensajevacio1 = document.getElementById("mensajevacio1")
 const mensajevacio2 = document.getElementById("mensajevacio2")
 const mensajevacio3 = document.getElementById("mensajevacio3")
 
+let booleanVacio1 = false
+let booleanVacio2 = false
+let booleanVacio3 = false
 // botonFormulario.disabled=true;
 sectionDespacho.classList.remove("activa")
 sectionAnden.classList.remove("activa")
 sectionTaquilla.classList.remove("activa")
+sectionRetoFinal.classList.remove("activa")
 
 
 
@@ -112,7 +123,8 @@ function mostrarObjetos() {
 
 
 botonReloj.addEventListener("click", function () {
-
+    botonReloj.disabled = true
+    botonAnden.disabled = false
     mostrarObjetos()
 })
 
@@ -162,7 +174,7 @@ const detective = {
         this.vidasDetective = this.vidasDetective - 1
         this.AnadirVidas()
 
-        if(this.vidasDetective === 0){
+        if (this.vidasDetective === 0) {
             const sectionActiva = document.querySelector(".despacho.activa")
             sectionActiva.classList.remove("activa")
             sectionDerrota.classList.add("activa")
@@ -186,6 +198,7 @@ senalViaLibre.addEventListener("dragstart", function (event) {
     event.dataTransfer.setData("text/plain", event.target.id)
 })
 
+
 vacio1.addEventListener("dragover", function (event) {
     event.preventDefault()
 })
@@ -196,6 +209,8 @@ vacio1.addEventListener("drop", function (event) {
     if (id === senalViaLibre.id) {
         vacio1.appendChild(elemento)
         mensajevacio1.textContent = "es correcto"
+        booleanVacio1 = true
+        comprobarVacios()
     } else {
         mensajevacio1.textContent = "esta mal"
         detective.quitarVidas()
@@ -218,12 +233,16 @@ vacio2.addEventListener("drop", function (event) {
     if (id === senalPrecaucion.id) {
         vacio2.appendChild(elemento)
         mensajevacio2.textContent = "es correcto"
+        booleanVacio2 = true
+        comprobarVacios()
     } else {
         mensajevacio2.textContent = "esta mal"
         detective.quitarVidas()
         detective.AnadirVidas()
     }
 })
+
+
 
 senalAlto.addEventListener("dragstart", function (event) {
     event.dataTransfer.setData("text/plain", event.target.id)
@@ -239,6 +258,8 @@ vacio3.addEventListener("drop", function (event) {
     if (id === senalAlto.id) {
         vacio3.appendChild(elemento)
         mensajevacio3.textContent = "es correcto"
+        booleanVacio3 = true
+        comprobarVacios()
     } else {
         mensajevacio3.textContent = "esta mal"
         detective.quitarVidas()
@@ -246,19 +267,32 @@ vacio3.addEventListener("drop", function (event) {
     }
 })
 
+function comprobarVacios() {
+    if (booleanVacio1 && booleanVacio2 && booleanVacio3) {
+        botonTaquilla.disabled = false
+    } else {
+        botonTaquilla.disabled = true
+    }
+}
+
+
+
+
+
 function comprobarCodigoTaquilla() {
     // let numero =0;
     // numeroTaquilla.addEventListener("input",function(event){
     //     numero = event.target.value
     // })
 
-       if (numeroTaquilla.value == 967) {
-            mensajeConfirmacionTaquilla.textContent = "!!!HAS ACERTADO!!!!"
-        } else {
-            mensajeConfirmacionTaquilla.textContent = "NO HAS ACERTADO SE TE QUITARA UNA VIDA"
-            detective.quitarVidas()
-            detective.AnadirVidas()
-        }
+    if (numeroTaquilla.value == 967) {
+        mensajeConfirmacionTaquilla.textContent = "!!!HAS ACERTADO!!!!"
+        botonRetoFinal.disabled = false;
+    } else {
+        mensajeConfirmacionTaquilla.textContent = "NO HAS ACERTADO SE TE QUITARA UNA VIDA"
+        detective.quitarVidas()
+        detective.AnadirVidas()
+    }
 }
 
 botonTaquilla.addEventListener("click", function () {
@@ -267,11 +301,31 @@ botonTaquilla.addEventListener("click", function () {
     sectionTaquilla.classList.add("activa")
 })
 
-botonComprobarTaquilla.addEventListener("click",function(){
+botonRetoFinal.addEventListener("click", function () {
+    sectionDespacho.classList.remove("activa")
+    sectionAnden.classList.remove("activa")
+    sectionTaquilla.classList.remove("activa")
+    sectionRetoFinal.classList.add("activa")
+})
+
+
+
+botonComprobarTaquilla.addEventListener("click", function () {
     comprobarCodigoTaquilla()
 })
 
-botonInicio.addEventListener("click",function(){
+botonAcusacion.addEventListener("click", function () {
+    if (personajeAcusacion.value === "mecanico") {
+        sectionRetoFinal.classList.remove("activa")
+        sectionVictoria.classList.add("activa")
+    } else {
+        detective.quitarVidas()
+        mensajeAcusacion.textContent = "Tu acusación no es correcta piensalo de nuevo y recuerda las pistas"
+
+    }
+})
+
+botonInicio.addEventListener("click", function () {
     sectionDerrota.classList.remove("activa")
     sectionDespacho.classList.remove("activa")
     sectionAnden.classList.remove("activa")
@@ -289,5 +343,4 @@ botonInicio.addEventListener("click",function(){
     senales.appendChild(senalPrecaucion)
     senales.appendChild(senalAlto)
     detective.nombre = ""
-
 })
