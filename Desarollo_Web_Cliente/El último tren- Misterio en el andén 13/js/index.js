@@ -11,9 +11,9 @@ const sectionRetoFinal = document.getElementById("reto-final")
 const sectionVictoria = document.getElementById("victoria")
 
 // OBJETOS 
-const objetoReloj = document.getElementById("reloj")
-const objetoNota = document.getElementById("nota")
-const objetoBillete = document.getElementById("billete")
+const objetoReloj = document.getElementById("Reloj")
+const objetoNota = document.getElementById("Nota rota")
+const objetoBillete = document.getElementById("Billete de Tren")
 const personajeAcusacion = document.getElementById("personaje")
 const botonAcusacion = document.getElementById("acusar")
 const mensajeAcusacion = document.getElementById("resultadoAcusacion")
@@ -97,27 +97,46 @@ const objetos = [
 // objetoBillete.textContent = objetos[1].nombre
 
 function mostrarObjetos() {
-    for (let i = 0; i < objetos.length; i++) {
-        if (objetos[i].nombre == "Reloj") {
-            objetoReloj.textContent = objetos[i].nombre
-            descripcionReloj.textContent = objetos[i].descripcion
-            pistaReloj.textContent = objetos[i].pista
-            objetos[i].ivestigado = true
-        }
+    // for (let i = 0; i < objetos.length; i++) {
+    //     if (objetos[i].nombre == "Reloj") {
+    //         objetoReloj.textContent = objetos[i].nombre
+    //         descripcionReloj.textContent = objetos[i].descripcion
+    //         pistaReloj.textContent = objetos[i].pista
+    //         objetos[i].ivestigado = true
+    //     }
 
-        if (objetos[i].nombre == "Billete de Tren") {
-            objetoBillete.textContent = objetos[i].nombre
-            descripcionBillete.textContent = objetos[i].descripcion
-            objetos[i].ivestigado = true
-        }
+    //     if (objetos[i].nombre == "Billete de Tren") {
+    //         objetoBillete.textContent = objetos[i].nombre
+    //         descripcionBillete.textContent = objetos[i].descripcion
+    //         objetos[i].ivestigado = true
+    //     }
 
-        if (objetos[i].nombre == "Nota rota") {
-            objetoNota.textContent = objetos[i].nombre
-            descripcionNota.textContent = objetos[i].descripcion
-            objetos[i].ivestigado = true
-        }
+    //     if (objetos[i].nombre == "Nota rota") {
+    //         objetoNota.textContent = objetos[i].nombre
+    //         descripcionNota.textContent = objetos[i].descripcion
+    //         objetos[i].ivestigado = true
+    //     }
 
-    }
+    // }
+
+    // BUSCAR CON FIND EL OBJETO RELOJ
+    const reloj = objetos.find(objeto => objeto.nombre == objetoReloj.id)
+    objetoReloj.textContent = reloj.nombre
+    descripcionReloj.textContent = reloj.descripcion
+    pistaReloj.textContent = reloj.pista
+    reloj.ivestigado = true
+
+    // BUSCAR CON FIND EL OBJETO NOTA
+    const nota = objetos.find(objeto => objeto.nombre == objetoNota.id)
+    objetoNota.textContent = nota.nombre
+    descripcionNota.textContent = nota.descripcion
+    nota.ivestigado = true
+
+    // BUSCAR CON FIND EL OBJETO BILLETE
+    const billete = objetos.find(objeto => objeto.nombre == objetoBillete.id)
+    objetoBillete.textContent = billete.nombre
+    descripcionBillete.textContent = billete.descripcion
+    billete.ivestigado = true
 }
 
 
