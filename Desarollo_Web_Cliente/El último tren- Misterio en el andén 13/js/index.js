@@ -14,12 +14,19 @@ const sectionVictoria = document.getElementById("victoria")
 const objetoReloj = document.getElementById("Reloj")
 const objetoNota = document.getElementById("Nota rota")
 const objetoBillete = document.getElementById("Billete de Tren")
-const personajeAcusacion = document.getElementById("personaje")
 const botonAcusacion = document.getElementById("acusar")
 const mensajeAcusacion = document.getElementById("resultadoAcusacion")
 
+// CAMPOS DEL FORMULARIO
 const nombreForm = document.getElementById("nombre")
 const idDetective = document.getElementById("id")
+const edadForm = document.getElementById("edad")
+const emailForm = document.getElementById("email")
+const normasForm = document.getElementById("norma")
+const personajeAcusacion = document.getElementById("personaje")
+
+
+
 const botonComprobarTaquilla = document.getElementById("comprobarTaquilla")
 const numeroTaquilla = document.getElementById("numeroTaquilla")
 const mensajeConfirmacionTaquilla = document.getElementById("mensajeConfirmacionTaquilla")
@@ -39,7 +46,7 @@ const pistaReloj = document.getElementById("pistaReloj")
 const pistaNota = document.getElementById("pistaNota")
 const pistaBillete = document.getElementById("pistaBillete")
 
-const botonReloj = document.getElementById("investigarReloj")
+const botonInvestigar = document.getElementById("botonInvestigar")
 
 const botonAnden = document.getElementById("ir-anden")
 const botonTaquilla = document.getElementById("ir-taquilla")
@@ -77,24 +84,38 @@ sectionRetoFinal.classList.remove("activa")
 
 formulario.addEventListener("submit", function (event) {
     event.preventDefault()
-    if (validarNombre(nombreForm)) {
-        sectionDespacho.classList.add("activa")
-        formulario.classList.remove("activa")
-        header.classList.remove("activa")
-        sectionAnden.classList.remove("activa")
-    }
+    sectionDespacho.classList.add("activa")
+    formulario.classList.remove("activa")
+    header.classList.remove("activa")
+    sectionAnden.classList.remove("activa")
+
 })
 
 
 const objetos = [
-    { id: 1, nombre: "Reloj", descripcion: "El reloj se paro a las 19:47", ivestigado: false, pista: "Quizas tenga relacion con el momento en el que ocurrio el sabotaje" },
-    { id: 2, nombre: "Billete de Tren", descripcion: "El billete tiene una mancha de grasa", ivestigado: false },
-    { id: 3, nombre: "Nota rota", descripcion: "Solo se puede leer parte de la nota", ivestigado: false }
+    { id: 1, nombre: "Reloj", descripcion: "El reloj se paro a las 19:47", pista: "Quizas tenga relacion con el momento en el que ocurrio el sabotaje" },
+    { id: 2, nombre: "Billete de Tren", descripcion: "El billete tiene una mancha de grasa" },
+    { id: 3, nombre: "Nota rota", descripcion: "Solo se puede leer parte de la nota" }
+]
+
+const personajes = [
+    { id: 1, nombre: "Revisora" },
+    { id: 2, nombre: "Mecanico" },
+    { id: 3, nombre: "Pasajero" }
 ]
 
 // objetoReloj.textContent = objetos[0].nombre
 // objetoNota.textContent = objetos[2].nombre
 // objetoBillete.textContent = objetos[1].nombre
+
+function mostrarPersonajes() {
+    for (let i = 0; i < personajes.length; i++) {
+        const elemento = document.createElement("option")
+        elemento.textContent = personajes[i].nombre
+        elemento.value = personajes[i].id
+        personajeAcusacion.append(elemento)
+    }
+}
 
 function mostrarObjetos() {
     // for (let i = 0; i < objetos.length; i++) {
@@ -140,11 +161,11 @@ function mostrarObjetos() {
 }
 
 
-
-botonReloj.addEventListener("click", function () {
-    botonReloj.disabled = true
+botonInvestigar.addEventListener("click", function () {
+    botonInvestigar.disabled = true
     botonAnden.disabled = false
     mostrarObjetos()
+    mostrarPersonajes()
 })
 
 function validarNombre(nombre) {
@@ -161,12 +182,58 @@ function validarNombre(nombre) {
 
     if (valido) {
         detective.nombre = nombre.value
-        botonFormulario.disabled = false;
-    } else {
-        botonFormulario.disabled = true;
+
     }
 
     return valido
+}
+
+function validarEdad(edad) {
+    const valido = edad.checkValidity()
+    if (edad.value >= 18) {
+        edad.classList.toggle("valido", valido)
+        edad.classList.toggle("invalido", !valido)
+    } else {
+        edad.classList.remove("valido")
+        edad.classList.add("invalido")
+    }
+
+    return valido
+}
+
+function validarEmail(email) {
+    const valido = email.checkValidity()
+    email.classList.toggle("valido", valido)
+    email.classList.toggle("invalido", !valido)
+    return valido
+
+}
+
+nombreForm.addEventListener("blur", function () {
+    validarNombre(nombreForm)
+    comprobarFormulario()
+})
+
+edadForm.addEventListener("blur", function () {
+    validarEdad(edadForm)
+    comprobarFormulario()
+})
+
+emailForm.addEventListener("blur", function () {
+    validarEmail(emailForm)
+    comprobarFormulario()
+})
+
+normasForm.addEventListener("change", function () {
+    comprobarFormulario()
+})
+
+function comprobarFormulario() {
+    if (edadForm.classList.contains("valido") && nombreForm.classList.contains("valido") && emailForm.classList.contains("valido") && normasForm.checked) {
+        botonFormulario.disabled = false
+    } else {
+        botonFormulario.disabled = true
+    }
 }
 
 const detective = {
@@ -204,19 +271,26 @@ const detective = {
 detective.AnadirVidas()
 // detective.quitarVidas()
 
-nombreForm.addEventListener("blur", function () {
-    validarNombre(nombreForm)
-})
-
 botonAnden.addEventListener("click", function () {
     sectionDespacho.classList.remove("activa")
     sectionAnden.classList.add("activa")
 })
 
-senalViaLibre.addEventListener("dragstart", function (event) {
+// senalViaLibre.addEventListener("dragstart", function (event) {
+//     event.dataTransfer.setData("text/plain", event.target.id)
+// })
+
+// senalPrecaucion.addEventListener("dragstart", function (event) {
+//     event.dataTransfer.setData("text/plain", event.target.id)
+// })
+
+// senalAlto.addEventListener("dragstart", function (event) {
+//     event.dataTransfer.setData("text/plain", event.target.id)
+// })
+
+senales.addEventListener("dragstart",function(event){
     event.dataTransfer.setData("text/plain", event.target.id)
 })
-
 
 vacio1.addEventListener("dragover", function (event) {
     event.preventDefault()
@@ -233,14 +307,8 @@ vacio1.addEventListener("drop", function (event) {
     } else {
         mensajevacio1.textContent = "esta mal"
         detective.quitarVidas()
-        detective.AnadirVidas()
     }
 })
-
-senalPrecaucion.addEventListener("dragstart", function (event) {
-    event.dataTransfer.setData("text/plain", event.target.id)
-})
-
 
 vacio2.addEventListener("dragover", function (event) {
     event.preventDefault()
@@ -257,15 +325,10 @@ vacio2.addEventListener("drop", function (event) {
     } else {
         mensajevacio2.textContent = "esta mal"
         detective.quitarVidas()
-        detective.AnadirVidas()
     }
 })
 
 
-
-senalAlto.addEventListener("dragstart", function (event) {
-    event.dataTransfer.setData("text/plain", event.target.id)
-})
 
 vacio3.addEventListener("dragover", function (event) {
     event.preventDefault()
@@ -282,7 +345,6 @@ vacio3.addEventListener("drop", function (event) {
     } else {
         mensajevacio3.textContent = "esta mal"
         detective.quitarVidas()
-        detective.AnadirVidas()
     }
 })
 
@@ -334,7 +396,7 @@ botonComprobarTaquilla.addEventListener("click", function () {
 })
 
 botonAcusacion.addEventListener("click", function () {
-    if (personajeAcusacion.value === "mecanico") {
+    if (personajeAcusacion.value === "2") {
         sectionRetoFinal.classList.remove("activa")
         sectionVictoria.classList.add("activa")
     } else {

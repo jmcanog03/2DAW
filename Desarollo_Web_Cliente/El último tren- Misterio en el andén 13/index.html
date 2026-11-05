@@ -32,6 +32,15 @@
                     <label for="nombre">Nombre del Detective</label>
                     <input type="text" name="nombre" id="nombre" required>
 
+                    <label for="edad">Edad del Detective</label>
+                    <input type="number" name="edad" id="edad" required>
+
+                    <label for="email">Email del Detective</label>
+                    <input type="email" name="email" id="email" required>
+
+                    <label for="normas">He leido y acepto las normas</label>
+                    <input type="checkbox" name="norma" id="norma" required>
+
 
                     <label for="id">Codigo de identificacion opcional</label>
                     <input type="number" name="id" id="id">
@@ -80,7 +89,7 @@
                     <p id="pistaBillete"></p>
                 </div>
 
-                <button type="button" id="investigarReloj">Investigar</button>
+                <button type="button" id="botonInvestigar">Investigar</button>
 
 
                 <!-- <p id="reloj"></p> , <p id="descripcion"></p>
@@ -149,9 +158,6 @@
 
             <select name="" id="personaje">
                 <option value="">Elige al sospechoso</option>
-                <option value="revisora">Revisora</option>
-                <option value="pasajero">Pasajero</option>
-                <option value="mecanico">Mecanico</option>
             </select>
 
             <button type="button" id="acusar">Acusar</button>
