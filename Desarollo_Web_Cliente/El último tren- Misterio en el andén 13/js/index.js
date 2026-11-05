@@ -94,13 +94,13 @@ formulario.addEventListener("submit", function (event) {
 
 const objetos = [
     { id: 1, nombre: "Reloj", descripcion: "El reloj se paro a las 19:47", pista: "Quizas tenga relacion con el momento en el que ocurrio el sabotaje" },
-    { id: 2, nombre: "Billete de Tren", descripcion: "El billete tiene una mancha de grasa" },
-    { id: 3, nombre: "Nota rota", descripcion: "Solo se puede leer parte de la nota" }
+    { id: 2, nombre: "Billete de Tren", descripcion: "El billete tiene una mancha de grasa", pista: "La mancha de grasa puede estar relacionada con alguien que trabaja con maquinaria" },
+    { id: 3, nombre: "Nota rota", descripcion: "Solo se puede leer parte de la nota", pista: "Menciona una reparacion pendiente en el sistema de señales" }
 ]
 
 const personajes = [
     { id: 1, nombre: "Revisora" },
-    { id: 2, nombre: "Mecanico" },
+    { id: 2, nombre: "Mecánico" },
     { id: 3, nombre: "Pasajero" }
 ]
 
@@ -145,19 +145,21 @@ function mostrarObjetos() {
     objetoReloj.textContent = reloj.nombre
     descripcionReloj.textContent = reloj.descripcion
     pistaReloj.textContent = reloj.pista
-    reloj.ivestigado = true
+
 
     // BUSCAR CON FIND EL OBJETO NOTA
     const nota = objetos.find(objeto => objeto.nombre == objetoNota.id)
     objetoNota.textContent = nota.nombre
     descripcionNota.textContent = nota.descripcion
-    nota.ivestigado = true
+    pistaNota.textContent = nota.pista
+
 
     // BUSCAR CON FIND EL OBJETO BILLETE
     const billete = objetos.find(objeto => objeto.nombre == objetoBillete.id)
     objetoBillete.textContent = billete.nombre
     descripcionBillete.textContent = billete.descripcion
-    billete.ivestigado = true
+    pistaBillete.textContent = billete.pista
+
 }
 
 
@@ -288,7 +290,7 @@ botonAnden.addEventListener("click", function () {
 //     event.dataTransfer.setData("text/plain", event.target.id)
 // })
 
-senales.addEventListener("dragstart",function(event){
+senales.addEventListener("dragstart", function (event) {
     event.dataTransfer.setData("text/plain", event.target.id)
 })
 
@@ -406,7 +408,7 @@ botonAcusacion.addEventListener("click", function () {
     }
 })
 
-botonInicio.addEventListener("click", function () {
+botonInicio.addEventListener("click", function (event) {
     sectionDerrota.classList.remove("activa")
     sectionDespacho.classList.remove("activa")
     sectionAnden.classList.remove("activa")
@@ -417,6 +419,7 @@ botonInicio.addEventListener("click", function () {
     detective.AnadirVidas()
     numeroTaquilla.value = ""
     mensajeConfirmacionTaquilla.textContent = ""
+    mensajeAcusacion.textContent = ""
     mensajevacio1.textContent = ""
     mensajevacio2.textContent = ""
     mensajevacio3.textContent = ""
@@ -424,4 +427,5 @@ botonInicio.addEventListener("click", function () {
     senales.appendChild(senalPrecaucion)
     senales.appendChild(senalAlto)
     detective.nombre = ""
+    formulario.reset
 })
