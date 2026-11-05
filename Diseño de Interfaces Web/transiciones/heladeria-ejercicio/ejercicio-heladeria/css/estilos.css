@@ -1,0 +1,262 @@
+/* =========================================================
+   HELADERÍA LA NUBE · CSS DE PARTIDA
+   La página ya está maquetada. En este ejercicio NO hay que
+   cambiar cómo se ve: hay que añadirle variables,
+   transiciones y animaciones siguiendo la guía.
+   ========================================================= */
+:root {
+  --rosa: #e84a7f;
+  --chocolate: #5B3A29;
+  --menta: #2BB59A;
+  --crema: #FFF6EC;
+  --separacion: 4rem;
+
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(4rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes latido {
+  from { transform: scale(1);}
+  to {transform: scale(1.1);}
+}
+
+
+html {
+  font-size: 62.5%;
+  /* 1rem = 10px */
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.5;
+  color: var(--chocolate);
+  background-color: #FFF6EC;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+h2 {
+  font-size: 4rem;
+  text-align: center;
+  color: var(--rosa);
+  margin-bottom: var(--separacion);
+}
+
+.contenedor {
+  width: 90%;
+  max-width: 110rem;
+  margin: 0 auto;
+}
+
+/* ---------- Botón ---------- */
+.boton {
+  display: inline-block;
+  padding: 1.5rem 3rem;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background-color: var(--rosa);
+  border-radius: 3rem;
+  transition: background-color 0.3s;
+}
+
+.boton:hover {
+  background-color: var(--chocolate);
+}
+
+/* ---------- Cabecera ---------- */
+.cabecera {
+  background-color: var(--rosa);
+  padding: 2rem 0;
+}
+
+.cabecera-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.logo img {
+  width: 6rem;
+}
+
+.logo:hover img{
+  transform: rotate(360deg);
+  transition: transform 1s;
+}
+.menu {
+  display: flex;
+  gap: 4rem;
+}
+
+.menu a {
+  display: block;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.menu a:hover {
+  color: var(--chocolate);
+  transform: translateY(-0.4rem);
+}
+
+/* ---------- Portada ---------- */
+.portada {
+  background-color: var(--menta);
+  color: #FFFFFF;
+  padding: calc(var(--separacion)*2) 0;
+}
+
+.portada-texto {
+  position: relative;
+  /* para colocar el sello (no hace falta tocarlo) */
+  text-align: center;
+}
+
+.portada h1 {
+  font-size: 5.6rem;
+  line-height: 1.1;
+  max-width: 80rem;
+  margin: 0 auto 2rem;
+  animation: aparecer 1s ease-out;
+}
+
+.portada p {
+  font-size: 2.2rem;
+  max-width: 60rem;
+  margin: 0 auto 4rem;
+}
+
+.sello {
+  position: absolute;
+  /* ya colocado: no hace falta tocarlo */
+  top: -5rem;
+  right: 0;
+  margin: 0;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  color: var(--chocolate);
+  background-color: #FFE066;
+  border-radius: 1rem;
+  animation: latido 0.8s ease-in-out infinite alternate;
+}
+
+.portada .sello {
+  font-size: 2rem;
+  margin: 0;
+}
+
+/* ---------- Sabores ---------- */
+.sabores {
+  padding: calc(var(--separacion)*2) 0;
+}
+
+.listado-sabores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(var(--separacion) / 2);
+}
+
+.sabor {
+  text-align: center;
+  background-color: #FFFFFF;
+  border-radius: 2rem;
+  padding: 4rem 2rem 2rem;
+  transition-property: transform, box-shadow;
+  transition-duration: 0.3s;
+}
+
+.sabor:hover {
+  transform: scale(1.05);
+  box-shadow: 0 1rem 3rem rgb(0, 0, 0, 0.15);
+}
+
+.sabor img {
+  width: 10rem;
+  margin: 0 auto 2rem;
+  transition: transform 0.5s;
+}
+
+.sabor:hover img{
+  transform: rotate(-10deg);
+}
+
+.sabor h3 {
+  font-size: 2.8rem;
+}
+
+.precio {
+  margin: 0;
+  font-size: 2.4rem;
+  font-weight: bold;
+  color: var(--menta);
+}
+
+/* ---------- Horario ---------- */
+.horario {
+  background-color: #FFFFFF;
+  padding: calc(var(--separacion) *2) 0;
+  text-align: center;
+}
+
+.horario p {
+  margin: 0 0 4rem;
+}
+
+/* ---------- Pie ---------- */
+.pie {
+  background-color: var(--chocolate);
+  color: #FFFFFF;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.pie p {
+  margin: 0;
+}
+
+/* =========================================================
+   A PARTIR DE AQUÍ, LO QUE PIDE LA GUÍA
+   (salvo el paso 1, que cambia el principio del archivo)
+   ========================================================= */

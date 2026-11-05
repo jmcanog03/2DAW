@@ -16,6 +16,8 @@ const objetoNota = document.getElementById("Nota rota")
 const objetoBillete = document.getElementById("Billete de Tren")
 const botonAcusacion = document.getElementById("acusar")
 const mensajeAcusacion = document.getElementById("resultadoAcusacion")
+const vidasJuego = 4
+const taquillaNum = "967"
 
 // CAMPOS DEL FORMULARIO
 const nombreForm = document.getElementById("nombre")
@@ -24,8 +26,6 @@ const edadForm = document.getElementById("edad")
 const emailForm = document.getElementById("email")
 const normasForm = document.getElementById("norma")
 const personajeAcusacion = document.getElementById("personaje")
-
-
 
 const botonComprobarTaquilla = document.getElementById("comprobarTaquilla")
 const numeroTaquilla = document.getElementById("numeroTaquilla")
@@ -46,8 +46,8 @@ const pistaReloj = document.getElementById("pistaReloj")
 const pistaNota = document.getElementById("pistaNota")
 const pistaBillete = document.getElementById("pistaBillete")
 
+// BOTONES PARA IR DE SECCION EN SECCION Y PARA INVESTIGAR
 const botonInvestigar = document.getElementById("botonInvestigar")
-
 const botonAnden = document.getElementById("ir-anden")
 const botonTaquilla = document.getElementById("ir-taquilla")
 const botonInicio = document.getElementById("volverInicio")
@@ -69,18 +69,11 @@ const mensajevacio1 = document.getElementById("mensajevacio1")
 const mensajevacio2 = document.getElementById("mensajevacio2")
 const mensajevacio3 = document.getElementById("mensajevacio3")
 
-let booleanVacio1 = false
-let booleanVacio2 = false
-let booleanVacio3 = false
 // botonFormulario.disabled=true;
 sectionDespacho.classList.remove("activa")
 sectionAnden.classList.remove("activa")
 sectionTaquilla.classList.remove("activa")
 sectionRetoFinal.classList.remove("activa")
-
-
-
-// PARA NADA
 
 formulario.addEventListener("submit", function (event) {
     event.preventDefault()
@@ -90,7 +83,6 @@ formulario.addEventListener("submit", function (event) {
     sectionAnden.classList.remove("activa")
 
 })
-
 
 const objetos = [
     { id: 1, nombre: "Reloj", descripcion: "El reloj se paro a las 19:47", pista: "Quizas tenga relacion con el momento en el que ocurrio el sabotaje" },
@@ -170,6 +162,7 @@ botonInvestigar.addEventListener("click", function () {
     mostrarPersonajes()
 })
 
+// VALIDAR CAMPOS DEL EMAIL
 function validarNombre(nombre) {
     const vacio = nombre.value.trim()
     const valido = nombre.checkValidity()
@@ -184,7 +177,6 @@ function validarNombre(nombre) {
 
     if (valido) {
         detective.nombre = nombre.value
-
     }
 
     return valido
@@ -200,6 +192,10 @@ function validarEdad(edad) {
         edad.classList.add("invalido")
     }
 
+    if (valido) {
+        detective.edad = edad.value
+    }
+
     return valido
 }
 
@@ -207,6 +203,11 @@ function validarEmail(email) {
     const valido = email.checkValidity()
     email.classList.toggle("valido", valido)
     email.classList.toggle("invalido", !valido)
+
+    if (valido) {
+        detective.email = email.value
+    }
+
     return valido
 
 }
@@ -238,10 +239,13 @@ function comprobarFormulario() {
     }
 }
 
+// OBJETOS PARA EL DETECTIVE Y EL ESTADO DEL JUEGO
 const detective = {
     nombre: "",
     id: idDetective.value,
-    vidasDetective: 4,
+    vidasDetective: vidasJuego,
+    email: "",
+    edad: 0,
 
     AnadirVidas: function () {
         let acumulador = "";
@@ -270,6 +274,16 @@ const detective = {
     }
 
 }
+
+const estadoJuego = {
+    booleanVacio1: false,
+    booleanVacio2: false,
+    booleanVacio3: false,
+    taquillaResuelta: false,
+    retoFinalSuperado: false
+}
+
+
 detective.AnadirVidas()
 // detective.quitarVidas()
 
@@ -290,6 +304,7 @@ botonAnden.addEventListener("click", function () {
 //     event.dataTransfer.setData("text/plain", event.target.id)
 // })
 
+// DRAG AN DROP
 senales.addEventListener("dragstart", function (event) {
     event.dataTransfer.setData("text/plain", event.target.id)
 })
@@ -304,7 +319,7 @@ vacio1.addEventListener("drop", function (event) {
     if (id === senalViaLibre.id) {
         vacio1.appendChild(elemento)
         mensajevacio1.textContent = "es correcto"
-        booleanVacio1 = true
+        estadoJuego.booleanVacio1 = true
         comprobarVacios()
     } else {
         mensajevacio1.textContent = "esta mal"
@@ -322,7 +337,7 @@ vacio2.addEventListener("drop", function (event) {
     if (id === senalPrecaucion.id) {
         vacio2.appendChild(elemento)
         mensajevacio2.textContent = "es correcto"
-        booleanVacio2 = true
+        estadoJuego.booleanVacio2 = true
         comprobarVacios()
     } else {
         mensajevacio2.textContent = "esta mal"
@@ -342,7 +357,7 @@ vacio3.addEventListener("drop", function (event) {
     if (id === senalAlto.id) {
         vacio3.appendChild(elemento)
         mensajevacio3.textContent = "es correcto"
-        booleanVacio3 = true
+        estadoJuego.booleanVacio3 = true
         comprobarVacios()
     } else {
         mensajevacio3.textContent = "esta mal"
@@ -351,7 +366,7 @@ vacio3.addEventListener("drop", function (event) {
 })
 
 function comprobarVacios() {
-    if (booleanVacio1 && booleanVacio2 && booleanVacio3) {
+    if (estadoJuego.booleanVacio1 && estadoJuego.booleanVacio2 && estadoJuego.booleanVacio3) {
         botonTaquilla.disabled = false
     } else {
         botonTaquilla.disabled = true
@@ -367,15 +382,20 @@ function comprobarCodigoTaquilla() {
     // numeroTaquilla.addEventListener("input",function(event){
     //     numero = event.target.value
     // })
+    if (numeroTaquilla.value === taquillaNum) {
+        estadoJuego.taquillaResuelta = true;
+    } else {
+        estadoJuego.taquillaResuelta = false
+    }
 
-    if (numeroTaquilla.value == 967) {
-        mensajeConfirmacionTaquilla.textContent = "!!!HAS ACERTADO!!!!"
+    if (estadoJuego.taquillaResuelta) {
         botonRetoFinal.disabled = false;
+        mensajeConfirmacionTaquilla.textContent = "!!!HAS ACERTADO!!!!"
     } else {
         mensajeConfirmacionTaquilla.textContent = "NO HAS ACERTADO SE TE QUITARA UNA VIDA"
         detective.quitarVidas()
-        detective.AnadirVidas()
     }
+
 }
 
 botonTaquilla.addEventListener("click", function () {
@@ -385,10 +405,13 @@ botonTaquilla.addEventListener("click", function () {
 })
 
 botonRetoFinal.addEventListener("click", function () {
-    sectionDespacho.classList.remove("activa")
-    sectionAnden.classList.remove("activa")
-    sectionTaquilla.classList.remove("activa")
-    sectionRetoFinal.classList.add("activa")
+    if (estadoJuego.taquillaResuelta) {
+        sectionDespacho.classList.remove("activa")
+        sectionAnden.classList.remove("activa")
+        sectionTaquilla.classList.remove("activa")
+        sectionRetoFinal.classList.add("activa")
+    }
+
 })
 
 
@@ -399,12 +422,17 @@ botonComprobarTaquilla.addEventListener("click", function () {
 
 botonAcusacion.addEventListener("click", function () {
     if (personajeAcusacion.value === "2") {
+        estadoJuego.retoFinalSuperado = true
+    } else {
+        estadoJuego.retoFinalSuperado = false
+    }
+
+    if (estadoJuego.retoFinalSuperado) {
         sectionRetoFinal.classList.remove("activa")
         sectionVictoria.classList.add("activa")
     } else {
         detective.quitarVidas()
         mensajeAcusacion.textContent = "Tu acusación no es correcta piensalo de nuevo y recuerda las pistas"
-
     }
 })
 
@@ -415,17 +443,49 @@ botonInicio.addEventListener("click", function (event) {
     sectionTaquilla.classList.remove("activa")
     formulario.classList.add("activa")
     header.classList.add("activa")
-    detective.vidasDetective = 4
+
+    nombreForm.classList.remove("valido")
+    nombreForm.classList.remove("invalido")
+    edadForm.classList.remove("valido")
+    edadForm.classList.remove("invalido")
+    emailForm.classList.remove("valido")
+    emailForm.classList.remove("invalido")
+
+    detective.vidasDetective = vidasJuego
     detective.AnadirVidas()
+
     numeroTaquilla.value = ""
     mensajeConfirmacionTaquilla.textContent = ""
     mensajeAcusacion.textContent = ""
     mensajevacio1.textContent = ""
     mensajevacio2.textContent = ""
     mensajevacio3.textContent = ""
+    objetoReloj.textContent = ""
+    objetoBillete.textContent = ""
+    objetoNota.textContent = ""
+    descripcionNota.textContent = ""
+    descripcionBillete.textContent = ""
+    descripcionReloj.textContent = ""
+    pistaNota.textContent = ""
+    pistaBillete.textContent = ""
+    pistaReloj.textContent = ""
+
     senales.appendChild(senalViaLibre)
     senales.appendChild(senalPrecaucion)
     senales.appendChild(senalAlto)
+
+    botonTaquilla.disabled = true
+    botonAnden.disabled = true
+    botonInvestigar.disabled = false
+    botonFormulario.disabled = true
     detective.nombre = ""
-    formulario.reset
+    detective.edad = 0
+    detective.email = ""
+    formulario.reset()
+
+    estadoJuego.booleanVacio1 = false;
+    estadoJuego.booleanVacio2 = false;
+    estadoJuego.booleanVacio3 = false;
+    estadoJuego.retoFinalSuperado = false;
+    estadoJuego.taquillaResuelta = false;
 })
