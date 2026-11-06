@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/app.css}">
+</head>
+
+<body>
+    <form th:action="@{/mostrar}" method="get" th:object="${ninja}">
+        <label for="nombre">Introduce el id a buscar</label>
+        <input type="number" name="" id="" th:field="*{id}">
+        <button type="submit">Enviar Busqueda</button>
+    </form>
+
+    <a th:href="@{/}">Volver a la pagina donde estan todos los usuarios</a>
+
+</body>
+
+</html>

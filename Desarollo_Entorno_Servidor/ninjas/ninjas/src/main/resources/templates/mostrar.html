@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  
+    <link rel="stylesheet" th:href="@{/app.css}">
+
+</head>
+
+<body>
+
+
+
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Aldea</th>
+            <th>Clan</th>
+            <th>Rango</th>
+        </tr>
+
+        <tr>
+            <td th:text="${ninja.id}"></td>
+            <td th:text="${ninja.nombre}"></td>
+            <td th:text="${ninja.aldea}"></td>
+            <td th:text="${ninja.clan}"></td>
+            <td th:text="${ninja.rango}"></td>
+        </tr>
+    </table>
+
+    <p th:text="${mensaje}"></p>
+    <a th:href="@{/}">Ir a la pagina principal</a>
+    <a th:href="@{/busqueda}">Volver a la pagina de busqueda</a>
+</body>
+
+</html>

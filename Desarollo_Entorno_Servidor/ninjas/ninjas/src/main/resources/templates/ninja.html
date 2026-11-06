@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ninjas</title>
+    <link rel="stylesheet" th:href="@{/app.css}">
 </head>
+
 <body>
-    
+
     <table>
         <tr>
             <th>Id</th>
@@ -24,5 +27,8 @@
             <td th:text="${ninja.rango}"></td>
         </tr>
     </table>
+
+    <a th:href="@{/busqueda}">Ir a la pagina para buscar a un ninja</a>
 </body>
+
 </html>
