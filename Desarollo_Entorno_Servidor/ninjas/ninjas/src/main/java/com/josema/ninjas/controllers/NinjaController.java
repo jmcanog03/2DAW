@@ -47,6 +47,16 @@ public class NinjaController {
             model.addAttribute("ninja", new Ninja());
             model.addAttribute("mensaje", "no se ha encontrado el ninja");
         }
+
+        // resultado.ifPresent((ninja1)->{
+
+        // });
+
+        // resultado.ifPresentOrElse((ninja1)->{
+
+        // },()->{
+
+        // });
         
         return "mostrar";
     }

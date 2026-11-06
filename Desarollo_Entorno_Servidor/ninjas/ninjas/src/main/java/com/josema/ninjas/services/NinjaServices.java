@@ -33,7 +33,7 @@ public class NinjaServices {
     }
 
     public void borrarTodo(){
-        ninjasrepositories.deleteAll();
+        ninjasrepositories.deleteAllInBatch();
     }
 
     
