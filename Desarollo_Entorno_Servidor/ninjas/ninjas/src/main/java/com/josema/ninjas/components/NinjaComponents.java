@@ -21,7 +21,7 @@ public class NinjaComponents {
     @PostConstruct
     public void agregarNinjasComponent() {
 
-        ninjaservices.borrarTodo();
+        // ninjaservices.borrarTodo();
         
         Ninja ninja = Ninja.builder().nombre("josema").clan("clan del alumno").aldea("paldea").clase(Clase.ALUMNO).build();
         Ninja ninja2 = Ninja.builder().nombre("bobolon").clan("clan del profe").aldea("paldea").clase(Clase.ALUMNO)

@@ -19,22 +19,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "ninja")
+// @Table(name = "ninja")
 public class Ninja {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    @Column(name = "name")
+    // @Column(name = "name")
     String nombre;
 
-    @Column(name = "ninjaclan")
+    // @Column(name = "ninjaclan")
     String clan;
 
     // @Column(name = "range")
     // String rango;
 
-    @Column(name = "ninjaaldea")
+    // @Column(name = "ninjaaldea")
     String aldea;
 
     @Enumerated(EnumType.STRING)

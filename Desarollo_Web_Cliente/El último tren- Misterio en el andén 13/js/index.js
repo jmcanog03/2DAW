@@ -34,8 +34,6 @@ const mensajeConfirmacionTaquilla = document.getElementById("mensajeConfirmacion
 // VIDAS DE CADA SECCION
 const vidas = document.querySelectorAll(".vidas")
 
-// const vida = document.querySelector(".vida")
-
 // DESCRIPCIONES DE LOS OBJETOS
 const descripcionReloj = document.getElementById("descripcionReloj")
 const descripcionNota = document.getElementById("descripcionNota")
@@ -69,7 +67,7 @@ const mensajevacio1 = document.getElementById("mensajevacio1")
 const mensajevacio2 = document.getElementById("mensajevacio2")
 const mensajevacio3 = document.getElementById("mensajevacio3")
 
-// botonFormulario.disabled=true;
+
 sectionDespacho.classList.remove("activa")
 sectionAnden.classList.remove("activa")
 sectionTaquilla.classList.remove("activa")
@@ -372,9 +370,6 @@ function comprobarVacios() {
         botonTaquilla.disabled = true
     }
 }
-
-
-
 
 
 function comprobarCodigoTaquilla() {

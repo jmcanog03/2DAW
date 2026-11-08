@@ -10,6 +10,7 @@
 
 <body>
 
+    <!-- LANDING PAGE -->
     <header class="despacho activa" id="header">
         <h1>El Último Tren</h1>
         <p>Misterio en el Andén 13</p>
@@ -45,6 +46,7 @@
                     <label for="id">Codigo de identificacion opcional</label>
                     <input type="number" name="id" id="id">
 
+                    
                     <button type="submit" id="boton-formulario" disabled>Comenzar Investigación</button>
                 </div>
             </form>
@@ -134,6 +136,7 @@
             <button type="submit" id="ir-taquilla" disabled>Ir a la Taquilla</button>
         </div>
 
+        <!-- FASE 4 TAQUILLA -->
         <div id="taquilla" class="despacho activa">
             <h3>Tienes que intentar abrir con 3 numeros la combinación de taquilla del jefe de la estación</h3>
             <nav>
@@ -148,6 +151,7 @@
             <button type="button" id="ir-retofinal" disabled>Ir al reto final</button>
         </div>
 
+        <!-- FASE DEL RETO FINAL -->
         <div id="reto-final" class="despacho activa">
             <div id="titulo">
                 <h3>Has reunido todas las pruebas es hora de saber quien saboteo al tren</h3>
@@ -164,10 +168,12 @@
             <p id="resultadoAcusacion"></p>
         </div>
 
+        <!-- VISTA PARA MOSTRAR CUANDO EL JUGADOR GANA -->
         <div id="victoria" class="despacho">
             <h3>has ganado</h3>
         </div>
 
+        <!-- VISTA PARA MOSTRAR CUANDO EL JUGADOR PIERDE -->
 
         <div id="derrota" class="despacho">
             <h2>Has perdido</h2>
@@ -175,6 +181,7 @@
             <button type="button" id="volverInicio">Volver al Inicio</button>
         </div>
 
+        
 
 
     </main>
