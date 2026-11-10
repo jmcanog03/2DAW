@@ -43,18 +43,25 @@ frase = input("Introduce una frase ")
 
 palabras = frase.split()
 
+letras = ""
+
 print(f"Frase {frase}")
-conjuntoLetras = set(palabras)
 
 usadas = set()
 noUsadas = set()
+
+for l in palabras:
+    letras+=l
+
+conjuntoLetras = set(letras)
+
 listaLetras = sorted(conjuntoLetras)
+
 for v in vocales:
-    
     if(listaLetras.count(v)):
         usadas.add(v)
     else:
         noUsadas.add(v)
 
-print(f"Usadas {usadas}")
-print(f"noUsadas {noUsadas}")
+print(f"Usadas {sorted(usadas)}")
+print(f"noUsadas {sorted(noUsadas)}")

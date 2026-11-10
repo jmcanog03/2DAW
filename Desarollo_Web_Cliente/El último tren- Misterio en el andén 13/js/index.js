@@ -1,6 +1,7 @@
 const formulario = document.getElementById("formulario-inicio")
 const header = document.getElementById("header")
 const botonFormulario = document.getElementById("boton-formulario")
+const audio = document.getElementById("audio-cancion")
 
 // SECCIONES DEL JUEGO
 const sectionDespacho = document.getElementById("despacho")
@@ -67,20 +68,12 @@ const mensajevacio1 = document.getElementById("mensajevacio1")
 const mensajevacio2 = document.getElementById("mensajevacio2")
 const mensajevacio3 = document.getElementById("mensajevacio3")
 
-
+// DESACTIVAR POR DEFECTO LAS VISTAS DE LOS RETOS
 sectionDespacho.classList.remove("activa")
 sectionAnden.classList.remove("activa")
 sectionTaquilla.classList.remove("activa")
 sectionRetoFinal.classList.remove("activa")
 
-formulario.addEventListener("submit", function (event) {
-    event.preventDefault()
-    sectionDespacho.classList.add("activa")
-    formulario.classList.remove("activa")
-    header.classList.remove("activa")
-    sectionAnden.classList.remove("activa")
-
-})
 
 const objetos = [
     { id: 1, nombre: "Reloj", descripcion: "El reloj se paro a las 19:47", pista: "Quizas tenga relacion con el momento en el que ocurrio el sabotaje" },
@@ -93,6 +86,38 @@ const personajes = [
     { id: 2, nombre: "Mecánico" },
     { id: 3, nombre: "Pasajero" }
 ]
+
+const canciones = [
+    {
+        id: 1, titulo: "Tenebroso", artista: " AlesiaDavina",
+        archivo: "auido/tenebroso.mp3"
+    },
+
+    {
+        id: 2, titulo: "mouse-click", artista: "mouse-click",
+        archivo: "auido/mouse.mp3"
+    },
+
+    {
+        id: 3, titulo: "terror", artista: "terror",
+        archivo: "auido/terror.mp3"
+    },
+
+    {
+        id: 4, titulo: "winner", artista: "winner",
+        archivo: "auido/winner.mp3"
+    }
+];
+
+formulario.addEventListener("submit", function (event) {
+    event.preventDefault()
+    sectionDespacho.classList.add("activa")
+    formulario.classList.remove("activa")
+    header.classList.remove("activa")
+    sectionAnden.classList.remove("activa")
+    reproductor.reproducirCancion(canciones[1])
+})
+
 
 // objetoReloj.textContent = objetos[0].nombre
 // objetoNota.textContent = objetos[2].nombre
@@ -130,6 +155,7 @@ function mostrarObjetos() {
 
     // }
 
+
     // BUSCAR CON FIND EL OBJETO RELOJ
     const reloj = objetos.find(objeto => objeto.nombre == objetoReloj.id)
     objetoReloj.textContent = reloj.nombre
@@ -158,6 +184,7 @@ botonInvestigar.addEventListener("click", function () {
     botonAnden.disabled = false
     mostrarObjetos()
     mostrarPersonajes()
+    reproductor.reproducirCancion(canciones[0])
 })
 
 // VALIDAR CAMPOS DEL EMAIL
@@ -268,6 +295,7 @@ const detective = {
             const sectionActiva = document.querySelector(".despacho.activa")
             sectionActiva.classList.remove("activa")
             sectionDerrota.classList.add("activa")
+            reproductor.reproducirCancion(canciones[2])
         }
     }
 
@@ -281,7 +309,15 @@ const estadoJuego = {
     retoFinalSuperado: false
 }
 
+const reproductor = {
 
+    reproducirCancion: function (cancion) {
+        audio.setAttribute("src", cancion.archivo)
+        audio.currentTime = 0
+        audio.play()
+    }
+
+}
 detective.AnadirVidas()
 // detective.quitarVidas()
 
@@ -394,13 +430,16 @@ function comprobarCodigoTaquilla() {
 }
 
 botonTaquilla.addEventListener("click", function () {
+    reproductor.reproducirCancion(canciones[0])
     sectionDespacho.classList.remove("activa")
     sectionAnden.classList.remove("activa")
     sectionTaquilla.classList.add("activa")
 })
 
 botonRetoFinal.addEventListener("click", function () {
+
     if (estadoJuego.taquillaResuelta) {
+        reproductor.reproducirCancion(canciones[0])
         sectionDespacho.classList.remove("activa")
         sectionAnden.classList.remove("activa")
         sectionTaquilla.classList.remove("activa")
@@ -425,6 +464,7 @@ botonAcusacion.addEventListener("click", function () {
     if (estadoJuego.retoFinalSuperado) {
         sectionRetoFinal.classList.remove("activa")
         sectionVictoria.classList.add("activa")
+        reproductor.reproducirCancion(canciones[3])
     } else {
         detective.quitarVidas()
         mensajeAcusacion.textContent = "Tu acusación no es correcta piensalo de nuevo y recuerda las pistas"
