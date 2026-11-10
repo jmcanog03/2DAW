@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Carteles')}"></head>
+<body>
+<header th:replace="~{fragments :: cabecera}"></header>
+
+<main class="contenedor">
+    <h1 class="titulo">Se busca</h1>
+
+    <p class="aviso" th:if="${mensaje}" th:text="${mensaje}"></p>
+
+    <form class="filtros" method="get" th:action="@{/piratas}">
+        <label>Nombre
+            <input type="text" name="nombre" th:value="${nombre}" placeholder="Luffy…">
+        </label>
+        <label>Tripulación
+            <select name="tripulacion">
+                <option value="">Todas</option>
+                <option th:each="t : ${tripulaciones}" th:value="${t}" th:text="${t}"
+                        th:selected="${t == tripulacion}"></option>
+            </select>
+        </label>
+        <label>Recompensa mínima (฿)
+            <input type="number" name="recompensaMin" min="0" step="1000" th:value="${recompensaMin}">
+        </label>
+        <button class="boton" type="submit">Buscar</button>
+        <a class="boton boton-sec" th:href="@{/piratas}">Limpiar</a>
+    </form>
+
+    <p class="contador" th:text="${piratas.size()} + ' pirata(s) encontrado(s)'"></p>
+
+    <section class="carteles">
+        <a class="cartel" th:each="p : ${piratas}" th:href="@{/piratas/{id}(id=${p.id})}">
+            <span class="cartel-wanted">WANTED</span>
+            <div class="cartel-foto"><span th:text="${#strings.substring(p.nombre, 0, 1)}">M</span></div>
+            <h2 th:text="${p.nombre}">Nombre</h2>
+            <p class="cartel-tripulacion" th:text="${p.tripulacion}">Tripulación</p>
+            <p class="cartel-recompensa" th:text="${#numbers.formatInteger(p.recompensa, 1, 'POINT')} + ' ฿'">0 ฿</p>
+        </a>
+    </section>
+
+    <p class="vacio" th:if="${piratas.isEmpty()}">Ningún pirata coincide con esa búsqueda. ¡El mar es muy grande!</p>
+</main>
+</body>
+</html>

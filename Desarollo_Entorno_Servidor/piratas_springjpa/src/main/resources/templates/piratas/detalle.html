@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head(${pirata.nombre})}"></head>
+<body>
+<header th:replace="~{fragments :: cabecera}"></header>
+
+<main class="contenedor">
+    <article class="cartel cartel-grande">
+        <span class="cartel-wanted">WANTED</span>
+        <div class="cartel-foto"><span th:text="${#strings.substring(pirata.nombre, 0, 1)}">M</span></div>
+        <h1 th:text="${pirata.nombre}">Nombre</h1>
+        <p class="cartel-recompensa" th:text="${#numbers.formatInteger(pirata.recompensa, 1, 'POINT')} + ' ฿'">0 ฿</p>
+
+        <dl class="ficha">
+            <dt>Tripulación</dt>
+            <dd th:text="${pirata.tripulacion}">Tripulación</dd>
+            <dt>Fruta del Diablo</dt>
+            <dd th:text="${#strings.isEmpty(pirata.frutaDelDiablo)} ? 'Ninguna' : ${pirata.frutaDelDiablo}">Ninguna</dd>
+            <dt>Descripción</dt>
+            <dd th:text="${#strings.isEmpty(pirata.descripcion)} ? 'Sin datos' : ${pirata.descripcion}">Sin datos</dd>
+        </dl>
+    </article>
+
+    <p class="centrado"><a class="boton boton-sec" th:href="@{/piratas}">← Volver a los carteles</a></p>
+</main>
+</body>
+</html>

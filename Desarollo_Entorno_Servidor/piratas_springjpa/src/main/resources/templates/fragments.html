@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(titulo)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${titulo} + ' · Gran Línea'">Grand Line</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Pirata+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/piratas.css}">
+</head>
+<body>
+<header th:fragment="cabecera" class="cabecera">
+    <a class="logo" th:href="@{/piratas}">☠ Grand Line</a>
+    <nav>
+        <a th:href="@{/piratas}">Carteles</a>
+        <a th:href="@{/piratas/nuevo}">Nuevo pirata</a>
+    </nav>
+</header>
+</body>
+</html>

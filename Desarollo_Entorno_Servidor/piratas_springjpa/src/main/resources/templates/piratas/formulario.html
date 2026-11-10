@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Nuevo pirata')}"></head>
+<body>
+<header th:replace="~{fragments :: cabecera}"></header>
+
+<main class="contenedor">
+    <h1 class="titulo">Alistar un pirata</h1>
+
+    <!-- novalidate: así se ve la validación del servidor (Bean Validation) y no la del navegador -->
+    <form class="formulario" method="post" th:action="@{/piratas}" th:object="${pirata}" novalidate>
+
+        <div class="campo" th:classappend="${#fields.hasErrors('nombre')} ? 'con-error'">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" type="text" th:field="*{nombre}">
+            <small class="error" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+        </div>
+
+        <div class="campo" th:classappend="${#fields.hasErrors('tripulacion')} ? 'con-error'">
+            <label for="tripulacion">Tripulación</label>
+            <input id="tripulacion" type="text" th:field="*{tripulacion}">
+            <small class="error" th:if="${#fields.hasErrors('tripulacion')}" th:errors="*{tripulacion}"></small>
+        </div>
+
+        <div class="campo" th:classappend="${#fields.hasErrors('frutaDelDiablo')} ? 'con-error'">
+            <label for="frutaDelDiablo">Fruta del Diablo (opcional)</label>
+            <input id="frutaDelDiablo" type="text" th:field="*{frutaDelDiablo}">
+            <small class="error" th:if="${#fields.hasErrors('frutaDelDiablo')}" th:errors="*{frutaDelDiablo}"></small>
+        </div>
+
+        <div class="campo" th:classappend="${#fields.hasErrors('recompensa')} ? 'con-error'">
+            <label for="recompensa">Recompensa (฿)</label>
+            <input id="recompensa" type="number" th:field="*{recompensa}">
+            <small class="error" th:if="${#fields.hasErrors('recompensa')}" th:errors="*{recompensa}"></small>
+        </div>
+
+        <div class="campo" th:classappend="${#fields.hasErrors('descripcion')} ? 'con-error'">
+            <label for="descripcion">Descripción (opcional)</label>
+            <textarea id="descripcion" rows="4" th:field="*{descripcion}"></textarea>
+            <small class="error" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></small>
+        </div>
+
+        <div class="acciones">
+            <button class="boton" type="submit">Guardar pirata</button>
+            <a class="boton boton-sec" th:href="@{/piratas}">Cancelar</a>
+        </div>
+    </form>
+</main>
+</body>
+</html>
