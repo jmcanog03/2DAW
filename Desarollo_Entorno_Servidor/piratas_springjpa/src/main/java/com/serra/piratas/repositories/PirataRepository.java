@@ -15,5 +15,10 @@ public interface PirataRepository extends JpaRepository<Pirata, Long> {
 
     List<Pirata> findByFrutaDelDiabloIsNull();
 
+    List<Pirata> findByRecompensaBetween(Long min, Long max);
+    
+    List<Pirata> findByTripulacionAndRecompensaGreaterThan(String tripulacion,Long recompensa);
+
+    
 
 }

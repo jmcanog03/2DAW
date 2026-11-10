@@ -25,6 +25,10 @@ public class Pruebas {
 
         pirataRepository.findByFrutaDelDiabloIsNull().forEach(pirata -> System.out.println(pirata));
 
+        pirataRepository.findByRecompensaBetween(16000000L,120000000L ).forEach(pirata -> System.out.println(pirata));
+
+
+         pirataRepository.findByTripulacionAndRecompensaGreaterThan("Piratas del Sombrero de Paja", 50L).forEach(System.out::println);
 
 
         
