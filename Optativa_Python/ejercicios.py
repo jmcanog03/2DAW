@@ -122,8 +122,6 @@
 #     case _:
 #         print("Fuera de Rango")
 
-
-
 # cajero = 1200
 # opcion = 0
 

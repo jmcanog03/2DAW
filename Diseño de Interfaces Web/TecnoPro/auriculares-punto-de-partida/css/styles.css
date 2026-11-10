@@ -1,0 +1,163 @@
+:root {
+    --primario: #1073BA;
+    --secundario: #00DA55;
+    --gris: #3B3B3B;
+    --blanco: #FFFFFF;
+    --negro: #1F1E1E;
+    --grisClaro: #e1e1e1;
+    --separacion: 5rem;
+    --fuentePrincipal: 'Roboto', sans-serif;
+    --fuenteSecundaria: 'Lato', sans-serif;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuentePrincipal);
+    font-size: 1.6rem;
+    line-height: 1.5;
+}
+
+.contenedor {
+    max-width: 120rem;
+    width: 90%;
+    text-align: center;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 900;
+    font-family: var(--fuenteSecundaria);
+    margin: calc(var(--separacion) /2) 0;
+}
+
+h1 {
+    font-size: 4.4rem;
+}
+
+h2 {
+    font-size: 3.6rem;
+}
+
+h3 {
+    font-size: 2.8rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    height: auto;
+}
+
+
+.degradado-verde {
+    background: linear-gradient(to right, var(--primario) 0%, var(--secundario) 100%);
+    color: transparent;
+    background-clip: text;
+    --webkit-background-clip: text;
+}
+
+.header {
+    background-color: var(--negro);
+    color: var(--blanco);
+    padding: calc(var(--separacion)*3 0 calc(var(--separacion)*3) 0);
+}
+
+.texto-header {
+    text-align: center;
+    padding-top: var(--separacion);
+}
+
+.texto-header p {
+    margin: 0;
+}
+
+.tagline-producto {
+    font-size: 3rem;
+    font-weight: 900;
+}
+
+.nombre-producto {
+    font-size: 6rem;
+    margin: 0;
+}
+
+.precio-producto span {
+    font-size: 6rem;
+    font-weight: 900;
+}
+
+@media (min-width: 768px) {
+    .contenido-header {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .texto-header {
+        text-align: left;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .nombre-producto {
+        font-size: 10rem;
+        line-height: 1;
+    }
+}
+
+.iconos {
+    padding: var(--separacion) 0 var(--separacion) 0;
+}
+
+.icono {
+    text-align: center;
+    margin-bottom: calc(var(--separacion) /2);
+}
+
+.icono:last-child {
+    margin: 0 auto;
+}
+
+.icono img {
+    width: 5rem;
+    margin: 0 auto;
+}
+
+.icono h3 {
+    color: var(--primario);
+    text-transform: uppercase;
+    margin-top: calc(var(--separacion)/2);
+}
+
+@media (min-width:768px) {
+    .iconos {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+    }
+
+    .icono {
+        margin: 0 auto;
+    }
+}
+
+.notavif.notwebp .sobre-tech {
+    background-image: …, url(../img/imagen-mujer.jpg);
+}
+
+.webp .sobre-tech {
+    background-image: …, url(../img/imagen-mujer.webp);
+}
+
+.avif .sobre-tech {
+    background-image: …, url(../img/imagen-mujer.avif);
+}
