@@ -96,31 +96,31 @@
 
 # print(f"En medio: {amigos[1]}" )
 
-temperaturas = [18, 21, 19, 25, 23]
+# temperaturas = [18, 21, 19, 25, 23]
 
-temperaturas[2] = 20
+# temperaturas[2] = 20
 
-temperaturas.append(22)
+# temperaturas.append(22)
 
-print(temperaturas)
+# print(temperaturas)
 
-print(temperaturas[0])
+# print(temperaturas[0])
 
-print(temperaturas[-1])
+# print(temperaturas[-1])
 
-invitados = ["Ana", "Luis", "Marta"]
+# invitados = ["Ana", "Luis", "Marta"]
 
-# invitados.insert(0,"Sara") 
+# # invitados.insert(0,"Sara") 
 
-invitados[:0] = ["Sara"]
+# invitados[:0] = ["Sara"]
 
-invitados.remove("Luis")
+# invitados.remove("Luis")
 
-print (invitados.pop())
+# print (invitados.pop())
 
-print(invitados)
+# print(invitados)
 
-print(len(invitados))
+# print(len(invitados))
 
 
 # catalogo = ["teclado", "ratón", "monitor"]
@@ -135,28 +135,71 @@ print(len(invitados))
     
 # print(catalogo)
 
-notas = [7, 3, 9, 5, 4, 8]
-suma =0
-aprobadas = 0
-suspensas = 0
-media = 0
+# notas = [7, 3, 9, 5, 4, 8]
+# suma =0
+# aprobadas = 0
+# suspensas = 0
+# media = 0
 
-for n in notas:
-    if n >=5  and n <=10:
-        aprobadas+=1
-    else:
-        suspensas+=1
-    suma+=n
+# for n in notas:
+#     if n >=5  and n <=10:
+#         aprobadas+=1
+#     else:
+#         suspensas+=1
+#     suma+=n
     
-media = suma/len(notas)
+# media = suma/len(notas)
 
-print(f"Suma {suma} . Media: {media}")
+# print(f"Suma {suma} . Media: {media}")
 
-print(f"Aprobadas: {aprobadas} . Suspensas: {suspensas}")
+# print(f"Aprobadas: {aprobadas} . Suspensas: {suspensas}")
 
-print(f"Comprobacion: {sum(notas)}" )
+# print(f"Comprobacion: {sum(notas)}" )
 
-conjunto = set(notas)
+# conjunto = set(notas)
 
-print(conjunto)
+# print(conjunto)
 
+# dias = ("lunes", "martes", "miércoles", "jueves", "viernes","sabado","domingo")
+
+# print(dias[0])
+
+# print(dias[-1])
+
+# print(dias[:5]) 
+
+# print(dias[5:7])
+
+# dia_teclado = input("Introduce un dia: ")
+
+# dias_laborales = dias[:5]
+
+# dias_finde = dias[5:]
+
+# if dia_teclado in dias_laborales:
+#     print("Dia Laborable")       
+# elif dia_teclado in dias_finde:
+#     print("Dia de Finde")
+# else:
+#     print("No es un dia de la semana")
+    
+
+color = (255, 160, 0)
+
+r,g,b = color[0],color[1],color[2]
+
+print(f"{r} , {g} , {b}")
+
+gris = round(0.299 * r + 0.587 * g  + 0.114 * b)
+
+media = gris//3
+
+rgb_gris = (media,media,media)
+
+print(rgb_gris)
+
+if gris > 127:
+    print("Es un color claro")
+    
+else:
+    print("Es un color oscuro")
