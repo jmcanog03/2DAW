@@ -1,0 +1,23 @@
+ACTIVIDAD 1 · DE LOS OBJETOS A MYSQL
+Recursos para el alumnado — UT4 DWES
+
+CONTENIDO
+- incidencias.html: maqueta estática del listado con datos de ejemplo.
+- nueva-incidencia.html: maqueta estática del formulario.
+- gestor-incidencias.css: hoja de estilos compartida.
+- preparacion-bd.sql: crea la base de datos y el usuario de desarrollo.
+- application.properties.ejemplo: propiedades orientativas de Spring Boot.
+
+ANTES DE COMENZAR
+1. Descomprime el ZIP en una carpeta de trabajo.
+2. Abre incidencias.html y nueva-incidencia.html en el navegador.
+   Ambos archivos deben permanecer junto al CSS para visualizarse correctamente.
+3. Sustituye CAMBIA_ESTA_CONTRASENA en preparacion-bd.sql por una contraseña propia
+   antes de ejecutar el script en MySQL. Necesitas permisos para crear usuario y BD.
+4. Prepara el proyecto Spring Boot desde Spring Initializr y configura DB_PASSWORD
+   como variable de entorno (consulta el enunciado completo en Docusaurus).
+5. Copia ambos HTML a src/main/resources/templates/ y el CSS a
+   src/main/resources/static/css/ y adapta las vistas a Thymeleaf.
+
+Los HTML son maquetas sin Thymeleaf y el formulario no guarda información.
+El ZIP no incluye código Java resuelto ni contraseñas reales.

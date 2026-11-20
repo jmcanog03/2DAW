@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva incidencia | Gestor de incidencias</title>
+    <!-- Maqueta estática. Al integrarla en Spring Boot, adapta el enlace al CSS con Thymeleaf. -->
+    <link rel="stylesheet" th:href="@{/css/gestor-incidencias.css}".>
+</head>
+<body>
+<header class="cabecera">
+    <div class="contenedor cabecera-interior">
+        <a href="incidencias.html" class="marca">Gestor de incidencias</a>
+        <span class="marca-detalle">Departamento informático</span>
+    </div>
+</header>
+
+<main class="contenedor contenido contenido-estrecho">
+    <nav class="navegacion-vuelta" aria-label="Navegación">
+        <a href="incidencias.html">← Volver a las incidencias</a>
+    </nav>
+
+    <div class="encabezado-pagina">
+        <div>
+            <p class="etiqueta">Registro de incidencias</p>
+            <h1>Nueva incidencia</h1>
+            <p class="subtitulo">Describe el problema para incorporarlo al registro.</p>
+        </div>
+    </div>
+
+    <section class="panel panel-formulario" aria-labelledby="titulo-formulario">
+        <h2 id="titulo-formulario">Datos de la incidencia</h2>
+        <!--
+          MAQUETA ESTÁTICA: action="#" no guarda datos.
+          Adapta la acción, el modelo y los campos al convertirla en una vista Thymeleaf.
+        -->
+        <form action="#" method="post">
+            <div class="campo">
+                <label for="titulo">Título <span class="obligatorio">*</span></label>
+                <input type="text" id="titulo" name="titulo" maxlength="150" required
+                       placeholder="Ej.: El equipo del aula 2 no arranca">
+            </div>
+
+            <div class="campo">
+                <label for="descripcion">Descripción <span class="obligatorio">*</span></label>
+                <textarea id="descripcion" name="descripcion" rows="5" maxlength="1000" required
+                          placeholder="Explica qué sucede y dónde se produce el problema"></textarea>
+            </div>
+
+            <div class="campo">
+                <label for="prioridad">Prioridad <span class="obligatorio">*</span></label>
+                <select id="prioridad" name="prioridad" required>
+                    <option value="" selected disabled>Selecciona una prioridad</option>
+                    <option value="BAJA">BAJA</option>
+                    <option value="MEDIA">MEDIA</option>
+                    <option value="ALTA">ALTA</option>
+                </select>
+                <p class="ayuda">El estado inicial será ABIERTA y la fecha se asignará desde el servidor.</p>
+            </div>
+
+            <div class="acciones-formulario">
+                <a href="incidencias.html" class="boton boton-secundario">Cancelar</a>
+                <button type="submit" class="boton boton-primario">Registrar incidencia</button>
+            </div>
+        </form>
+    </section>
+    <p class="nota-maqueta">Maqueta de referencia: el botón no guarda datos hasta conectar el formulario con Spring Boot.</p>
+</main>
+</body>
+</html>

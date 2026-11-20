@@ -1,0 +1,14 @@
+# Copia estas propiedades a src/main/resources/application.properties.
+# Asigna DB_PASSWORD como variable de entorno en la ejecución de IntelliJ IDEA.
+# No guardes la contraseña real en este archivo ni la subas al repositorio.
+
+#spring.datasource.url=jdbc:mysql://localhost:3306/gestor_incidencias
+#spring.datasource.username=incidencias_app
+#spring.datasource.password=${DB_PASSWORD}
+
+
+# Configuración didáctica para el desarrollo inicial.
+# Hibernate creará/actualizará las tablas a partir de las entidades.
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true

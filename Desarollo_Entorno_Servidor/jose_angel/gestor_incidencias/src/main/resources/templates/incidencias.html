@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incidencias registradas | Gestor de incidencias</title>
+    <!-- Maqueta estática. Al integrarla en Spring Boot, adapta el enlace al CSS con Thymeleaf. -->
+    <link rel="stylesheet" th:href="@{/css/gestor-incidencias.css}".>
+</head>
+<body>
+<header class="cabecera">
+    <div class="contenedor cabecera-interior">
+        <a href="incidencias.html" class="marca">Gestor de incidencias</a>
+        <span class="marca-detalle">Departamento informático</span>
+    </div>
+</header>
+
+<main class="contenedor contenido">
+    <div class="encabezado-pagina">
+        <div>
+            <p class="etiqueta">Registro de incidencias</p>
+            <h1>Incidencias registradas</h1>
+            <p class="subtitulo">Consulta los problemas comunicados al departamento informático.</p>
+        </div>
+        <a href="nueva-incidencia.html" class="boton boton-primario">Nueva incidencia</a>
+    </div>
+
+    <section class="panel" aria-labelledby="titulo-listado">
+        <div class="panel-cabecera">
+            <h2 id="titulo-listado">Listado</h2>
+            <span class="contador">3 registros de ejemplo</span>
+        </div>
+        <div class="tabla-desplazable">
+            <table class="tabla-incidencias">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Prioridad</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Fecha de registro</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- DATOS FICTICIOS: sustituye estas filas por el recorrido de Thymeleaf. -->
+                <tr>
+                    <td>1</td>
+                    <td>El ordenador del aula 2 no arranca</td>
+                    <td><span class="indicador prioridad-alta">ALTA</span></td>
+                    <td><span class="indicador estado-abierta">ABIERTA</span></td>
+                    <td>21/10/2026</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>La impresora de secretaría no imprime</td>
+                    <td><span class="indicador prioridad-media">MEDIA</span></td>
+                    <td><span class="indicador estado-abierta">ABIERTA</span></td>
+                    <td>22/10/2026</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Actualizar navegador en biblioteca</td>
+                    <td><span class="indicador prioridad-baja">BAJA</span></td>
+                    <td><span class="indicador estado-abierta">ABIERTA</span></td>
+                    <td>23/10/2026</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Añade con Thymeleaf un mensaje para el caso en que no haya incidencias. -->
+    </section>
+    <p class="nota-maqueta">Maqueta de referencia: los registros anteriores son ficticios. Deben sustituirse por datos de MySQL.</p>
+</main>
+</body>
+</html>
