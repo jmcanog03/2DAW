@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+
+    <style>
+        label{
+            text-align: center;
+        }
+     
+        .texto{
+            margin: 0 auto;
+            margin-bottom: 1rem;
+        }
+        .formulario{
+            display: grid;
+            grid-template-rows: repeat(4,1fr);
+            gap: 1.5rem;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+
+    <form th:action="@{/videojuegos}" method="post" th:object="${videojuegoform}">
+        <fieldset class="formulario">
+            <legend class="texto">Formulario de Alta</legend>
+            <label for="titulo">Titulo</label>
+            <input type="text" th:field="*{titulo}">
+            <span th:errors="*{titulo}"></span>
+
+            <label for="plataforma">Plataforma</label>
+            <input type="text" th:field="*{plataforma}">
+            <span th:errors="*{plataforma}"></span>
+
+            <label for="precio">Precio</label>
+            <input type="number" step="any" th:field="*{precio}">
+            <span th:errors="*{precio}"></span>
+
+            <label for="anioLanzamiento">Anio de Lanzamiento</label>
+            <input type="number" th:field="*{anioLanzamiento}">
+            <span th:errors="*{anioLanzamiento}"></span>
+
+            <label for="disponible">Disponible</label>
+            <input type="checkbox" th:field="*{disponible}">
+            <span th:errors="*{disponible}"></span>
+
+
+            <button type="submit">Enviar Formulario</button>
+
+        </fieldset>
+    </form>
+</body>
+
+</html>

@@ -299,23 +299,43 @@ print()
 
 
 # print("-".join(sorted(palabra)))
-contador = 0;
-nombre = input("Introduce tu nombre: ").lower()  
-lista = []
-while(nombre != "fin"): 
-    nota = input("Introduce una nota: ")
-    lista.append([nombre,nota])
-    lista.sort()
-    if(int(nota) >=5):
-        contador+=1
-    nombre = input("Introduce tu nombre: ").lower()  
+# contador = 0;
+# nombre = input("Introduce tu nombre: ").lower()  
+# lista = []
+# while(nombre != "fin"): 
+#     nota = input("Introduce una nota: ")
+#     lista.append([nombre,nota])
+#     lista.sort()
+#     if(int(nota) >=5):
+#         contador+=1
+#     nombre = input("Introduce tu nombre: ").lower()  
 
-print(f"La lista de alumnos y su nota es: {lista}")
-print(f"Han aprobado : {contador}")
-
-
+# print(f"La lista de alumnos y su nota es: {lista}")
+# print(f"Han aprobado : {contador}")
 
 
+
+
+notas = [7, 5, 9, 6, 8]
+
+def calcularMedia(notas):
+    suma = 0 
+    for n in notas:
+        suma+=n
+    
+    return suma / len(notas)
+    
+   
+media = calcularMedia(notas)
+print(f"La media es {media}")
+
+alumnos_apro = 0;
+
+for n in notas:
+    if n >=7:
+        alumnos_apro+=1
+
+print(f"Alumnos Aprobados: {alumnos_apro}")
 
 
 

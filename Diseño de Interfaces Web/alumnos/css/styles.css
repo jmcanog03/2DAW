@@ -1,0 +1,84 @@
+:root {
+    --blanco: #FFF;
+    --negro: #111111;
+    --gris: #343a40;
+    --azul: #0071b7;
+    --naranja: #ff4f1e;
+    --fuentePrincipal: 'Raleway', sans-serif;
+}
+
+html {
+    background-color: var(--azul);
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+::before,
+::after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: var(--fuentePrincipal);
+    font-size: 1.6rem;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 900;
+    margin: 2rem, 0, 2rem, 0
+}
+
+h1 {
+    font-size: 4.8rem;
+    text-align: center;
+    color: var(--blanco);
+}
+
+h2 {
+    font-size: 5.8rem;
+}
+
+p {
+    line-height: 1.8;
+}
+
+img {
+    width: 100%;
+}
+
+.contenedor {
+    max-width: 120rem;
+    width: 90%;
+    margin-inline: auto;
+}
+
+.caja-curso {
+    background-color: var(--naranja);
+    text-align: center;
+    color: var(--blanco);
+    padding: 5rem;
+}
+
+.caja-curso h1 {
+    margin: 0 auto;
+}
+
+.productos {
+    margin-top: 5rem;
+}
+
+.productos__heading {
+    color: var(--blanco);
+    text-align: center;
+    padding: 3rem 0 3rem 0;
+}
+
+@media (min-width:768px) {
+    .productos__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+}

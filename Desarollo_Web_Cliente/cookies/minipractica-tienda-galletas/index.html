@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La tienda de galletas</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <h1>La tienda de galletas</h1>
+
+  <section>
+    <h2>1 · ¿Quién eres?</h2>
+    <p id="saludo"></p>
+    <form id="form-nombre">
+      <label for="nombre">Tu nombre:</label>
+      <input type="text" id="nombre">
+      <button>Guardar</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>2 · Productos</h2>
+    <ul id="productos">
+      <li>Galleta de chocolate · 1,50 € <button data-producto="chocolate">Añadir</button></li>
+      <li>Galleta de avena · 1,20 € <button data-producto="avena">Añadir</button></li>
+      <li>Galleta de mantequilla · 1,00 € <button data-producto="mantequilla">Añadir</button></li>
+      <li>Galleta de canela · 1,30 € <button data-producto="canela">Añadir</button></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>3 · Tu cesta</h2>
+    <ul id="cesta"></ul>
+    <p>Total: <b id="total">0,00 €</b></p>
+    <button id="vaciar">Vaciar cesta</button>
+  </section>
+
+  <section>
+    <h2>4 · Mis cookies</h2>
+    <table id="tabla-cookies">
+      <thead><tr><th>Nombre</th><th>Valor</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <script src="cookies.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

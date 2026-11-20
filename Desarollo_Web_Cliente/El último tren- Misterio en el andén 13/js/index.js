@@ -456,12 +456,17 @@ botonComprobarTaquilla.addEventListener("click", function () {
 })
 
 botonAcusacion.addEventListener("click", function () {
-    if (personajeAcusacion.value === "2") {
+    const pasajero = personajes.find(objeto => objeto.nombre == personajes[2].nombre);
+
+    const texto = pasajero.id.toString();
+
+    if (personajeAcusacion.value === "2" || personajeAcusacion.value === texto) {
         estadoJuego.retoFinalSuperado = true;
     } else {
         estadoJuego.retoFinalSuperado = false;
     }
 
+    
     if (estadoJuego.retoFinalSuperado) {
         sectionRetoFinal.classList.remove("activa");
         sectionVictoria.classList.add("activa");

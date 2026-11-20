@@ -1,0 +1,21 @@
+Minipráctica · La tienda de galletas · Parte A (observación)
+Nombre y apellidos:
+
+A1. Cabecera Set-Cookie completa que has encontrado (y web de donde sale).
+    ¿Qué atributos lleva?
+
+
+A2. ¿Cuántas cookies hay en Aplicación > Cookies? ¿Cuántas son de otros dominios
+    (de terceros)? Escribe el nombre de uno de esos dominios.
+
+
+A3. Escribe el nombre de una cookie de sesión y de una persistente.
+    ¿En qué columna se ve la diferencia?
+
+
+A4. ¿Hay alguna cookie marcada como HttpOnly? ¿Para qué crees que sirve ese atributo?
+
+
+A5. (Al terminar la parte B) Cierra el navegador y vuelve a abrir la tienda.
+    ¿Qué se ha conservado y qué no? ¿Por qué?
+

@@ -1,0 +1,8 @@
+* { box-sizing: border-box; }
+body { font-family: system-ui, Arial, sans-serif; max-width: 760px; margin: 40px auto; padding: 0 20px; line-height: 1.5; color: #2B1D16; background: #FBF6EE; }
+section { background: #F3E7D3; border-radius: 12px; padding: 8px 20px 16px; margin-bottom: 16px; }
+h1 { margin-top: 0; }
+button, input { font: inherit; padding: 4px 12px; }
+#productos li { margin: 6px 0; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid #CDBBA7; padding: 6px 10px; text-align: left; word-break: break-all; }
