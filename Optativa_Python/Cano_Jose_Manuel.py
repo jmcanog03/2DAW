@@ -68,7 +68,7 @@ def producto_mas_caro(productos):
     mas_caro = productos[0]
     for p in productos:
         if p["precio"] > mas_caro["precio"]:
-            maximo = p     
+            mas_caro = p     
     return mas_caro["nombre"]
 
 
