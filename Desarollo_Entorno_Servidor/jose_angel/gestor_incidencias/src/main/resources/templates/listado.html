@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado Incidencias</title>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th>Titulo</th>
+            <th>Descripcion</th>
+            <th>Prioridad</th>
+            <th>Estado</th>
+            <th>Fecha de Registro</th>
+        </tr>
+
+        <tr th:each="incidencia:${incidencias}">
+            <td th:text="${incidencia.titulo}"></td>
+            <td th:text="${incidencia.descripcion}"></td>
+            <td th:text="${incidencia.prioridad}"></td>
+            <td th:text="${incidencia.estado}"></td>
+            <td th:text="${incidencia.fecha_registro}"></td>
+        </tr>
+    </table>
+</body>
+
+</html>

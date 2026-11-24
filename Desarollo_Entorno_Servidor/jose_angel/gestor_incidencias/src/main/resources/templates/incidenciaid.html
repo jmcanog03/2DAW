@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incidencias registradas | Gestor de incidencias</title>
+    <!-- Maqueta estática. Al integrarla en Spring Boot, adapta el enlace al CSS con Thymeleaf. -->
+    <link rel="stylesheet" th:href="@{/gestor-incidencias.css}" .>
+</head>
+
+<body>
+    <header class="cabecera">
+        <div class="contenedor cabecera-interior">
+            <a th:href="@{/incidencias}" class=" marca">Gestor de incidencias</a>
+            <span class="marca-detalle">Departamento informático</span>
+        </div>
+    </header>
+
+    <main class="contenedor contenido">
+        <div class="encabezado-pagina">
+            <div>
+                <p class="etiqueta">Registro de incidencias</p>
+                <h1>Incidencia busqueda</h1>
+                <p class="subtitulo">Consulta los problemas comunicados al departamento informático.</p>
+            </div>
+            <a th:href="@{/incidencias/nuevo}" class="boton boton-primario">Nueva
+                incidencia</a>
+        </div>
+
+        <section class="panel" aria-labelledby="titulo-listado">
+            <div class="panel-cabecera">
+                <h2 id="titulo-listado">Listado</h2>
+                <span class="contador">3 registros de ejemplo</span>
+            </div>
+            <div class="tabla-desplazable">
+                <table class="tabla-incidencias">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Título</th>
+                            <th scope="col">Prioridad</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Fecha de registro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td th:text="${incidencia.titulo}"></td>
+                            <td th:text="${incidencia.descripcion}"></td>
+                            <td th:text="${incidencia.prioridad}"></td>
+                            <td th:text="${incidencia.estado}"></td>
+                            <td th:text="${incidencia.fecha_registro}"></td>
+                            <td>
+                                <form th:action="@{/incidencias/eliminar/{id}(id = ${incidencia.id})}" method="get">
+                                    <button type="submit" class="eliminar">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Añade con Thymeleaf un mensaje para el caso en que no haya incidencias. -->
+        </section>
+        <p class="nota-maqueta">Maqueta de referencia: los registros anteriores son ficticios. Deben sustituirse por
+            datos de MySQL.</p>
+    </main>
+</body>
+
+</html>

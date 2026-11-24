@@ -1,4 +1,4 @@
-package com.dwes.gestor_incidencias.gestor_incidencias;
+package com.dwes.gestor_incidencias;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

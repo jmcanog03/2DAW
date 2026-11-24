@@ -1,0 +1,1 @@
+INSERT INTO incidencia (titulo,descripcion,prioridad,estado,fecha_registro)  VALUES ('prueba','esto es una prueba','ALTA','enproceso','2003-05-17');

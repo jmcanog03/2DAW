@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nueva incidencia | Gestor de incidencias</title>
     <!-- Maqueta estática. Al integrarla en Spring Boot, adapta el enlace al CSS con Thymeleaf. -->
-    <link rel="stylesheet" th:href="@{/css/gestor-incidencias.css}".>
+    <link rel="stylesheet" th:href="@{/gestor-incidencias.css}">
+    
 </head>
 <body>
 <header class="cabecera">
     <div class="contenedor cabecera-interior">
-        <a href="incidencias.html" class="marca">Gestor de incidencias</a>
+        <a th:href="@{/incidencias}" class="marca">Gestor de incidencias</a>
         <span class="marca-detalle">Departamento informático</span>
     </div>
 </header>
 
 <main class="contenedor contenido contenido-estrecho">
     <nav class="navegacion-vuelta" aria-label="Navegación">
-        <a href="incidencias.html">← Volver a las incidencias</a>
+        <a th:href="@{/incidencias}">← Volver a las incidencias</a>
     </nav>
 
     <div class="encabezado-pagina">
@@ -34,27 +35,31 @@
           MAQUETA ESTÁTICA: action="#" no guarda datos.
           Adapta la acción, el modelo y los campos al convertirla en una vista Thymeleaf.
         -->
-        <form action="#" method="post">
+        <form th:action="@{/incidencias/nuevo}" method="post" th:object="${incidencia}">
             <div class="campo">
                 <label for="titulo">Título <span class="obligatorio">*</span></label>
-                <input type="text" id="titulo" name="titulo" maxlength="150" required
+                <input type="text" id="titulo" name="titulo" maxlength="150" th:field="*{titulo}"
                        placeholder="Ej.: El equipo del aula 2 no arranca">
+                <span th:errors="*{titulo}"></span>
             </div>
 
             <div class="campo">
                 <label for="descripcion">Descripción <span class="obligatorio">*</span></label>
-                <textarea id="descripcion" name="descripcion" rows="5" maxlength="1000" required
+                <textarea id="descripcion" name="descripcion" rows="5" maxlength="1000" th:field="*{descripcion}"
+                
                           placeholder="Explica qué sucede y dónde se produce el problema"></textarea>
+                <span th:errors="*{descripcion}"></span>
             </div>
 
             <div class="campo">
                 <label for="prioridad">Prioridad <span class="obligatorio">*</span></label>
-                <select id="prioridad" name="prioridad" required>
+                <select id="prioridad" name="prioridad" th:field="*{prioridad}">
                     <option value="" selected disabled>Selecciona una prioridad</option>
                     <option value="BAJA">BAJA</option>
                     <option value="MEDIA">MEDIA</option>
                     <option value="ALTA">ALTA</option>
                 </select>
+                <span th:errors="*{prioridad}"></span>
                 <p class="ayuda">El estado inicial será ABIERTA y la fecha se asignará desde el servidor.</p>
             </div>
 
