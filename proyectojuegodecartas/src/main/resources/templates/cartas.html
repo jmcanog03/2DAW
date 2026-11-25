@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Catálogo de criaturas de Creature Nexus.">
+  <title>Cartas · Creature Nexus</title>
+  <!-- Ruta relativa para abrir la maqueta desde la carpeta templates.
+       En Spring Boot, la ruta pública es /css/creature-nexus.css. -->
+  <link rel="stylesheet" href="../static/css/creature-nexus.css">
+</head>
+<body>
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <!-- Cabecera común (candidata a fragmento). Solo cambia el enlace con es-actual. -->
+  <header class="cabecera">
+    <div class="contenedor cabecera-interior">
+      <a class="marca" href="inicio.html">
+        <span class="marca-simbolo" aria-hidden="true"><span></span><span></span><span></span></span>
+        Creature Nexus
+      </a>
+      <nav class="nav-principal" aria-label="Navegación principal">
+        <a class="nav-enlace es-actual" href="cartas.html" aria-current="page">Cartas</a>
+        <a class="nav-enlace" href="mazos.html">Mazos</a>
+        <a class="nav-enlace" href="nueva-partida.html">Jugar</a>
+        <a class="nav-enlace" href="historial.html">Historial</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="contenedor">
+      <div class="encabezado">
+        <div>
+          <h1>Cartas</h1>
+          <p>Las criaturas disponibles para construir mazos. Solo se pueden editar o eliminar las que no pertenecen a ningún mazo.</p>
+        </div>
+        <div class="encabezado-acciones">
+          <a class="boton boton-principal" href="formulario-carta.html">Nueva criatura</a>
+        </div>
+      </div>
+
+      <!-- Mensajes del servidor -->
+      <div class="aviso aviso-exito" role="status" hidden>
+        <strong>Criatura guardada</strong>
+        <p>Texto de confirmación.</p>
+      </div>
+      <div class="aviso aviso-error" role="alert" hidden>
+        <strong>No se ha podido completar la operación</strong>
+        <p>Texto del error.</p>
+      </div>
+
+      <div class="barra-catalogo">
+        <!-- Cada enlace hace una petición GET con el parámetro tipo.
+             El servidor marca el filtro activo con es-actual y aria-current. -->
+        <nav class="filtro" aria-label="Filtrar por elemento">
+          <a class="es-actual" href="cartas.html" aria-current="page">Todas</a>
+          <a href="cartas.html?tipo=Fuego"><span class="elemento es-fuego">Fuego</span></a>
+          <a href="cartas.html?tipo=Agua"><span class="elemento es-agua">Agua</span></a>
+          <a href="cartas.html?tipo=Planta"><span class="elemento es-planta">Planta</span></a>
+        </nav>
+        <span class="recuento">Mostrando 6 de 18 criaturas (muestra estática)</span>
+      </div>
+
+      <div class="rejilla-cartas">
+        <div class="ficha">
+          <article class="carta es-fuego">
+            <span class="carta-coste"><span class="solo-lectores">Coste </span>17</span>
+            <header class="carta-cabecera">
+              <h3 class="carta-nombre">Dragón Ígneo</h3>
+              <span class="elemento es-fuego">Fuego</span>
+            </header>
+            <div class="carta-imagen">
+              <img src="../static/img/criaturas/dragon-igneo.webp" alt="Dragón Ígneo">
+            </div>
+            <dl class="carta-atributos">
+              <div class="atributo-ataque"><dt>Ataque</dt><dd>9</dd></div>
+              <div class="atributo-defensa"><dt>Defensa</dt><dd>8</dd></div>
+            </dl>
+          </article>
+          <div class="ficha-acciones">
+            <span class="ficha-bloqueo">🔒 En uso en un mazo</span>
+          </div>
+        </div>
+        <div class="ficha">
+          <article class="carta es-fuego">
+            <span class="carta-coste"><span class="solo-lectores">Coste </span>11</span>
+            <header class="carta-cabecera">
+              <h3 class="carta-nombre">Salamandra Ámbar</h3>
+              <span class="elemento es-fuego">Fuego</span>
+            </header>
+            <div class="carta-imagen">
+              <img src="../static/img/criaturas/salamandra-ambar.webp" alt="Salamandra Ámbar" loading="lazy">
+            </div>
+            <dl class="carta-atributos">
+              <div class="atributo-ataque"><dt>Ataque</dt><dd>8</dd></div>
+              <div class="atributo-defensa"><dt>Defensa</dt><dd>3</dd></div>
+            </dl>
+          </article>
+          <div class="ficha-acciones">
+            <span class="ficha-bloqueo">🔒 En uso en un mazo</span>
+          </div>
+        </div>
+        <div class="ficha">
+          <article class="carta es-agua">
+            <span class="carta-coste"><span class="solo-lectores">Coste </span>16</span>
+            <header class="carta-cabecera">
+              <h3 class="carta-nombre">Leviatán Azul</h3>
+              <span class="elemento es-agua">Agua</span>
+            </header>
+            <div class="carta-imagen">
+              <img src="../static/img/criaturas/leviatan-azul.webp" alt="Leviatán Azul" loading="lazy">
+            </div>
+            <dl class="carta-atributos">
+              <div class="atributo-ataque"><dt>Ataque</dt><dd>9</dd></div>
+              <div class="atributo-defensa"><dt>Defensa</dt><dd>7</dd></div>
+            </dl>
+          </article>
+          <div class="ficha-acciones">
+            <a class="boton boton-peq" href="formulario-carta.html">Editar</a>
+            <!-- El servidor debe comprobar de nuevo que la carta no está en ningún mazo.
+                 Conviene pedir confirmación antes de borrar. -->
+            <form action="#" method="post">
+              <button class="boton boton-peq boton-peligro" type="submit">Eliminar</button>
+            </form>
+          </div>
+        </div>
+        <div class="ficha">
+          <article class="carta es-agua">
+            <span class="carta-coste"><span class="solo-lectores">Coste </span>13</span>
+            <header class="carta-cabecera">
+              <h3 class="carta-nombre">Tortuga Abisal</h3>
+              <span class="elemento es-agua">Agua</span>
+            </header>
+            <div class="carta-imagen">
+              <img src="../static/img/criaturas/tortuga-abisal.webp" alt="Tortuga Abisal" loading="lazy">
+            </div>
+            <dl class="carta-atributos">
+              <div class="atributo-ataque"><dt>Ataque</dt><dd>3</dd></div>
+              <div class="atributo-defensa"><dt>Defensa</dt><dd>10</dd></div>
+            </dl>
+          </article>
+          <div class="ficha-acciones">
+            <span class="ficha-bloqueo">🔒 En uso en un mazo</span>
+          </div>
+        </div>
+        <div class="ficha">
+          <article class="carta es-planta">
+            <span class="carta-coste"><span class="solo-lectores">Coste </span>14</span>
+            <header class="carta-cabecera">
+              <h3 class="carta-nombre">Ent Ancestral</h3>
+              <span class="elemento es-planta">Planta</span>
+            </header>
+            <div class="carta-imagen">
+              <img src="../static/img/criaturas/ent-ancestral.webp" alt="Ent Ancestral" loading="lazy">
+            </div>
+            <dl class="carta-atributos">
+              <div class="atributo-ataque"><dt>Ataque</dt><dd>4</dd></div>
+              <div class="atributo-defensa"><dt>Defensa</dt><dd>10</dd></div>
+            </dl>
+          </article>
+          <div class="ficha-acciones">
+            <span class="ficha-bloqueo">🔒 En uso en un mazo</span>
+          </div>
+        </div>
+        <div class="ficha">
+          <article class="carta es-planta">
+            <span class="carta-coste"><span class="solo-lectores">Coste </span>8</span>
+            <header class="carta-cabecera">
+              <h3 class="carta-nombre">Brote Saltarín</h3>
+              <span class="elemento es-planta">Planta</span>
+            </header>
+            <div class="carta-imagen">
+              <img src="../static/img/criaturas/brote-saltarin.webp" alt="Brote Saltarín" loading="lazy">
+            </div>
+            <dl class="carta-atributos">
+              <div class="atributo-ataque"><dt>Ataque</dt><dd>3</dd></div>
+              <div class="atributo-defensa"><dt>Defensa</dt><dd>5</dd></div>
+            </dl>
+          </article>
+          <div class="ficha-acciones">
+            <a class="boton boton-peq" href="formulario-carta.html">Editar</a>
+            <!-- El servidor debe comprobar de nuevo que la carta no está en ningún mazo.
+                 Conviene pedir confirmación antes de borrar. -->
+            <form action="#" method="post">
+              <button class="boton boton-peq boton-peligro" type="submit">Eliminar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mostrar solo si el filtro no devuelve resultados. -->
+      <div class="estado-vacio" hidden>
+        <h3>No hay criaturas de este elemento</h3>
+        <p>Elige otro filtro o crea una criatura nueva.</p>
+        <a class="boton boton-principal" href="formulario-carta.html">Nueva criatura</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Pie común (candidato a fragmento). -->
+  <footer class="pie">
+    <div class="contenedor pie-interior">
+      <span>Creature Nexus, edición de aula</span>
+      <span>Maqueta HTML: la lógica de servidor está pendiente de implementar.</span>
+    </div>
+  </footer>
+</body>
+</html>

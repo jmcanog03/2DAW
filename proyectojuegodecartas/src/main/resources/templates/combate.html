@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Partida en curso: mano del jugador, mazo rival y marcador de rondas." name="description"/>
+<title>Ronda 2 de 5 &middot; Creature Nexus</title>
+<!-- Ruta relativa para abrir la maqueta desde la carpeta templates.
+       En Spring Boot, la ruta pública es /css/creature-nexus.css. -->
+<link href="../static/css/creature-nexus.css" rel="stylesheet"/>
+</head>
+<body class="pantalla-combate">
+<a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+<!-- Cabecera común (candidata a fragmento). Solo cambia el enlace con es-actual. -->
+<header class="cabecera">
+<div class="contenedor cabecera-interior">
+<a class="marca" href="inicio.html">
+<span aria-hidden="true" class="marca-simbolo"><span></span><span></span><span></span></span>
+        Creature Nexus
+      </a>
+<nav aria-label="Navegaci&oacute;n principal" class="nav-principal">
+<a class="nav-enlace" href="cartas.html">Cartas</a>
+<a class="nav-enlace" href="mazos.html">Mazos</a>
+<a aria-current="page" class="nav-enlace es-actual" href="nueva-partida.html">Jugar</a>
+<a class="nav-enlace" href="historial.html">Historial</a>
+</nav>
+</div>
+</header>
+<main id="contenido">
+<div class="contenedor">
+<div class="encabezado">
+<div>
+<h1>Ronda 2 de 5</h1>
+<p>Elige una carta de tu mano para disputar la siguiente ronda. El ordenador jugar&aacute; una carta de su mazo.</p>
+</div>
+</div>
+<!-- Estado ilustrativo tras la primera ronda. -->
+<section aria-label="Marcador" class="tablero marcador-partida">
+<div class="contrincante">
+<strong>Alex</strong>
+<span>Viajeros del Alba</span>
+</div>
+<div aria-label="Alex 1, ordenador 0" class="marcador">
+<span>1</span><span aria-hidden="true" class="marcador-separador">&ndash;</span><span>0</span>
+</div>
+<div class="contrincante contrincante-derecha">
+<strong>Ordenador</strong>
+<span>Furia Elemental</span>
+</div>
+<!-- Maqueta de una partida de 5 rondas. En la aplicación genera 3, 5 o 7 fichas
+             según el número de rondas seleccionado. Estados: ronda-ganada,
+             ronda-perdida, ronda-empate, ronda-actual o ninguna (pendiente). -->
+<ol aria-label="Rondas" class="rondas">
+<li class="ronda ronda-ganada">1<span class="solo-lectores">: ganada</span></li>
+<li aria-current="step" class="ronda ronda-actual">2<span class="solo-lectores">: en juego</span></li>
+<li class="ronda">3<span class="solo-lectores">: pendiente</span></li>
+<li class="ronda">4<span class="solo-lectores">: pendiente</span></li>
+<li class="ronda">5<span class="solo-lectores">: pendiente</span></li>
+</ol>
+</section>
+      
+      <!-- Sitúa aquí la mano y el resumen en paralelo: la última ronda no desplaza los botones de juego.
+           Si tu controlador redirige tras una jugada, puedes usar #zona-juego para conservar
+           una posición de lectura estable, sin JavaScript. -->
+<div class="area-combate" id="zona-juego"><section aria-labelledby="titulo-mano" class="zona zona-mano">
+<div class="zona-titulo">
+<h2 id="titulo-mano">Elige tu carta</h2>
+<p>Elige una carta &middot; 3 en mano, 4 en el mazo, 1 descartada</p>
+</div>
+<div class="rejilla-mano">
+<form action="#" class="jugada" method="post">
+<!-- Valores de muestra, no son identificadores reales. -->
+<input name="partidaId" type="hidden" value="ejemplo-partida"/>
+<input name="ronda" type="hidden" value="2"/>
+<input name="cartaId" type="hidden" value="5"/>
+<article class="carta es-fuego">
+<span class="carta-coste"><span class="solo-lectores">Coste </span>11</span>
+<header class="carta-cabecera">
+<h3 class="carta-nombre">Zorro Solar</h3>
+<span class="elemento es-fuego">Fuego</span>
+</header>
+<div class="carta-imagen">
+<img alt="Zorro Solar" loading="lazy" src="../static/img/criaturas/zorro-solar.webp"/>
+</div>
+<dl class="carta-atributos">
+<div class="atributo-ataque"><dt>Ataque</dt><dd>6</dd></div>
+<div class="atributo-defensa"><dt>Defensa</dt><dd>5</dd></div>
+</dl>
+</article>
+<button class="boton boton-principal boton-ancho" type="submit">Jugar esta carta</button>
+</form>
+<form action="#" class="jugada" method="post">
+<!-- Valores de muestra, no son identificadores reales. -->
+<input name="partidaId" type="hidden" value="ejemplo-partida"/>
+<input name="ronda" type="hidden" value="2"/>
+<input name="cartaId" type="hidden" value="8"/>
+<article class="carta es-agua">
+<span class="carta-coste"><span class="solo-lectores">Coste </span>12</span>
+<header class="carta-cabecera">
+<h3 class="carta-nombre">Sirena de Coral</h3>
+<span class="elemento es-agua">Agua</span>
+</header>
+<div class="carta-imagen">
+<img alt="Sirena de Coral" loading="lazy" src="../static/img/criaturas/sirena-de-coral.webp"/>
+</div>
+<dl class="carta-atributos">
+<div class="atributo-ataque"><dt>Ataque</dt><dd>8</dd></div>
+<div class="atributo-defensa"><dt>Defensa</dt><dd>4</dd></div>
+</dl>
+</article>
+<button class="boton boton-principal boton-ancho" type="submit">Jugar esta carta</button>
+</form>
+<form action="#" class="jugada" method="post">
+<!-- Valores de muestra, no son identificadores reales. -->
+<input name="partidaId" type="hidden" value="ejemplo-partida"/>
+<input name="ronda" type="hidden" value="2"/>
+<input name="cartaId" type="hidden" value="14"/>
+<article class="carta es-planta">
+<span class="carta-coste"><span class="solo-lectores">Coste </span>13</span>
+<header class="carta-cabecera">
+<h3 class="carta-nombre">Lobo de Musgo</h3>
+<span class="elemento es-planta">Planta</span>
+</header>
+<div class="carta-imagen">
+<img alt="Lobo de Musgo" loading="lazy" src="../static/img/criaturas/lobo-de-musgo.webp"/>
+</div>
+<dl class="carta-atributos">
+<div class="atributo-ataque"><dt>Ataque</dt><dd>9</dd></div>
+<div class="atributo-defensa"><dt>Defensa</dt><dd>4</dd></div>
+</dl>
+</article>
+<button class="boton boton-principal boton-ancho" type="submit">Jugar esta carta</button>
+</form>
+</div>
+</section><section aria-labelledby="titulo-anterior" class="zona zona-resumen-ronda">
+<div class="zona-titulo">
+<h2 id="titulo-anterior">&Uacute;ltima ronda &middot; 1</h2>
+<span class="etiqueta etiqueta-victoria">Ganada</span>
+</div>
+<div class="ronda-anterior">
+<div>
+<article class="carta es-fuego">
+<span class="carta-coste"><span class="solo-lectores">Coste </span>14</span>
+<header class="carta-cabecera">
+<h3 class="carta-nombre">F&eacute;nix Carmes&iacute;</h3>
+<span class="elemento es-fuego">Fuego</span>
+</header>
+<dl class="carta-atributos">
+<div class="atributo-ataque"><dt>Ataque</dt><dd>9</dd></div>
+<div class="atributo-defensa"><dt>Defensa</dt><dd>5</dd></div>
+</dl>
+</article>
+<p class="dano">Tu carta</p>
+</div>
+<span aria-hidden="true" class="versus">VS</span>
+<div>
+<article class="carta es-planta">
+<span class="carta-coste"><span class="solo-lectores">Coste </span>12</span>
+<header class="carta-cabecera">
+<h3 class="carta-nombre">Espinazo Verde</h3>
+<span class="elemento es-planta">Planta</span>
+</header>
+<dl class="carta-atributos">
+<div class="atributo-ataque"><dt>Ataque</dt><dd>8</dd></div>
+<div class="atributo-defensa"><dt>Defensa</dt><dd>4</dd></div>
+</dl>
+</article>
+<p class="dano">Carta del ordenador</p>
+</div>
+<!-- El resultado y su explicación deben generarse desde la lógica de combate del alumno.
+               No se impone una fórmula de daño o una ventaja elemental concreta. -->
+<div class="tablero calculo">
+<h3>Resoluci&oacute;n de la ronda</h3>
+<p><strong>Ganadora: F&eacute;nix Carmes&iacute;.</strong></p>
+<p>En tu aplicaci&oacute;n, explica aqu&iacute; el resultado aplicando las reglas de combate que hayas definido.</p>
+</div>
+</div>
+</section></div>
+<!-- Mostrar solo cuando haya una ronda resuelta. -->
+
+
+<div class="partida-pie">
+<span>Una carta solo puede jugarse una vez. Comprueba los datos de la partida antes de resolver cada ronda.</span>
+<form action="#" method="post">
+<input name="partidaId" type="hidden" value="ejemplo-partida"/>
+<button class="boton" type="submit">Abandonar partida</button>
+</form>
+</div>
+
+</div>
+</main>
+<!-- Pie común (candidato a fragmento). -->
+<footer class="pie">
+<div class="contenedor pie-interior">
+<span>Creature Nexus, edici&oacute;n de aula</span>
+<span>Maqueta HTML: la l&oacute;gica de servidor est&aacute; pendiente de implementar.</span>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,19 @@
+﻿codigo,nombre,tipo,ataque,defensa,imagen
+F01,Dragón Ígneo,Fuego,9,8,/img/criaturas/dragon-igneo.webp
+F02,Fénix Carmesí,Fuego,9,5,/img/criaturas/fenix-carmesi.webp
+F03,Salamandra Ámbar,Fuego,8,3,/img/criaturas/salamandra-ambar.webp
+F04,Gólem de Magma,Fuego,5,8,/img/criaturas/golem-de-magma.webp
+F05,Zorro Solar,Fuego,6,5,/img/criaturas/zorro-solar.webp
+F06,Chispa Errante,Fuego,4,4,/img/criaturas/chispa-errante.webp
+A01,Leviatán Azul,Agua,9,7,/img/criaturas/leviatan-azul.webp
+A02,Sirena de Coral,Agua,8,4,/img/criaturas/sirena-de-coral.webp
+A03,Tortuga Abisal,Agua,3,10,/img/criaturas/tortuga-abisal.webp
+A04,Centinela de Mareas,Agua,5,8,/img/criaturas/centinela-de-mareas.webp
+A05,Náiade de Bruma,Agua,6,5,/img/criaturas/naiade-de-bruma.webp
+A06,Pez Linterna,Agua,4,4,/img/criaturas/pez-linterna.webp
+P01,Ent Ancestral,Planta,4,10,/img/criaturas/ent-ancestral.webp
+P02,Lobo de Musgo,Planta,9,4,/img/criaturas/lobo-de-musgo.webp
+P03,Espinazo Verde,Planta,8,4,/img/criaturas/espinazo-verde.webp
+P04,Guardián de Raíces,Planta,5,9,/img/criaturas/guardian-de-raices.webp
+P05,Dríada del Alba,Planta,6,5,/img/criaturas/driada-del-alba.webp
+P06,Brote Saltarín,Planta,3,5,/img/criaturas/brote-saltarin.webp

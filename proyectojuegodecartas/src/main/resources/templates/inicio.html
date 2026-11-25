@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Juego de cartas Creature Nexus: crea mazos y disputa partidas de 3, 5 o 7 rondas.">
+  <title>Inicio · Creature Nexus</title>
+  <!-- Ruta relativa para abrir la maqueta desde la carpeta templates.
+       En Spring Boot, la ruta pública es /css/creature-nexus.css. -->
+  <link rel="stylesheet" href="../static/css/creature-nexus.css">
+</head>
+<body>
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <!-- Cabecera común (candidata a fragmento). Solo cambia el enlace con es-actual. -->
+  <header class="cabecera">
+    <div class="contenedor cabecera-interior">
+      <a class="marca" href="inicio.html">
+        <span class="marca-simbolo" aria-hidden="true"><span></span><span></span><span></span></span>
+        Creature Nexus
+      </a>
+      <nav class="nav-principal" aria-label="Navegación principal">
+        <a class="nav-enlace" href="cartas.html">Cartas</a>
+        <a class="nav-enlace" href="mazos.html">Mazos</a>
+        <a class="nav-enlace" href="nueva-partida.html">Jugar</a>
+        <a class="nav-enlace" href="historial.html">Historial</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="contenedor">
+      <section class="portada-inicio" aria-labelledby="titulo-pagina">
+        <div>
+          <h1 id="titulo-pagina">Ocho criaturas. Tú eliges la partida.</h1>
+          <p>Construye un mazo de Fuego, Agua y Planta y enfréntate al ordenador en partidas de 3, 5 o 7 rondas. Gana quien consiga más victorias por ronda.</p>
+          <div class="portada-acciones">
+            <a class="boton boton-principal" href="nueva-partida.html">Jugar una partida</a>
+            <a class="boton" href="mazos.html">Crear un mazo</a>
+          </div>
+        </div>
+        <!-- Tres cartas de muestra: el mismo componente que en el catálogo. -->
+        <div class="abanico" aria-hidden="true">
+          <article class="carta es-agua">
+            <span class="carta-coste"><span class="solo-lectores">Coste </span>16</span>
+            <header class="carta-cabecera">
+              <h3 class="carta-nombre">Leviatán Azul</h3>
+              <span class="elemento es-agua">Agua</span>
+            </header>
+            <div class="carta-imagen">
+              <img src="../static/img/criaturas/leviatan-azul.webp" alt="Leviatán Azul" loading="lazy">
+            </div>
+            <dl class="carta-atributos">
+              <div class="atributo-ataque"><dt>Ataque</dt><dd>9</dd></div>
+              <div class="atributo-defensa"><dt>Defensa</dt><dd>7</dd></div>
+            </dl>
+          </article>
+          <article class="carta es-fuego">
+            <span class="carta-coste"><span class="solo-lectores">Coste </span>17</span>
+            <header class="carta-cabecera">
+              <h3 class="carta-nombre">Dragón Ígneo</h3>
+              <span class="elemento es-fuego">Fuego</span>
+            </header>
+            <div class="carta-imagen">
+              <img src="../static/img/criaturas/dragon-igneo.webp" alt="Dragón Ígneo" loading="lazy">
+            </div>
+            <dl class="carta-atributos">
+              <div class="atributo-ataque"><dt>Ataque</dt><dd>9</dd></div>
+              <div class="atributo-defensa"><dt>Defensa</dt><dd>8</dd></div>
+            </dl>
+          </article>
+          <article class="carta es-planta">
+            <span class="carta-coste"><span class="solo-lectores">Coste </span>14</span>
+            <header class="carta-cabecera">
+              <h3 class="carta-nombre">Ent Ancestral</h3>
+              <span class="elemento es-planta">Planta</span>
+            </header>
+            <div class="carta-imagen">
+              <img src="../static/img/criaturas/ent-ancestral.webp" alt="Ent Ancestral" loading="lazy">
+            </div>
+            <dl class="carta-atributos">
+              <div class="atributo-ataque"><dt>Ataque</dt><dd>4</dd></div>
+              <div class="atributo-defensa"><dt>Defensa</dt><dd>10</dd></div>
+            </dl>
+          </article>
+        </div>
+      </section>
+
+      <section class="seccion" aria-labelledby="titulo-modalidades">
+        <div class="seccion-titulo">
+          <h2 id="titulo-modalidades">Elige cómo jugar</h2>
+          <p>Antes de cada partida, decide cuántas rondas quieres disputar.</p>
+        </div>
+        <div class="resumen-reglas">
+          <div class="tablero">
+            <h3>Partidas a tu ritmo</h3>
+            <p>Elige entre 3 rondas (corta), 5 rondas (normal) o 7 rondas (larga).</p>
+          </div>
+          <div class="tablero">
+            <h3>Un combate con personalidad</h3>
+            <p>El ataque, la defensa y los elementos de las criaturas intervienen en las reglas de los enfrentamientos.</p>
+          </div>
+        </div>
+      </section>
+
+      <nav class="seccion" aria-label="Secciones">
+        <ul class="menu-juego">
+          <li><a href="cartas.html"><strong>Cartas</strong><span>Las 18 criaturas del juego. Crea nuevas y edita las que no estén en ningún mazo.</span></a></li>
+          <li><a href="mazos.html"><strong>Mazos</strong><span>Los mazos del ordenador y los tuyos.</span></a></li>
+          <li><a href="nueva-partida.html"><strong>Jugar</strong><span>Elige tu mazo y disputa 3, 5 o 7 rondas.</span></a></li>
+          <li><a href="historial.html"><strong>Historial</strong><span>Resultados de las partidas terminadas.</span></a></li>
+        </ul>
+      </nav>
+
+      <section class="seccion" aria-labelledby="titulo-reglas">
+        <div class="seccion-titulo">
+          <h2 id="titulo-reglas">Reglas</h2>
+        </div>
+        <div class="resumen-reglas">
+          <div class="tablero">
+            <h3>Un mazo válido</h3>
+            <ul>
+              <li>Ocho cartas distintas.</li>
+              <li>Coste total de 100 puntos como máximo.</li>
+              <li>Al menos dos cartas de cada elemento.</li>
+            </ul>
+          </div>
+          <div class="tablero">
+            <h3>Una partida</h3>
+            <ul>
+              <li>Elige una partida de 3, 5 o 7 rondas.</li>
+              <li>En cada ronda se enfrentan una carta tuya y otra del ordenador.</li>
+              <li>Gana la partida quien vence en más rondas. También puede haber empates.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Pie común (candidato a fragmento). -->
+  <footer class="pie">
+    <div class="contenedor pie-interior">
+      <span>Creature Nexus, edición de aula</span>
+      <span>Maqueta HTML: la lógica de servidor está pendiente de implementar.</span>
+    </div>
+  </footer>
+</body>
+</html>

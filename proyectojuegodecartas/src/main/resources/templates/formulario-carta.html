@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Formulario de alta y edición de criaturas.">
+  <title>Nueva criatura · Creature Nexus</title>
+  <!-- Ruta relativa para abrir la maqueta desde la carpeta templates.
+       En Spring Boot, la ruta pública es /css/creature-nexus.css. -->
+  <link rel="stylesheet" href="../static/css/creature-nexus.css">
+</head>
+<body>
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <!-- Cabecera común (candidata a fragmento). Solo cambia el enlace con es-actual. -->
+  <header class="cabecera">
+    <div class="contenedor cabecera-interior">
+      <a class="marca" href="inicio.html">
+        <span class="marca-simbolo" aria-hidden="true"><span></span><span></span><span></span></span>
+        Creature Nexus
+      </a>
+      <nav class="nav-principal" aria-label="Navegación principal">
+        <a class="nav-enlace es-actual" href="cartas.html" aria-current="page">Cartas</a>
+        <a class="nav-enlace" href="mazos.html">Mazos</a>
+        <a class="nav-enlace" href="nueva-partida.html">Jugar</a>
+        <a class="nav-enlace" href="historial.html">Historial</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="contenedor">
+      <div class="encabezado">
+        <div>
+          <ol class="migas">
+            <li><a href="cartas.html">Cartas</a></li>
+            <li aria-current="page">Nueva criatura</li>
+          </ol>
+          <h1>Nueva criatura</h1>
+          <p>En edición, cambiar el título a «Editar criatura» y rellenar los campos con los datos guardados.</p>
+        </div>
+      </div>
+
+      <div class="formulario-con-lateral">
+        <section class="tablero" aria-label="Datos de la criatura">
+          <div class="aviso aviso-error" role="alert" hidden>
+            <strong>Revisa los campos marcados</strong>
+            <p>Mensaje general de validación.</p>
+          </div>
+
+          <!-- novalidate: los errores los muestra el servidor.
+               Campo con error: clase es-invalido + aria-invalid="true" y mostrar su .error-campo. -->
+          <form action="#" method="post" enctype="multipart/form-data" novalidate>
+            <div class="campos-dos">
+              <div class="campo-grupo">
+                <label for="nombre">Nombre</label>
+                <input class="campo" id="nombre" name="nombre" type="text" maxlength="100" aria-describedby="ayuda-nombre error-nombre">
+                <p class="ayuda" id="ayuda-nombre">Debe ser único.</p>
+                <p class="error-campo" id="error-nombre" hidden>Ejemplo: ya existe una criatura con ese nombre.</p>
+              </div>
+              <div class="campo-grupo">
+                <label for="tipoId">Elemento</label>
+                <select class="campo" id="tipoId" name="tipoId" aria-describedby="error-tipo">
+                  <option value="">Selecciona un elemento</option>
+                  <option value="1">Fuego</option>
+                  <option value="2">Agua</option>
+                  <option value="3">Planta</option>
+                </select>
+                <p class="error-campo" id="error-tipo" hidden>Ejemplo: selecciona un elemento.</p>
+              </div>
+            </div>
+
+            <div class="campos-dos">
+              <div class="campo-grupo">
+                <label for="ataque">Ataque</label>
+                <input class="campo" id="ataque" name="ataque" type="number" min="1" max="10" step="1" aria-describedby="ayuda-ataque error-ataque">
+                <p class="ayuda" id="ayuda-ataque">Entre 1 y 10.</p>
+                <p class="error-campo" id="error-ataque" hidden>Ejemplo: el ataque debe estar entre 1 y 10.</p>
+              </div>
+              <div class="campo-grupo">
+                <label for="defensa">Defensa</label>
+                <input class="campo" id="defensa" name="defensa" type="number" min="1" max="10" step="1" aria-describedby="ayuda-defensa error-defensa">
+                <p class="ayuda" id="ayuda-defensa">Entre 1 y 10.</p>
+                <p class="error-campo" id="error-defensa" hidden>Ejemplo: la defensa debe estar entre 1 y 10.</p>
+              </div>
+            </div>
+
+            <div class="campo-grupo">
+              <label for="imagenArchivo">Imagen</label>
+              <input class="campo" id="imagenArchivo" name="imagenArchivo" type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png" aria-describedby="ayuda-imagen error-imagen">
+              <p class="ayuda" id="ayuda-imagen">Imagen opcional (JPG o PNG, máximo 1 MB). Si no subes ninguna al crear, se utilizará la ilustración predeterminada del elemento elegido. En edición, si no subes otra, se conservará la imagen actual.</p>
+              <p class="error-campo" id="error-imagen" hidden>Ejemplo: el archivo debe ser JPG o PNG.</p>
+            </div>
+
+            <div class="form-acciones">
+              <a class="boton" href="cartas.html">Cancelar</a>
+              <button class="boton boton-principal" type="submit">Guardar criatura</button>
+            </div>
+          </form>
+        </section>
+
+        <aside class="tablero lateral" aria-labelledby="titulo-lateral">
+          <h2 id="titulo-lateral">Así se verá</h2>
+          <!-- En edición, mostrar aquí la carta guardada (mismo componente que el catálogo). -->
+          <div class="vista-previa">
+            <article class="carta">
+              <span class="carta-coste"><span class="solo-lectores">Coste </span>?</span>
+              <header class="carta-cabecera">
+                <h3 class="carta-nombre">Tu criatura</h3>
+              </header>
+              <!-- Al crear todavía no hay elemento elegido. En edición se mostrará la imagen guardada. -->
+              <div class="carta-imagen">
+                <span class="carta-imagen-texto">Imagen según el elemento</span>
+              </div>
+              <dl class="carta-atributos">
+                <div class="atributo-ataque"><dt>Ataque</dt><dd>?</dd></div>
+                <div class="atributo-defensa"><dt>Defensa</dt><dd>?</dd></div>
+              </dl>
+            </article>
+          </div>
+          <!-- Referencias visuales de las imágenes que se asignan al no subir un archivo.
+               La selección real de imagen se resolverá en el servidor, sin JavaScript. -->
+          <p class="ayuda">Si no subes una imagen, se asignará una de estas ilustraciones según el elemento:</p>
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0 18px;">
+            <figure style="margin:0;text-align:center;">
+              <img src="../static/img/criaturas/imagen-defecto-fuego.webp" alt="Imagen predeterminada de Fuego" width="100" height="75" style="display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;">
+              <figcaption>Fuego</figcaption>
+            </figure>
+            <figure style="margin:0;text-align:center;">
+              <img src="../static/img/criaturas/imagen-defecto-agua.webp" alt="Imagen predeterminada de Agua" width="100" height="75" style="display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;">
+              <figcaption>Agua</figcaption>
+            </figure>
+            <figure style="margin:0;text-align:center;">
+              <img src="../static/img/criaturas/imagen-defecto-planta.webp" alt="Imagen predeterminada de Planta" width="100" height="75" style="display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;">
+              <figcaption>Planta</figcaption>
+            </figure>
+          </div>
+          <ul>
+            <li>El coste lo calcula el servidor: ataque + defensa.</li>
+            <li>No se pueden modificar cartas que pertenezcan a algún mazo.</li>
+          </ul>
+          <div class="nota"><p>Los valores 1, 2 y 3 del selector son ilustrativos: se usarán los identificadores reales de MySQL.</p></div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Pie común (candidato a fragmento). -->
+  <footer class="pie">
+    <div class="contenedor pie-interior">
+      <span>Creature Nexus, edición de aula</span>
+      <span>Maqueta HTML: la lógica de servidor está pendiente de implementar.</span>
+    </div>
+  </footer>
+</body>
+</html>

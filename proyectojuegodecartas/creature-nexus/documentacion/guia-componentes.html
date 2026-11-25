@@ -1,0 +1,1072 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Guía de componentes de Creature Nexus para ayudarte a construir tus vistas HTML y Thymeleaf.">
+  <title>Guía de componentes · Creature Nexus</title>
+  <link rel="stylesheet" href="../static/css/creature-nexus.css">
+  <!-- Estilos de presentación de esta guía. -->
+  <style>
+    /* Ancho exclusivo de la documentación: conserva el CSS de las pantallas del juego. */
+    :root { --ancho: 1320px; }
+
+    .guia { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; align-items: start; }
+    .guia-indice { position: sticky; top: 20px; }
+    .guia-indice ol { margin: 0; padding: 0; list-style: none; counter-reset: g; }
+    .guia-indice li { counter-increment: g; }
+    .guia-indice a { display: block; padding: 6px 10px; border-radius: 8px; color: var(--sobre-mesa-2); text-decoration: none; font-size: 15px; }
+    .guia-indice a::before { content: counter(g) ". "; color: var(--oro); font-weight: 700; }
+    .guia-indice a:hover { background: var(--mesa-oscura); color: var(--sobre-mesa); }
+    .guia-seccion { padding-top: 24px; margin-bottom: 40px; scroll-margin-top: 10px; }
+    .guia-seccion > h2 { font-size: 34px; }
+    .guia-seccion > p, .guia-lista { max-width: 72ch; color: var(--sobre-mesa-2); }
+    .guia-seccion > p strong, .guia-lista strong { color: var(--sobre-mesa); }
+    .guia-lista li + li { margin-top: 8px; }
+    .guia-seccion code, .guia-nota code { padding: 1px 6px; border-radius: 5px; background: var(--mesa-oscura); color: var(--oro-claro); font-size: .9em; }
+    .guia-codigo code { padding: 0; background: none; color: inherit; font-size: inherit; }
+    .guia-tabla code { background: var(--tablero-2); color: var(--tinta); }
+    .guia-ejemplo { margin: 26px 0; }
+    .guia-ejemplo-titulo { margin-bottom: 4px; }
+    .guia-nota { max-width: 72ch; margin-bottom: 12px; color: var(--sobre-mesa-2); }
+    .guia-muestra { padding: 28px; border: 2px dashed var(--mesa-clara); border-radius: 16px 16px 0 0; }
+    .guia-codigo-solo { border-radius: 16px; }
+    .guia-muestra-oscura { background: var(--mesa-oscura); }
+    .guia-muestra-clara { background: var(--tablero); }
+    .guia-muestra-carta { display: flex; padding-left: 40px; }
+    .guia-muestra-carta > * { width: 250px; }
+    .guia-muestra-estrecha > * { max-width: 360px; }
+    .guia-fila { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .guia-fila > form { margin: 0; }
+    .guia-codigo { margin: 0; padding: 16px 20px; overflow-x: auto; border-radius: 0 0 16px 16px; background: #14173d; color: #e4e5fb; font-size: 13.5px; line-height: 1.55; }
+    .guia-colores { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 8px 24px; margin: 16px 0; padding: 0; list-style: none; color: var(--sobre-mesa-2); }
+    .guia-colores li { display: flex; align-items: center; gap: 10px; }
+    .guia-colores code { min-width: 90px; text-align: center; }
+    .guia-color { flex: none; width: 28px; height: 28px; border: var(--borde-fino); border-radius: 8px; box-shadow: 0 0 0 2px var(--sobre-mesa-2); }
+    .guia .ronda-anterior { grid-template-columns: 210px auto 210px minmax(0, 1fr); }
+    .guia-tabla { margin-top: 20px; padding: 0; overflow-x: auto; }
+    .guia-tabla .tabla { min-width: 520px; }
+    @media (max-width: 900px) { .guia { grid-template-columns: 1fr; } .guia-indice { position: static; } }
+      /* Mantén el índice y los ejemplos adaptados a pantallas pequeñas. */
+    @media (max-width: 900px) {
+      .guia { grid-template-columns: minmax(0, 1fr); }
+      .guia > div { min-width: 0; }
+      .guia .ronda-anterior { grid-template-columns: minmax(0, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+  <header class="cabecera">
+    <div class="contenedor cabecera-interior">
+      <a class="marca" href="../templates/inicio.html">
+        <span class="marca-simbolo" aria-hidden="true"><span></span><span></span><span></span></span>
+        Creature Nexus
+      </a>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="contenedor">
+      <div class="encabezado">
+        <div>
+          <h1>Guía de componentes</h1>
+          <p>Aquí descubrirás las piezas de la interfaz, cómo escribirlas en HTML y qué clases CSS utilizar. En cada ejemplo verás el resultado visual y el código correspondiente.</p>
+        </div>
+      </div>
+      <div class="guia">
+        <nav class="guia-indice" aria-label="Índice de la guía">
+          <ol>
+            <li><a href="#organizacion">Cómo está organizado</a></li>
+            <li><a href="#estructura">Estructura de una página</a></li>
+            <li><a href="#botones">Botones</a></li>
+            <li><a href="#tableros">Tableros, etiquetas y mensajes</a></li>
+            <li><a href="#elementos">Elementos: Fuego, Agua y Planta</a></li>
+            <li><a href="#carta">La carta</a></li>
+            <li><a href="#carta-acciones">La carta con acciones</a></li>
+            <li><a href="#formularios">Formularios</a></li>
+            <li><a href="#rondas-partida">Número de rondas</a></li>
+            <li><a href="#filtro">Filtro del catálogo</a></li>
+            <li><a href="#mazos">Mazos</a></li>
+            <li><a href="#combate">Combate</a></li>
+            <li><a href="#resultado">Resultado de la partida</a></li>
+            <li><a href="#tabla">Historial y tablas</a></li>
+            <li><a href="#accesibilidad">Accesibilidad: qué debes comprobar</a></li>
+          </ol>
+        </nav>
+        <div>
+<section class="guia-seccion" id="organizacion" aria-labelledby="t-organizacion">
+<h2 id="t-organizacion">Cómo está organizado</h2>
+
+<p>Puedes construir toda la interfaz con <strong>una sola hoja de estilos</strong>, <code>creature-nexus.css</code>, dividida en 17 secciones numeradas. Puedes construir las pantallas combinando las clases CSS que encontrarás en esta guía.</p>
+<p>La idea visual es una mesa de juego. El fondo es el <strong>tapete</strong>. Sobre él colocarás <strong>tableros</strong> (formularios, listas, tablas) y <strong>cartas</strong>. Sobre el tapete utilizarás texto claro. Dentro de un tablero, el texto será oscuro. Las clases CSS ya aplican estos colores para que mantengas un aspecto coherente.</p>
+<p>Los colores están definidos como variables al principio del archivo. Cuando necesites un color, utiliza su variable CSS en lugar de escribir el código hexadecimal:</p>
+<ul class="guia-colores">
+<li><span class="guia-color" style="background: var(--mesa)"></span><code>--mesa</code><span>Tapete (fondo de la página)</span></li>
+<li><span class="guia-color" style="background: var(--tablero)"></span><code>--tablero</code><span>Superficie de tableros y campos</span></li>
+<li><span class="guia-color" style="background: var(--tinta)"></span><code>--tinta</code><span>Texto y bordes</span></li>
+<li><span class="guia-color" style="background: var(--oro)"></span><code>--oro</code><span>Acción principal y monedas de coste</span></li>
+<li><span class="guia-color" style="background: var(--fuego)"></span><code>--fuego</code><span>Elemento Fuego</span></li>
+<li><span class="guia-color" style="background: var(--agua)"></span><code>--agua</code><span>Elemento Agua</span></li>
+<li><span class="guia-color" style="background: var(--planta)"></span><code>--planta</code><span>Elemento Planta</span></li>
+<li><span class="guia-color" style="background: var(--derrota)"></span><code>--derrota</code><span>Errores, derrotas y borrado</span></li>
+<li><span class="guia-color" style="background: var(--empate)"></span><code>--empate</code><span>Empates</span></li>
+</ul>
+<p>Todas las clases están en castellano. Las que empiezan por <code>es-</code> indican un estado o una variante (<code>es-actual</code>, <code>es-invalido</code>, <code>es-fuego</code>…) y puedes añadirlas a un componente que ya tenga su clase principal.</p>
+
+
+</section>
+
+<section class="guia-seccion" id="estructura" aria-labelledby="t-estructura">
+<h2 id="t-estructura">Estructura de una página</h2>
+
+<p>Todas las páginas comparten la misma cabecera y el mismo pie. Puedes convertirlos en <strong>fragmentos de Thymeleaf</strong>: lo único que cambia entre páginas es qué enlace del menú lleva <code>es-actual</code> y <code>aria-current="page"</code>.</p>
+<p>El contenido va dentro de <code>&lt;main&gt;</code> y de un <code>.contenedor</code>, que limita el ancho y lo centra.</p>
+
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Esqueleto</h3>
+<pre class="guia-codigo guia-codigo-solo"><code>&lt;body&gt;
+  &lt;a class=&quot;salto-contenido&quot; href=&quot;#contenido&quot;&gt;Saltar al contenido&lt;/a&gt;
+  &lt;header class=&quot;cabecera&quot;&gt;…&lt;/header&gt;
+
+  &lt;main id=&quot;contenido&quot;&gt;
+    &lt;div class=&quot;contenedor&quot;&gt;
+      &lt;!-- contenido de la página --&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;pie&quot;&gt;…&lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+</div>
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Menú principal</h3>
+<p class="guia-nota">Marca el enlace de la página actual con dos elementos: la clase para el aspecto y el atributo para los lectores de pantalla.</p>
+<div class="guia-muestra guia-muestra-oscura">
+  <nav class="nav-principal" aria-label="Navegación principal">
+    <a class="nav-enlace es-actual" href="../templates/cartas.html" aria-current="page">Cartas</a>
+    <a class="nav-enlace" href="../templates/mazos.html">Mazos</a>
+    <a class="nav-enlace" href="../templates/nueva-partida.html">Jugar</a>
+    <a class="nav-enlace" href="../templates/historial.html">Historial</a>
+  </nav>
+</div>
+<pre class="guia-codigo"><code>&lt;nav class=&quot;nav-principal&quot; aria-label=&quot;Navegación principal&quot;&gt;
+  &lt;a class=&quot;nav-enlace es-actual&quot; href=&quot;cartas.html&quot; aria-current=&quot;page&quot;&gt;Cartas&lt;/a&gt;
+  &lt;a class=&quot;nav-enlace&quot; href=&quot;mazos.html&quot;&gt;Mazos&lt;/a&gt;
+  &lt;a class=&quot;nav-enlace&quot; href=&quot;nueva-partida.html&quot;&gt;Jugar&lt;/a&gt;
+  &lt;a class=&quot;nav-enlace&quot; href=&quot;historial.html&quot;&gt;Historial&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+</div>
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Encabezado de página</h3>
+<p class="guia-nota">Título, descripción y, si la hay, la acción principal. Las migas (<code>.migas</code>) solo se usan en las páginas de formulario.</p>
+<div class="guia-muestra ">
+  <div class="encabezado">
+    <div>
+      <ol class="migas">
+        <li><a href="../templates/mazos.html">Mazos</a></li>
+        <li aria-current="page">Nuevo mazo</li>
+      </ol>
+      <h1>Nuevo mazo</h1>
+      <p>Descripción breve de lo que se hace en esta página.</p>
+    </div>
+    <div class="encabezado-acciones">
+      <a class="boton boton-principal" href="#">Acción principal</a>
+    </div>
+  </div>
+</div>
+<pre class="guia-codigo"><code>&lt;div class=&quot;encabezado&quot;&gt;
+  &lt;div&gt;
+    &lt;ol class=&quot;migas&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;mazos.html&quot;&gt;Mazos&lt;/a&gt;&lt;/li&gt;
+      &lt;li aria-current=&quot;page&quot;&gt;Nuevo mazo&lt;/li&gt;
+    &lt;/ol&gt;
+    &lt;h1&gt;Nuevo mazo&lt;/h1&gt;
+    &lt;p&gt;Descripción breve de lo que se hace en esta página.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;encabezado-acciones&quot;&gt;
+    &lt;a class=&quot;boton boton-principal&quot; href=&quot;#&quot;&gt;Acción principal&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Sección con título</h3>
+<p class="guia-nota"><code>.seccion</code> separa bloques de contenido. En la pantalla de combate se usa <code>.zona</code> y <code>.zona-titulo</code>, que funcionan igual.</p>
+<div class="guia-muestra ">
+  <section class="seccion" aria-labelledby="titulo-seccion">
+    <div class="seccion-titulo">
+      <h2 id="titulo-seccion">Tus mazos</h2>
+      <p>Texto de apoyo opcional.</p>
+    </div>
+    <!-- contenido de la sección -->
+  </section>
+</div>
+<pre class="guia-codigo"><code>&lt;section class=&quot;seccion&quot; aria-labelledby=&quot;titulo-seccion&quot;&gt;
+  &lt;div class=&quot;seccion-titulo&quot;&gt;
+    &lt;h2 id=&quot;titulo-seccion&quot;&gt;Tus mazos&lt;/h2&gt;
+    &lt;p&gt;Texto de apoyo opcional.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;!-- contenido de la sección --&gt;
+&lt;/section&gt;</code></pre>
+</div>
+</section>
+
+<section class="guia-seccion" id="botones" aria-labelledby="t-botones">
+<h2 id="t-botones">Botones</h2>
+
+<p>Los botones son "fichas" con sombra dura que bajan al pulsarlas. La clase <code>.boton</code> sirve igual para <code>&lt;a&gt;</code> (navegar) que para <code>&lt;button&gt;</code> (enviar un formulario). Regla práctica: si cambia datos en el servidor, es un <code>&lt;button&gt;</code> dentro de un formulario POST.</p>
+<p>Utiliza <strong>un solo botón principal</strong> por pantalla para destacar la acción más importante.</p>
+
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Variantes</h3>
+<div class="guia-muestra guia-fila">
+  <a class="boton boton-principal" href="#">Nueva criatura</a>
+  <a class="boton" href="#">Cancelar</a>
+  <button class="boton boton-peligro" type="submit">Eliminar</button>
+  <button class="boton" type="button" disabled>No disponible</button>
+</div>
+<pre class="guia-codigo"><code>&lt;a class=&quot;boton boton-principal&quot; href=&quot;#&quot;&gt;Nueva criatura&lt;/a&gt;
+&lt;a class=&quot;boton&quot; href=&quot;#&quot;&gt;Cancelar&lt;/a&gt;
+&lt;button class=&quot;boton boton-peligro&quot; type=&quot;submit&quot;&gt;Eliminar&lt;/button&gt;
+&lt;button class=&quot;boton&quot; type=&quot;button&quot; disabled&gt;No disponible&lt;/button&gt;</code></pre>
+</div>
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Tamaño pequeño</h3>
+<p class="guia-nota"><code>.boton-peq</code> para acciones secundarias dentro de una carta, un mazo o una fila. <code>.boton-ancho</code> hace que ocupe todo el ancho disponible.</p>
+<div class="guia-muestra guia-fila">
+  <a class="boton boton-peq" href="#">Editar</a>
+  <form action="#" method="post">
+    <button class="boton boton-peq boton-peligro" type="submit">Eliminar</button>
+  </form>
+</div>
+<pre class="guia-codigo"><code>&lt;a class=&quot;boton boton-peq&quot; href=&quot;#&quot;&gt;Editar&lt;/a&gt;
+&lt;form action=&quot;#&quot; method=&quot;post&quot;&gt;
+  &lt;button class=&quot;boton boton-peq boton-peligro&quot; type=&quot;submit&quot;&gt;Eliminar&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+</div>
+<div class="guia-tabla tablero">
+<table class="tabla">
+<thead><tr><th scope="col">Clase</th><th scope="col">Para qué sirve</th></tr></thead>
+<tbody>
+<tr><td><code>boton</code></td><td>Botón base, fondo claro.</td></tr>
+<tr><td><code>boton-principal</code></td><td>Acción principal (dorado).</td></tr>
+<tr><td><code>boton-peligro</code></td><td>Acciones destructivas: eliminar, abandonar.</td></tr>
+<tr><td><code>boton-peq</code></td><td>Tamaño reducido.</td></tr>
+<tr><td><code>boton-ancho</code></td><td>Ocupa el 100 % del ancho.</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="guia-seccion" id="tableros" aria-labelledby="t-tableros">
+<h2 id="t-tableros">Tableros, etiquetas y mensajes</h2>
+
+<p>El <code>.tablero</code> es la superficie clara sobre la que se colocan formularios, listas y tablas. Dentro de un tablero el texto pasa a ser oscuro automáticamente.</p>
+
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Tablero</h3>
+<div class="guia-muestra ">
+  <div class="tablero">
+    <h3>Un mazo válido</h3>
+    <p>Ocho cartas distintas y 100 puntos como máximo.</p>
+  </div>
+</div>
+<pre class="guia-codigo"><code>&lt;div class=&quot;tablero&quot;&gt;
+  &lt;h3&gt;Un mazo válido&lt;/h3&gt;
+  &lt;p&gt;Ocho cartas distintas y 100 puntos como máximo.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Etiquetas</h3>
+<p class="guia-nota">Texto corto que clasifica algo: el dueño de un mazo, el resultado de una partida.</p>
+<div class="guia-muestra guia-fila">
+  <span class="etiqueta">Ordenador</span>
+  <span class="etiqueta etiqueta-oro">Tuyo</span>
+  <span class="etiqueta etiqueta-victoria">Victoria</span>
+  <span class="etiqueta etiqueta-derrota">Derrota</span>
+  <span class="etiqueta etiqueta-empate">Empate</span>
+</div>
+<pre class="guia-codigo"><code>&lt;span class=&quot;etiqueta&quot;&gt;Ordenador&lt;/span&gt;
+&lt;span class=&quot;etiqueta etiqueta-oro&quot;&gt;Tuyo&lt;/span&gt;
+&lt;span class=&quot;etiqueta etiqueta-victoria&quot;&gt;Victoria&lt;/span&gt;
+&lt;span class=&quot;etiqueta etiqueta-derrota&quot;&gt;Derrota&lt;/span&gt;
+&lt;span class=&quot;etiqueta etiqueta-empate&quot;&gt;Empate&lt;/span&gt;</code></pre>
+</div>
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Avisos del servidor</h3>
+<p class="guia-nota">Para los mensajes flash tras una operación. En las maquetas están ocultos con <code>hidden</code>. Muéstralos únicamente cuando exista un mensaje. El de éxito lleva <code>role="status"</code> y el de error <code>role="alert"</code>.</p>
+<div class="guia-muestra ">
+  <div class="aviso aviso-exito" role="status">
+    <strong>Mazo guardado</strong>
+    <p>Ya puedes usarlo en una partida.</p>
+  </div>
+  <div class="aviso aviso-error" role="alert">
+    <strong>No se ha podido guardar el mazo</strong>
+    <p>El coste total es de 104 puntos y el máximo es 100.</p>
+  </div>
+</div>
+<pre class="guia-codigo"><code>&lt;div class=&quot;aviso aviso-exito&quot; role=&quot;status&quot;&gt;
+  &lt;strong&gt;Mazo guardado&lt;/strong&gt;
+  &lt;p&gt;Ya puedes usarlo en una partida.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;aviso aviso-error&quot; role=&quot;alert&quot;&gt;
+  &lt;strong&gt;No se ha podido guardar el mazo&lt;/strong&gt;
+  &lt;p&gt;El coste total es de 104 puntos y el máximo es 100.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Estado vacío</h3>
+<p class="guia-nota">Sustituye a una lista cuando no hay resultados. Siempre debe decir qué hacer a continuación.</p>
+<div class="guia-muestra ">
+  <div class="estado-vacio">
+    <h3>Todavía no tienes mazos</h3>
+    <p>Crea uno para poder empezar una partida.</p>
+    <a class="boton boton-principal" href="#">Nuevo mazo</a>
+  </div>
+</div>
+<pre class="guia-codigo"><code>&lt;div class=&quot;estado-vacio&quot;&gt;
+  &lt;h3&gt;Todavía no tienes mazos&lt;/h3&gt;
+  &lt;p&gt;Crea uno para poder empezar una partida.&lt;/p&gt;
+  &lt;a class=&quot;boton boton-principal&quot; href=&quot;#&quot;&gt;Nuevo mazo&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Datos y notas</h3>
+<p class="guia-nota"><code>.datos</code> para pares concepto/valor (con <code>&lt;dl&gt;</code>). <code>.nota</code> para aclaraciones secundarias.</p>
+<div class="guia-muestra ">
+  <div class="tablero">
+    <dl class="datos">
+      <dt>Tu mazo</dt><dd>Viajeros del Alba</dd>
+      <dt>Mazo rival</dt><dd>Guardianes del Nexus</dd>
+    </dl>
+    <div class="nota"><p>Una nota aclaratoria dentro de un tablero.</p></div>
+  </div>
+</div>
+<pre class="guia-codigo"><code>&lt;div class=&quot;tablero&quot;&gt;
+  &lt;dl class=&quot;datos&quot;&gt;
+    &lt;dt&gt;Tu mazo&lt;/dt&gt;&lt;dd&gt;Viajeros del Alba&lt;/dd&gt;
+    &lt;dt&gt;Mazo rival&lt;/dt&gt;&lt;dd&gt;Guardianes del Nexus&lt;/dd&gt;
+  &lt;/dl&gt;
+  &lt;div class=&quot;nota&quot;&gt;&lt;p&gt;Una nota aclaratoria dentro de un tablero.&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</section>
+
+<section class="guia-seccion" id="elementos" aria-labelledby="t-elementos">
+<h2 id="t-elementos">Elementos: Fuego, Agua y Planta</h2>
+
+<p>Las clases <code>es-fuego</code>, <code>es-agua</code> y <code>es-planta</code> definen tres cosas a la vez: el color, el tono suave y el icono del elemento. Se pueden poner en <strong>cualquier componente</strong> (una carta, una opción del constructor, una franja del lomo de un mazo) y este toma los colores correctos.</p>
+<p>Para mostrar el nombre de un elemento con su icono, utiliza <code>.elemento</code>:</p>
+
+<div class="guia-ejemplo">
+<p class="guia-nota">Cuando generes la página con datos de MySQL, calcula la clase a partir del tipo de la carta (por ejemplo, <code>es-</code> + el nombre del tipo en minúsculas).</p>
+<div class="guia-muestra guia-fila guia-muestra-oscura">
+  <span class="elemento es-fuego">Fuego</span>
+  <span class="elemento es-agua">Agua</span>
+  <span class="elemento es-planta">Planta</span>
+</div>
+<pre class="guia-codigo"><code>&lt;span class=&quot;elemento es-fuego&quot;&gt;Fuego&lt;/span&gt;
+&lt;span class=&quot;elemento es-agua&quot;&gt;Agua&lt;/span&gt;
+&lt;span class=&quot;elemento es-planta&quot;&gt;Planta&lt;/span&gt;</code></pre>
+</div>
+</section>
+
+<section class="guia-seccion" id="carta" aria-labelledby="t-carta">
+<h2 id="t-carta">La carta</h2>
+<p class="guia-nota">Las rutas <code>../static/img/criaturas/</code> permiten abrir estas maquetas HTML directamente desde la carpeta <code>templates</code>. En Spring Boot, los recursos de <code>src/main/resources/static/img/criaturas/</code> se sirven mediante <code>/img/criaturas/</code>.</p>
+
+<p>Es el componente más importante y <strong>es siempre el mismo</strong>: en el catálogo, en la mano del jugador, en el resumen de la ronda y en la vista previa del formulario. Lo que cambia es lo que se pone alrededor (botones de editar, botón de jugar…). Por eso te conviene convertirlo en un fragmento de Thymeleaf que reciba la carta como parámetro.</p>
+
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Estructura</h3>
+<p class="guia-nota">La moneda de coste, la banda con el nombre, la ventana de la ilustración y los atributos. El color lo da la clase de elemento del <code>&lt;article&gt;</code>. Coloca la imagen con <code>&lt;img&gt;</code> dentro de <code>.carta-imagen</code>. Cuando crees una carta, puedes usar la ilustración predeterminada del elemento si no adjuntas otra.</p>
+<div class="guia-muestra guia-muestra-carta">
+  <article class="carta es-fuego">
+    <span class="carta-coste"><span class="solo-lectores">Coste </span>17</span>
+    <header class="carta-cabecera">
+      <h3 class="carta-nombre">Dragón Ígneo</h3>
+      <span class="elemento es-fuego">Fuego</span>
+    </header>
+    <div class="carta-imagen">
+      <img src="../static/img/criaturas/dragon-igneo.webp" alt="Dragón Ígneo" loading="lazy">
+    </div>
+    <dl class="carta-atributos">
+      <div class="atributo-ataque"><dt>Ataque</dt><dd>9</dd></div>
+      <div class="atributo-defensa"><dt>Defensa</dt><dd>8</dd></div>
+    </dl>
+  </article>
+</div>
+<pre class="guia-codigo"><code>&lt;article class=&quot;carta es-fuego&quot;&gt;
+  &lt;span class=&quot;carta-coste&quot;&gt;&lt;span class=&quot;solo-lectores&quot;&gt;Coste &lt;/span&gt;17&lt;/span&gt;
+  &lt;header class=&quot;carta-cabecera&quot;&gt;
+    &lt;h3 class=&quot;carta-nombre&quot;&gt;Dragón Ígneo&lt;/h3&gt;
+    &lt;span class=&quot;elemento es-fuego&quot;&gt;Fuego&lt;/span&gt;
+  &lt;/header&gt;
+  &lt;div class=&quot;carta-imagen&quot;&gt;
+    &lt;img src=&quot;../static/img/criaturas/dragon-igneo.webp&quot; alt=&quot;Dragón Ígneo&quot;&gt;
+  &lt;/div&gt;
+  &lt;dl class=&quot;carta-atributos&quot;&gt;
+    &lt;div class=&quot;atributo-ataque&quot;&gt;&lt;dt&gt;Ataque&lt;/dt&gt;&lt;dd&gt;9&lt;/dd&gt;&lt;/div&gt;
+    &lt;div class=&quot;atributo-defensa&quot;&gt;&lt;dt&gt;Defensa&lt;/dt&gt;&lt;dd&gt;8&lt;/dd&gt;&lt;/div&gt;
+  &lt;/dl&gt;
+&lt;/article&gt;</code></pre>
+</div>
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Sin ilustración</h3>
+<p class="guia-nota">Si se omite <code>.carta-imagen</code>, la carta queda compacta. Se usa en el resumen de la ronda anterior. En cartas estrechas los textos «Ataque» y «Defensa» se ocultan y solo quedan las cifras (siguen disponibles para lectores de pantalla).</p>
+<div class="guia-muestra guia-muestra-carta">
+  <article class="carta es-fuego">
+    <span class="carta-coste"><span class="solo-lectores">Coste </span>14</span>
+    <header class="carta-cabecera">
+      <h3 class="carta-nombre">Fénix Carmesí</h3>
+      <span class="elemento es-fuego">Fuego</span>
+    </header>
+    <dl class="carta-atributos">
+      <div class="atributo-ataque"><dt>Ataque</dt><dd>9</dd></div>
+      <div class="atributo-defensa"><dt>Defensa</dt><dd>5</dd></div>
+    </dl>
+  </article>
+</div>
+<pre class="guia-codigo"><code>&lt;article class=&quot;carta es-fuego&quot;&gt;
+  &lt;span class=&quot;carta-coste&quot;&gt;&lt;span class=&quot;solo-lectores&quot;&gt;Coste &lt;/span&gt;14&lt;/span&gt;
+  &lt;header class=&quot;carta-cabecera&quot;&gt;
+    &lt;h3 class=&quot;carta-nombre&quot;&gt;Fénix Carmesí&lt;/h3&gt;
+    &lt;span class=&quot;elemento es-fuego&quot;&gt;Fuego&lt;/span&gt;
+  &lt;/header&gt;
+  &lt;dl class=&quot;carta-atributos&quot;&gt;
+    &lt;div class=&quot;atributo-ataque&quot;&gt;&lt;dt&gt;Ataque&lt;/dt&gt;&lt;dd&gt;9&lt;/dd&gt;&lt;/div&gt;
+    &lt;div class=&quot;atributo-defensa&quot;&gt;&lt;dt&gt;Defensa&lt;/dt&gt;&lt;dd&gt;5&lt;/dd&gt;&lt;/div&gt;
+  &lt;/dl&gt;
+&lt;/article&gt;</code></pre>
+</div>
+<div class="guia-tabla tablero">
+<table class="tabla">
+<thead><tr><th scope="col">Clase</th><th scope="col">Para qué sirve</th></tr></thead>
+<tbody>
+<tr><td><code>carta</code></td><td>Contenedor de la carta. Añadir siempre una clase es-fuego / es-agua / es-planta.</td></tr>
+<tr><td><code>carta-coste</code></td><td>Moneda dorada con el coste.</td></tr>
+<tr><td><code>carta-cabecera / carta-nombre</code></td><td>Banda superior con el nombre y el icono del elemento.</td></tr>
+<tr><td><code>carta-imagen</code></td><td>Ventana de la ilustración. Admite un &lt;img&gt;.</td></tr>
+<tr><td><code>carta-imagen-texto</code></td><td>Marcador provisional para maquetas sin ilustración. en las cartas reales se sustituye por una imagen.</td></tr>
+<tr><td><code>carta-atributos</code></td><td>Lista &lt;dl&gt; con ataque y defensa.</td></tr>
+<tr><td><code>atributo-ataque / atributo-defensa</code></td><td>Dibujan el círculo y el escudo.</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="guia-seccion" id="carta-acciones" aria-labelledby="t-carta-acciones">
+<h2 id="t-carta-acciones">La carta con acciones</h2>
+
+<p>La carta nunca lleva botones dentro. Las acciones van debajo, envolviendo la carta en otro elemento.</p>
+
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">En el catálogo: .ficha</h3>
+<p class="guia-nota">Si la carta pertenece a un mazo, muestra el aviso <code>&lt;span class="ficha-bloqueo"&gt;🔒 En uso en un mazo&lt;/span&gt;</code> en lugar de las acciones de edición y borrado.</p>
+<div class="guia-muestra guia-muestra-carta">
+  <div class="ficha">
+    <article class="carta es-planta">
+      <span class="carta-coste"><span class="solo-lectores">Coste </span>8</span>
+      <header class="carta-cabecera">
+        <h3 class="carta-nombre">Brote Saltarín</h3>
+        <span class="elemento es-planta">Planta</span>
+      </header>
+      <div class="carta-imagen">
+        <img src="../static/img/criaturas/brote-saltarin.webp" alt="Brote Saltarín" loading="lazy">
+      </div>
+      <dl class="carta-atributos">
+        <div class="atributo-ataque"><dt>Ataque</dt><dd>3</dd></div>
+        <div class="atributo-defensa"><dt>Defensa</dt><dd>5</dd></div>
+      </dl>
+    </article>
+    <div class="ficha-acciones">
+      <a class="boton boton-peq" href="../templates/formulario-carta.html">Editar</a>
+      <!-- El servidor debe comprobar de nuevo que la carta no está en ningún mazo.
+           Conviene pedir confirmación antes de borrar. -->
+      <form action="#" method="post">
+        <button class="boton boton-peq boton-peligro" type="submit">Eliminar</button>
+      </form>
+    </div>
+  </div>
+</div>
+<pre class="guia-codigo"><code>&lt;div class=&quot;ficha&quot;&gt;
+  &lt;article class=&quot;carta es-planta&quot;&gt;
+    &lt;span class=&quot;carta-coste&quot;&gt;&lt;span class=&quot;solo-lectores&quot;&gt;Coste &lt;/span&gt;8&lt;/span&gt;
+    &lt;header class=&quot;carta-cabecera&quot;&gt;
+      &lt;h3 class=&quot;carta-nombre&quot;&gt;Brote Saltarín&lt;/h3&gt;
+      &lt;span class=&quot;elemento es-planta&quot;&gt;Planta&lt;/span&gt;
+    &lt;/header&gt;
+    &lt;div class=&quot;carta-imagen&quot;&gt;
+      &lt;img src=&quot;../static/img/criaturas/brote-saltarin.webp&quot; alt=&quot;Brote Saltarín&quot;&gt;
+    &lt;/div&gt;
+    &lt;dl class=&quot;carta-atributos&quot;&gt;
+      &lt;div class=&quot;atributo-ataque&quot;&gt;&lt;dt&gt;Ataque&lt;/dt&gt;&lt;dd&gt;3&lt;/dd&gt;&lt;/div&gt;
+      &lt;div class=&quot;atributo-defensa&quot;&gt;&lt;dt&gt;Defensa&lt;/dt&gt;&lt;dd&gt;5&lt;/dd&gt;&lt;/div&gt;
+    &lt;/dl&gt;
+  &lt;/article&gt;
+  &lt;div class=&quot;ficha-acciones&quot;&gt;
+    &lt;a class=&quot;boton boton-peq&quot; href=&quot;formulario-carta.html&quot;&gt;Editar&lt;/a&gt;
+    &lt;!-- El servidor debe comprobar de nuevo que la carta no está en ningún mazo.
+         Conviene pedir confirmación antes de borrar. --&gt;
+    &lt;form action=&quot;#&quot; method=&quot;post&quot;&gt;
+      &lt;button class=&quot;boton boton-peq boton-peligro&quot; type=&quot;submit&quot;&gt;Eliminar&lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">En la mano del jugador: .jugada</h3>
+<p class="guia-nota">Todo el bloque es el formulario. La carta se eleva al pasar el ratón por encima o al llegar con el teclado al botón.</p>
+<div class="guia-muestra guia-muestra-carta">
+  <form class="jugada" action="#" method="post">
+    <!-- Valores de muestra, no son identificadores reales. -->
+    <input type="hidden" name="partidaId" value="ejemplo-partida">
+    <input type="hidden" name="ronda" value="2">
+    <input type="hidden" name="cartaId" value="5">
+    <article class="carta es-fuego">
+      <span class="carta-coste"><span class="solo-lectores">Coste </span>11</span>
+      <header class="carta-cabecera">
+        <h3 class="carta-nombre">Zorro Solar</h3>
+        <span class="elemento es-fuego">Fuego</span>
+      </header>
+      <div class="carta-imagen">
+        <img src="../static/img/criaturas/zorro-solar.webp" alt="Zorro Solar" loading="lazy">
+      </div>
+      <dl class="carta-atributos">
+        <div class="atributo-ataque"><dt>Ataque</dt><dd>6</dd></div>
+        <div class="atributo-defensa"><dt>Defensa</dt><dd>5</dd></div>
+      </dl>
+    </article>
+    <button class="boton boton-principal boton-ancho" type="submit">Jugar esta carta</button>
+  </form>
+</div>
+<pre class="guia-codigo"><code>&lt;form class=&quot;jugada&quot; action=&quot;#&quot; method=&quot;post&quot;&gt;
+  &lt;!-- Valores de muestra, no son identificadores reales. --&gt;
+  &lt;input type=&quot;hidden&quot; name=&quot;partidaId&quot; value=&quot;ejemplo-partida&quot;&gt;
+  &lt;input type=&quot;hidden&quot; name=&quot;ronda&quot; value=&quot;2&quot;&gt;
+  &lt;input type=&quot;hidden&quot; name=&quot;cartaId&quot; value=&quot;5&quot;&gt;
+  &lt;article class=&quot;carta es-fuego&quot;&gt;
+    &lt;span class=&quot;carta-coste&quot;&gt;&lt;span class=&quot;solo-lectores&quot;&gt;Coste &lt;/span&gt;11&lt;/span&gt;
+    &lt;header class=&quot;carta-cabecera&quot;&gt;
+      &lt;h3 class=&quot;carta-nombre&quot;&gt;Zorro Solar&lt;/h3&gt;
+      &lt;span class=&quot;elemento es-fuego&quot;&gt;Fuego&lt;/span&gt;
+    &lt;/header&gt;
+    &lt;div class=&quot;carta-imagen&quot;&gt;
+      &lt;img src=&quot;../static/img/criaturas/zorro-solar.webp&quot; alt=&quot;Zorro Solar&quot;&gt;
+    &lt;/div&gt;
+    &lt;dl class=&quot;carta-atributos&quot;&gt;
+      &lt;div class=&quot;atributo-ataque&quot;&gt;&lt;dt&gt;Ataque&lt;/dt&gt;&lt;dd&gt;6&lt;/dd&gt;&lt;/div&gt;
+      &lt;div class=&quot;atributo-defensa&quot;&gt;&lt;dt&gt;Defensa&lt;/dt&gt;&lt;dd&gt;5&lt;/dd&gt;&lt;/div&gt;
+    &lt;/dl&gt;
+  &lt;/article&gt;
+  &lt;button class=&quot;boton boton-principal boton-ancho&quot; type=&quot;submit&quot;&gt;Jugar esta carta&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+</div>
+</section>
+
+<section class="guia-seccion" id="formularios" aria-labelledby="t-formularios">
+<h2 id="t-formularios">Formularios</h2>
+
+<p>Coloca cada campo en un <code>.campo-grupo</code> con su <code>&lt;label&gt;</code>, el control con la clase <code>.campo</code>, un texto de ayuda opcional y el mensaje de error. Los mensajes de error están ocultos con <code>hidden</code>. Muéstralos cuando el servidor detecte un problema.</p>
+<p>Mantén <code>novalidate</code> en los formularios para que puedas comprobar las validaciones desde el servidor.</p>
+
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Campos</h3>
+<p class="guia-nota"><code>.campos-dos</code> coloca dos campos en la misma fila (en móvil pasan a una columna). <code>.form-acciones</code> agrupa los botones al final.</p>
+<div class="guia-muestra ">
+  <div class="tablero">
+    <div class="campo-grupo">
+      <label for="ej-nombre">Nombre</label>
+      <input class="campo" id="ej-nombre" name="nombre" type="text" aria-describedby="ej-ayuda">
+      <p class="ayuda" id="ej-ayuda">Debe ser único.</p>
+    </div>
+    <div class="campos-dos">
+      <div class="campo-grupo">
+        <label for="ej-ataque">Ataque</label>
+        <input class="campo" id="ej-ataque" name="ataque" type="number">
+      </div>
+      <div class="campo-grupo">
+        <label for="ej-defensa">Defensa</label>
+        <input class="campo" id="ej-defensa" name="defensa" type="number">
+      </div>
+    </div>
+    <div class="form-acciones">
+      <a class="boton" href="#">Cancelar</a>
+      <button class="boton boton-principal" type="submit">Guardar</button>
+    </div>
+  </div>
+</div>
+<pre class="guia-codigo"><code>&lt;div class=&quot;tablero&quot;&gt;
+  &lt;div class=&quot;campo-grupo&quot;&gt;
+    &lt;label for=&quot;ej-nombre&quot;&gt;Nombre&lt;/label&gt;
+    &lt;input class=&quot;campo&quot; id=&quot;ej-nombre&quot; name=&quot;nombre&quot; type=&quot;text&quot; aria-describedby=&quot;ej-ayuda&quot;&gt;
+    &lt;p class=&quot;ayuda&quot; id=&quot;ej-ayuda&quot;&gt;Debe ser único.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;campos-dos&quot;&gt;
+    &lt;div class=&quot;campo-grupo&quot;&gt;
+      &lt;label for=&quot;ej-ataque&quot;&gt;Ataque&lt;/label&gt;
+      &lt;input class=&quot;campo&quot; id=&quot;ej-ataque&quot; name=&quot;ataque&quot; type=&quot;number&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;campo-grupo&quot;&gt;
+      &lt;label for=&quot;ej-defensa&quot;&gt;Defensa&lt;/label&gt;
+      &lt;input class=&quot;campo&quot; id=&quot;ej-defensa&quot; name=&quot;defensa&quot; type=&quot;number&quot;&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;form-acciones&quot;&gt;
+    &lt;a class=&quot;boton&quot; href=&quot;#&quot;&gt;Cancelar&lt;/a&gt;
+    &lt;button class=&quot;boton boton-principal&quot; type=&quot;submit&quot;&gt;Guardar&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Campo con error</h3>
+<p class="guia-nota">Cuando un campo tenga un error, añade <code>es-invalido</code> (pensada para <code>th:errorclass</code>) y <code>aria-invalid="true"</code>, y muestra su <code>.error-campo</code>. Conserva el valor introducido para que puedas corregir el formulario sin perder información.</p>
+<div class="guia-muestra ">
+  <div class="tablero">
+    <div class="campo-grupo">
+      <label for="ej-error">Nombre</label>
+      <input class="campo es-invalido" id="ej-error" name="nombre" type="text"
+             aria-invalid="true" aria-describedby="ej-error-msg">
+      <p class="error-campo" id="ej-error-msg">Ya existe una criatura con ese nombre.</p>
+    </div>
+  </div>
+</div>
+<pre class="guia-codigo"><code>&lt;div class=&quot;tablero&quot;&gt;
+  &lt;div class=&quot;campo-grupo&quot;&gt;
+    &lt;label for=&quot;ej-error&quot;&gt;Nombre&lt;/label&gt;
+    &lt;input class=&quot;campo es-invalido&quot; id=&quot;ej-error&quot; name=&quot;nombre&quot; type=&quot;text&quot;
+           aria-invalid=&quot;true&quot; aria-describedby=&quot;ej-error-msg&quot;&gt;
+    &lt;p class=&quot;error-campo&quot; id=&quot;ej-error-msg&quot;&gt;Ya existe una criatura con ese nombre.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Selección de cartas</h3>
+<p class="guia-nota">Cada opción es una carta en miniatura. Todo el <code>&lt;label&gt;</code> es pulsable y la opción marcada se resalta sola. Cuando la selección no sea válida, añade <code>es-invalido</code> al <code>&lt;fieldset&gt;</code>.</p>
+<div class="guia-muestra guia-muestra-clara">
+  <fieldset class="seleccion">
+    <legend>Elige tus cartas</legend>
+    <div class="lista-opciones">
+      <label class="opcion es-agua">
+        <input type="checkbox" name="cartaIds" value="7">
+        <span class="opcion-nombre">Leviatán Azul</span>
+        <span class="opcion-datos">Ataque 9, defensa 7</span>
+        <span class="opcion-coste"><span class="solo-lectores">Coste </span>16</span>
+      </label>
+      <label class="opcion es-planta">
+        <input type="checkbox" name="cartaIds" value="13" checked>
+        <span class="opcion-nombre">Ent Ancestral</span>
+        <span class="opcion-datos">Ataque 4, defensa 10</span>
+        <span class="opcion-coste"><span class="solo-lectores">Coste </span>14</span>
+      </label>
+    </div>
+  </fieldset>
+</div>
+<pre class="guia-codigo"><code>&lt;fieldset class=&quot;seleccion&quot;&gt;
+  &lt;legend&gt;Elige tus cartas&lt;/legend&gt;
+  &lt;div class=&quot;lista-opciones&quot;&gt;
+    &lt;label class=&quot;opcion es-agua&quot;&gt;
+      &lt;input type=&quot;checkbox&quot; name=&quot;cartaIds&quot; value=&quot;7&quot;&gt;
+      &lt;span class=&quot;opcion-nombre&quot;&gt;Leviatán Azul&lt;/span&gt;
+      &lt;span class=&quot;opcion-datos&quot;&gt;Ataque 9, defensa 7&lt;/span&gt;
+      &lt;span class=&quot;opcion-coste&quot;&gt;&lt;span class=&quot;solo-lectores&quot;&gt;Coste &lt;/span&gt;16&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;label class=&quot;opcion es-planta&quot;&gt;
+      &lt;input type=&quot;checkbox&quot; name=&quot;cartaIds&quot; value=&quot;13&quot; checked&gt;
+      &lt;span class=&quot;opcion-nombre&quot;&gt;Ent Ancestral&lt;/span&gt;
+      &lt;span class=&quot;opcion-datos&quot;&gt;Ataque 4, defensa 10&lt;/span&gt;
+      &lt;span class=&quot;opcion-coste&quot;&gt;&lt;span class=&quot;solo-lectores&quot;&gt;Coste &lt;/span&gt;14&lt;/span&gt;
+    &lt;/label&gt;
+  &lt;/div&gt;
+&lt;/fieldset&gt;</code></pre>
+</div>
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Formulario con panel lateral</h3>
+<p class="guia-nota">Formulario a la izquierda y ayuda a la derecha. En pantallas estrechas el lateral pasa debajo.</p>
+<pre class="guia-codigo guia-codigo-solo"><code>&lt;div class=&quot;formulario-con-lateral&quot;&gt;
+  &lt;section class=&quot;tablero&quot;&gt;…formulario…&lt;/section&gt;
+  &lt;aside class=&quot;tablero lateral&quot;&gt;…reglas o ayuda…&lt;/aside&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</section>
+
+<section class="guia-seccion" id="rondas-partida" aria-labelledby="t-rondas-partida">
+<h2 id="t-rondas-partida">Número de rondas</h2>
+<p>En el formulario de nueva partida, utiliza un selector con tres opciones. Comprueba también en el servidor que el valor recibido sea 3, 5 o 7.</p>
+<div class="guia-ejemplo">
+<div class="guia-muestra guia-muestra-clara">
+  <div class="campo-grupo">
+    <label for="ej-numero-rondas">Tipo de partida</label>
+    <select class="campo" id="ej-numero-rondas" name="numeroRondas">
+      <option value="3">Partida corta · 3 rondas</option>
+      <option value="5" selected>Partida normal · 5 rondas</option>
+      <option value="7">Partida larga · 7 rondas</option>
+    </select>
+  </div>
+</div>
+<pre class="guia-codigo"><code>&lt;label for=&quot;numeroRondas&quot;&gt;Tipo de partida&lt;/label&gt;
+&lt;select class=&quot;campo&quot; id=&quot;numeroRondas&quot; name=&quot;numeroRondas&quot;&gt;
+  &lt;option value=&quot;3&quot;&gt;Partida corta · 3 rondas&lt;/option&gt;
+  &lt;option value=&quot;5&quot; selected&gt;Partida normal · 5 rondas&lt;/option&gt;
+  &lt;option value=&quot;7&quot;&gt;Partida larga · 7 rondas&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+</div>
+</section>
+
+<section class="guia-seccion" id="filtro" aria-labelledby="t-filtro">
+<h2 id="t-filtro">Filtro del catálogo</h2>
+
+<p>El filtro por elemento son enlaces normales que hacen una petición GET con el parámetro <code>tipo</code>. Puedes usar directamente los enlaces del filtro. Marca el filtro activo desde el servidor con <code>es-actual</code> y <code>aria-current="page"</code>.</p>
+
+<div class="guia-ejemplo">
+<div class="guia-muestra guia-muestra-oscura">
+  <nav class="filtro" aria-label="Filtrar por elemento">
+    <a class="es-actual" href="../templates/cartas.html" aria-current="page">Todas</a>
+    <a href="../templates/cartas.html?tipo=Fuego"><span class="elemento es-fuego">Fuego</span></a>
+    <a href="../templates/cartas.html?tipo=Agua"><span class="elemento es-agua">Agua</span></a>
+    <a href="../templates/cartas.html?tipo=Planta"><span class="elemento es-planta">Planta</span></a>
+  </nav>
+</div>
+<pre class="guia-codigo"><code>&lt;nav class=&quot;filtro&quot; aria-label=&quot;Filtrar por elemento&quot;&gt;
+  &lt;a class=&quot;es-actual&quot; href=&quot;cartas.html&quot; aria-current=&quot;page&quot;&gt;Todas&lt;/a&gt;
+  &lt;a href=&quot;cartas.html?tipo=Fuego&quot;&gt;&lt;span class=&quot;elemento es-fuego&quot;&gt;Fuego&lt;/span&gt;&lt;/a&gt;
+  &lt;a href=&quot;cartas.html?tipo=Agua&quot;&gt;&lt;span class=&quot;elemento es-agua&quot;&gt;Agua&lt;/span&gt;&lt;/a&gt;
+  &lt;a href=&quot;cartas.html?tipo=Planta&quot;&gt;&lt;span class=&quot;elemento es-planta&quot;&gt;Planta&lt;/span&gt;&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+</div>
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Rejilla de cartas</h3>
+<p class="guia-nota">Coloca las cartas en tantas columnas como quepan. Deja hueco a la izquierda para la moneda de coste.</p>
+<pre class="guia-codigo guia-codigo-solo"><code>&lt;div class=&quot;rejilla-cartas&quot;&gt;
+  &lt;div class=&quot;ficha&quot;&gt;…&lt;/div&gt;
+  &lt;div class=&quot;ficha&quot;&gt;…&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</section>
+
+<section class="guia-seccion" id="mazos" aria-labelledby="t-mazos">
+<h2 id="t-mazos">Mazos</h2>
+
+<p>Cada mazo es un tablero con su nombre, el lomo, el recuento por elemento, el coste y la lista de cartas desplegable.</p>
+
+<div class="guia-ejemplo">
+<p class="guia-nota">El <strong>lomo</strong> (<code>.lomo</code>) es una lista con una franja por carta. cada franja lleva la clase del elemento de esa carta. El coste usa un <code>&lt;progress&gt;</code> con <code>value</code> y <code>max="100"</code>, que se rellena con el dato del servidor.</p>
+<div class="guia-muestra guia-muestra-estrecha">
+  <article class="tablero mazo">
+    <div class="mazo-cabecera">
+      <div>
+        <h3>Viajeros del Alba</h3>
+        <p>Mazo de ejemplo</p>
+      </div>
+      <span class="etiqueta etiqueta-oro">Tuyo</span>
+    </div>
+    <!-- Lomo: una franja por carta con el color de su elemento. -->
+    <ul class="lomo" aria-hidden="true"><li class="es-fuego" title="Fénix Carmesí"></li><li class="es-fuego" title="Zorro Solar"></li><li class="es-fuego" title="Chispa Errante"></li><li class="es-agua" title="Sirena de Coral"></li><li class="es-agua" title="Náiade de Bruma"></li><li class="es-agua" title="Pez Linterna"></li><li class="es-planta" title="Lobo de Musgo"></li><li class="es-planta" title="Espinazo Verde"></li></ul>
+    <ul class="recuento-elementos"><li><span class="elemento es-fuego">3 Fuego</span></li><li><span class="elemento es-agua">3 Agua</span></li><li><span class="elemento es-planta">2 Planta</span></li></ul>
+    <div class="coste-mazo">
+      <div class="coste-mazo-texto"><span>Coste</span><span class="cifra">89 / 100</span></div>
+      <progress value="89" max="100">89 de 100 puntos</progress>
+    </div>
+    <details class="mazo-cartas">
+      <summary>Ver las ocho cartas</summary>
+      <ul><li>Fénix Carmesí</li><li>Zorro Solar</li><li>Chispa Errante</li><li>Sirena de Coral</li><li>Náiade de Bruma</li><li>Pez Linterna</li><li>Lobo de Musgo</li><li>Espinazo Verde</li></ul>
+    </details>
+    <div class="mazo-pie">
+      <a class="boton boton-peq" href="../templates/formulario-mazo.html">Editar</a>
+      <form action="#" method="post">
+        <button class="boton boton-peq boton-peligro" type="submit">Eliminar</button>
+      </form>
+    </div>
+  </article>
+</div>
+<pre class="guia-codigo"><code>&lt;article class=&quot;tablero mazo&quot;&gt;
+  &lt;div class=&quot;mazo-cabecera&quot;&gt;
+    &lt;div&gt;
+      &lt;h3&gt;Viajeros del Alba&lt;/h3&gt;
+      &lt;p&gt;Mazo de ejemplo&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;span class=&quot;etiqueta etiqueta-oro&quot;&gt;Tuyo&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;ul class=&quot;lomo&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;li class=&quot;es-fuego&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;es-fuego&quot;&gt;&lt;/li&gt;
+    &lt;!-- … una franja por cada una de las 8 cartas … --&gt;
+  &lt;/ul&gt;
+  &lt;ul class=&quot;recuento-elementos&quot;&gt;
+    &lt;li&gt;&lt;span class=&quot;elemento es-fuego&quot;&gt;3 Fuego&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class=&quot;elemento es-agua&quot;&gt;3 Agua&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class=&quot;elemento es-planta&quot;&gt;2 Planta&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;div class=&quot;coste-mazo&quot;&gt;
+    &lt;div class=&quot;coste-mazo-texto&quot;&gt;&lt;span&gt;Coste&lt;/span&gt;&lt;span class=&quot;cifra&quot;&gt;89 / 100&lt;/span&gt;&lt;/div&gt;
+    &lt;progress value=&quot;89&quot; max=&quot;100&quot;&gt;89 de 100 puntos&lt;/progress&gt;
+  &lt;/div&gt;
+  &lt;details class=&quot;mazo-cartas&quot;&gt;
+    &lt;summary&gt;Ver las ocho cartas&lt;/summary&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Fénix Carmesí&lt;/li&gt;
+      &lt;!-- … --&gt;
+    &lt;/ul&gt;
+  &lt;/details&gt;
+  &lt;div class=&quot;mazo-pie&quot;&gt;
+    &lt;a class=&quot;boton boton-peq&quot; href=&quot;#&quot;&gt;Editar&lt;/a&gt;
+    &lt;form action=&quot;#&quot; method=&quot;post&quot;&gt;
+      &lt;button class=&quot;boton boton-peq boton-peligro&quot; type=&quot;submit&quot;&gt;Eliminar&lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+</div>
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Reglas sobre la mesa</h3>
+<p class="guia-nota">Para recordar las reglas directamente sobre el tapete, utiliza este bloque. Dentro de un tablero se usa <code>.reglas</code>, que las muestra en lista.</p>
+<div class="guia-muestra guia-muestra-oscura">
+  <ul class="reglas-mesa" aria-label="Reglas de construcción">
+    <li><strong>8</strong>cartas distintas</li>
+    <li><strong>100</strong>puntos como máximo</li>
+    <li><strong>2+</strong>cartas de cada elemento</li>
+  </ul>
+</div>
+<pre class="guia-codigo"><code>&lt;ul class=&quot;reglas-mesa&quot; aria-label=&quot;Reglas de construcción&quot;&gt;
+  &lt;li&gt;&lt;strong&gt;8&lt;/strong&gt;cartas distintas&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;100&lt;/strong&gt;puntos como máximo&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;2+&lt;/strong&gt;cartas de cada elemento&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+</div>
+</section>
+
+<section class="guia-seccion" id="combate" aria-labelledby="t-combate">
+<h2 id="t-combate">Combate</h2>
+
+<p>En la pantalla de combate combinarás el marcador, el nombre de los dos mazos, el resumen de la ronda anterior y tu mano de tres cartas. El ordenador elegirá sus cartas automáticamente y mostrará la que haya jugado al resolver cada ronda.</p>
+
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Marcador y rondas</h3>
+<p class="guia-nota">Genera tantas fichas de ronda como se hayan elegido al comenzar la partida: 3, 5 o 7. Asigna a cada una la clase <code>ronda-ganada</code>, <code>ronda-perdida</code>, <code>ronda-empate</code> o <code>ronda-actual</code> según corresponda. Las pendientes mantienen su clase base. En el ejemplo se muestran cinco rondas. Incluye el estado en texto oculto para los lectores de pantalla.</p>
+<div class="guia-muestra ">
+  <section class="tablero marcador-partida" aria-label="Marcador">
+    <div class="contrincante">
+      <strong>Alex</strong>
+      <span>Viajeros del Alba</span>
+    </div>
+    <div class="marcador" aria-label="Alex 2, ordenador 1">
+      <span>2</span><span class="marcador-separador" aria-hidden="true">–</span><span>1</span>
+    </div>
+    <div class="contrincante contrincante-derecha">
+      <strong>Ordenador</strong>
+      <span>Furia Elemental</span>
+    </div>
+    <ol class="rondas" aria-label="Rondas">
+      <li class="ronda ronda-ganada">1<span class="solo-lectores">: ganada</span></li>
+      <li class="ronda ronda-perdida">2<span class="solo-lectores">: perdida</span></li>
+      <li class="ronda ronda-empate">3<span class="solo-lectores">: empate</span></li>
+      <li class="ronda ronda-actual" aria-current="step">4<span class="solo-lectores">: en juego</span></li>
+      <li class="ronda">5<span class="solo-lectores">: pendiente</span></li>
+    </ol>
+  </section>
+</div>
+<pre class="guia-codigo"><code>&lt;section class=&quot;tablero marcador-partida&quot; aria-label=&quot;Marcador&quot;&gt;
+  &lt;div class=&quot;contrincante&quot;&gt;
+    &lt;strong&gt;Alex&lt;/strong&gt;
+    &lt;span&gt;Viajeros del Alba&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;marcador&quot; aria-label=&quot;Alex 2, ordenador 1&quot;&gt;
+    &lt;span&gt;2&lt;/span&gt;&lt;span class=&quot;marcador-separador&quot; aria-hidden=&quot;true&quot;&gt;–&lt;/span&gt;&lt;span&gt;1&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;contrincante contrincante-derecha&quot;&gt;
+    &lt;strong&gt;Ordenador&lt;/strong&gt;
+    &lt;span&gt;Furia Elemental&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;ol class=&quot;rondas&quot; aria-label=&quot;Rondas&quot;&gt;
+    &lt;li class=&quot;ronda ronda-ganada&quot;&gt;1&lt;span class=&quot;solo-lectores&quot;&gt;: ganada&lt;/span&gt;&lt;/li&gt;
+    &lt;li class=&quot;ronda ronda-perdida&quot;&gt;2&lt;span class=&quot;solo-lectores&quot;&gt;: perdida&lt;/span&gt;&lt;/li&gt;
+    &lt;li class=&quot;ronda ronda-empate&quot;&gt;3&lt;span class=&quot;solo-lectores&quot;&gt;: empate&lt;/span&gt;&lt;/li&gt;
+    &lt;li class=&quot;ronda ronda-actual&quot; aria-current=&quot;step&quot;&gt;4&lt;span class=&quot;solo-lectores&quot;&gt;: en juego&lt;/span&gt;&lt;/li&gt;
+    &lt;li class=&quot;ronda&quot;&gt;5&lt;span class=&quot;solo-lectores&quot;&gt;: pendiente&lt;/span&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/section&gt;</code></pre>
+</div>
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Ronda anterior</h3>
+<p class="guia-nota">Muestra las dos cartas enfrentadas y explica cómo has decidido el resultado con tus reglas. La presentación puede variar según la mecánica de combate que programes.</p>
+<div class="guia-muestra guia-muestra-oscura">
+  <div class="ronda-anterior">
+    <div>
+      <article class="carta es-fuego">
+        <span class="carta-coste"><span class="solo-lectores">Coste </span>14</span>
+        <header class="carta-cabecera">
+          <h3 class="carta-nombre">Fénix Carmesí</h3>
+          <span class="elemento es-fuego">Fuego</span>
+        </header>
+        <dl class="carta-atributos">
+          <div class="atributo-ataque"><dt>Ataque</dt><dd>9</dd></div>
+          <div class="atributo-defensa"><dt>Defensa</dt><dd>5</dd></div>
+        </dl>
+      </article>
+      <p class="dano">Tu jugada: <strong>Fénix Carmesí</strong></p>
+    </div>
+    <span class="versus" aria-hidden="true">VS</span>
+    <div>
+      <article class="carta es-planta">
+        <span class="carta-coste"><span class="solo-lectores">Coste </span>12</span>
+        <header class="carta-cabecera">
+          <h3 class="carta-nombre">Espinazo Verde</h3>
+          <span class="elemento es-planta">Planta</span>
+        </header>
+        <dl class="carta-atributos">
+          <div class="atributo-ataque"><dt>Ataque</dt><dd>8</dd></div>
+          <div class="atributo-defensa"><dt>Defensa</dt><dd>4</dd></div>
+        </dl>
+      </article>
+      <p class="dano">Carta rival: <strong>Espinazo Verde</strong></p>
+    </div>
+    <div class="tablero calculo">
+      <h3>Resultado de la ronda</h3>
+      <p>Has ganado esta ronda.</p>
+      <p>Muestra aquí una explicación de la regla que has aplicado usando ataque, defensa y elemento.</p>
+    </div>
+  </div>
+</div>
+<pre class="guia-codigo"><code>&lt;div class=&quot;ronda-anterior&quot;&gt;
+  &lt;div&gt;
+    &lt;article class=&quot;carta es-fuego&quot;&gt;…carta sin .carta-imagen…&lt;/article&gt;
+    &lt;p class=&quot;dano&quot;&gt;Tu jugada: &lt;strong&gt;Fénix Carmesí&lt;/strong&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;span class=&quot;versus&quot; aria-hidden=&quot;true&quot;&gt;VS&lt;/span&gt;
+  &lt;div&gt;
+    &lt;article class=&quot;carta es-planta&quot;&gt;…carta sin .carta-imagen…&lt;/article&gt;
+    &lt;p class=&quot;dano&quot;&gt;Carta rival: &lt;strong&gt;Espinazo Verde&lt;/strong&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;tablero calculo&quot;&gt;
+    &lt;h3&gt;Resultado de la ronda&lt;/h3&gt;
+    &lt;p&gt;Has ganado esta ronda.&lt;/p&gt;
+    &lt;p&gt;Muestra por qué según tus reglas.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</section>
+
+<section class="guia-seccion" id="resultado" aria-labelledby="t-resultado">
+<h2 id="t-resultado">Resultado de la partida</h2>
+
+<p>El panel de resultado tiene tres variantes según quién haya ganado más rondas. Puedes reutilizar el mismo diseño para partidas de 3, 5 o 7 rondas.</p>
+
+<div class="guia-ejemplo">
+<p class="guia-nota">Variantes: <code>resultado-victoria</code> («¡Victoria!», dorado), <code>resultado-derrota</code> («Derrota», rojo) y <code>resultado-empate</code> («Empate», violeta).</p>
+<div class="guia-muestra guia-muestra-oscura">
+  <section class="tablero resultado resultado-derrota">
+    <h1 class="resultado-banda">Derrota</h1>
+    <p>El ordenador gana dos rondas frente a una tuya (partida de 3 rondas).</p>
+    <div class="resultado-acciones">
+      <a class="boton boton-principal" href="#">Jugar otra vez</a>
+    </div>
+  </section>
+</div>
+<pre class="guia-codigo"><code>&lt;section class=&quot;tablero resultado resultado-derrota&quot;&gt;
+  &lt;h1 class=&quot;resultado-banda&quot;&gt;Derrota&lt;/h1&gt;
+  &lt;p&gt;El ordenador gana dos rondas frente a una tuya (partida de 3 rondas).&lt;/p&gt;
+  &lt;div class=&quot;resultado-acciones&quot;&gt;
+    &lt;a class=&quot;boton boton-principal&quot; href=&quot;#&quot;&gt;Jugar otra vez&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+</div>
+</section>
+
+<section class="guia-seccion" id="tabla" aria-labelledby="t-tabla">
+<h2 id="t-tabla">Historial y tablas</h2>
+
+<p>En el historial mostrarás los resultados de las partidas finalizadas y su tipo: 3, 5 o 7 rondas. Coloca la tabla dentro de un tablero con la clase <code>.tabla-contenedor</code>, que permite desplazarla horizontalmente en pantallas estrechas.</p>
+
+<div class="guia-ejemplo">
+<h3 class="guia-ejemplo-titulo">Filtro por tipo de partida</h3>
+<p class="guia-nota">Utiliza enlaces GET con el parámetro <code>tipo</code>. Desde Spring Boot leerás ese parámetro para consultar las partidas correspondientes. Separa visualmente el filtro de la tabla.</p>
+<div class="guia-muestra guia-muestra-oscura">
+  <nav class="filtro" aria-label="Filtrar partidas por tipo" style="margin-bottom:36px">
+    <a href="../templates/historial.html" class="es-actual" aria-current="page">Todas</a>
+    <a href="../templates/historial.html?tipo=3">3 rondas</a>
+    <a href="../templates/historial.html?tipo=5">5 rondas</a>
+    <a href="../templates/historial.html?tipo=7">7 rondas</a>
+  </nav>
+</div>
+<pre class="guia-codigo"><code>&lt;nav class=&quot;filtro&quot; aria-label=&quot;Filtrar partidas por tipo&quot;&gt;
+  &lt;a href=&quot;historial.html&quot; class=&quot;es-actual&quot;&gt;Todas&lt;/a&gt;
+  &lt;a href=&quot;historial.html?tipo=3&quot;&gt;3 rondas&lt;/a&gt;
+  &lt;a href=&quot;historial.html?tipo=5&quot;&gt;5 rondas&lt;/a&gt;
+  &lt;a href=&quot;historial.html?tipo=7&quot;&gt;7 rondas&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+</div>
+<div class="guia-ejemplo">
+<p class="guia-nota"><code>.num</code> centra las columnas numéricas y <code>.cifra</code> usa la tipografía de los números del juego.</p>
+<div class="guia-muestra guia-muestra-oscura">
+  <div class="tablero tabla-contenedor">
+    <table class="tabla">
+      <caption class="solo-lectores">Partidas terminadas</caption>
+      <thead>
+        <tr>
+          <th scope="col">Jugador</th>
+          <th scope="col">Tipo</th>
+          <th scope="col" class="num">Marcador</th>
+          <th scope="col">Resultado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Alex</strong></td>
+          <td>5 rondas</td>
+          <td class="num"><span class="cifra">3 – 1</span></td>
+          <td><span class="etiqueta etiqueta-victoria">Victoria</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<pre class="guia-codigo"><code>&lt;div class=&quot;tablero tabla-contenedor&quot;&gt;
+  &lt;table class=&quot;tabla&quot;&gt;
+    &lt;caption class=&quot;solo-lectores&quot;&gt;Partidas terminadas&lt;/caption&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th scope=&quot;col&quot;&gt;Jugador&lt;/th&gt;
+        &lt;th scope=&quot;col&quot;&gt;Tipo&lt;/th&gt;
+        &lt;th scope=&quot;col&quot; class=&quot;num&quot;&gt;Marcador&lt;/th&gt;
+        &lt;th scope=&quot;col&quot;&gt;Resultado&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;&lt;strong&gt;Alex&lt;/strong&gt;&lt;/td&gt;
+        &lt;td&gt;5 rondas&lt;/td&gt;
+        &lt;td class=&quot;num&quot;&gt;&lt;span class=&quot;cifra&quot;&gt;3 – 1&lt;/span&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;span class=&quot;etiqueta etiqueta-victoria&quot;&gt;Victoria&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</section>
+
+<section class="guia-seccion" id="accesibilidad" aria-labelledby="t-accesibilidad">
+<h2 id="t-accesibilidad">Accesibilidad: qué debes comprobar</h2>
+
+<p>La hoja de estilos ya cuida el contraste, el foco visible con el teclado y la adaptación a móvil. Cuando escribas el HTML, comprueba lo siguiente:</p>
+<ul class="guia-lista">
+  <li><strong>Cada campo con su etiqueta:</strong> el <code>for</code> del <code>&lt;label&gt;</code> debe coincidir con el <code>id</code> del campo.</li>
+  <li><strong>Conecta los errores:</strong> el campo con error lleva <code>aria-invalid="true"</code> y <code>aria-describedby</code> apuntando al <code>id</code> de su mensaje.</li>
+  <li><strong>Marca la página actual:</strong> <code>aria-current="page"</code> en el menú y en el filtro. <code>aria-current="step"</code> en la ronda en juego.</li>
+  <li><strong>Las imágenes de las criaturas</strong>: utiliza en <code>alt</code> el nombre de la criatura.</li>
+  <li><strong>Texto solo para lectores de pantalla:</strong> la clase <code>.solo-lectores</code> oculta un texto a la vista pero no a los lectores. Se usa, por ejemplo, para decir «Coste» antes del número de la moneda.</li>
+  <li><strong>Utiliza un único <code>&lt;h1&gt;</code> por página</strong> y organiza los títulos en orden (<code>h2</code> dentro, <code>h3</code> en las cartas).</li>
+</ul>
+
+
+</section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie-interior">
+      <span>Creature Nexus, edición de aula</span>
+      <span>Tu guía de componentes</span>
+    </div>
+  </footer>
+</body>
+</html>

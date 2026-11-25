@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Preparación de una partida: alias, mazo y número de rondas.">
+  <title>Nueva partida · Creature Nexus</title>
+  <!-- Ruta relativa para abrir la maqueta desde la carpeta templates.
+       En Spring Boot, la ruta pública es /css/creature-nexus.css. -->
+  <link rel="stylesheet" href="../static/css/creature-nexus.css">
+</head>
+<body>
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <!-- Cabecera común (candidata a fragmento). Solo cambia el enlace con es-actual. -->
+  <header class="cabecera">
+    <div class="contenedor cabecera-interior">
+      <a class="marca" href="inicio.html">
+        <span class="marca-simbolo" aria-hidden="true"><span></span><span></span><span></span></span>
+        Creature Nexus
+      </a>
+      <nav class="nav-principal" aria-label="Navegación principal">
+        <a class="nav-enlace" href="cartas.html">Cartas</a>
+        <a class="nav-enlace" href="mazos.html">Mazos</a>
+        <a class="nav-enlace es-actual" href="nueva-partida.html" aria-current="page">Jugar</a>
+        <a class="nav-enlace" href="historial.html">Historial</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="contenedor">
+      <div class="encabezado">
+        <div>
+          <h1>Nueva partida</h1>
+          <p>Escribe tu alias, selecciona uno de tus mazos y decide si quieres jugar 3, 5 o 7 rondas. El ordenador seleccionará uno de sus tres mazos al azar.</p>
+        </div>
+      </div>
+
+      <div class="aviso aviso-error" role="alert" hidden>
+        <strong>No se ha podido iniciar la partida</strong>
+        <p>Texto del error.</p>
+      </div>
+
+      <div class="formulario-con-lateral">
+        <section class="tablero" aria-label="Datos de la partida">
+          <form action="#" method="post" novalidate>
+            <div class="campo-grupo">
+              <label for="alias">Tu alias</label>
+              <input class="campo" type="text" id="alias" name="alias" maxlength="50" autocomplete="nickname" aria-describedby="ayuda-alias error-alias">
+              <p class="ayuda" id="ayuda-alias">Aparecerá en el resultado y en el historial.</p>
+              <p class="error-campo" id="error-alias" hidden>Indica un alias.</p>
+            </div>
+            <div class="campo-grupo">
+              <label for="mazoId">Tu mazo</label>
+              <!-- Opción ilustrativa: los datos iniciales no tienen mazos personales. -->
+              <select class="campo" id="mazoId" name="mazoId" aria-describedby="ayuda-mazo error-mazo">
+                <option value="">Selecciona uno de tus mazos</option>
+                <option value="1">Viajeros del Alba (ejemplo)</option>
+              </select>
+              <p class="ayuda" id="ayuda-mazo">Solo aparecen tus mazos personales.</p>
+              <p class="error-campo" id="error-mazo" hidden>Elige un mazo válido.</p>
+            </div>
+            <div class="campo-grupo">
+              <label for="numeroRondas">Tipo de partida</label>
+              <select class="campo" id="numeroRondas" name="numeroRondas" aria-describedby="ayuda-rondas error-rondas">
+                <option value="3">Partida corta · 3 rondas</option>
+                <option value="5" selected>Partida normal · 5 rondas</option>
+                <option value="7">Partida larga · 7 rondas</option>
+              </select>
+              <p class="ayuda" id="ayuda-rondas">Podrás elegir la duración de cada nueva partida.</p>
+              <p class="error-campo" id="error-rondas" hidden>Selecciona 3, 5 o 7 rondas.</p>
+            </div>
+            <div class="form-acciones">
+              <a class="boton" href="mazos.html">Ver mis mazos</a>
+              <button class="boton boton-principal" type="submit">¡A jugar!</button>
+            </div>
+          </form>
+          <!-- Sustituye al formulario cuando no hay mazos personales. -->
+          <div class="estado-vacio" hidden>
+            <h3>Necesitas un mazo para jugar</h3>
+            <p>Crea un mazo de ocho cartas y vuelve aquí.</p>
+            <a class="boton boton-principal" href="formulario-mazo.html">Nuevo mazo</a>
+          </div>
+        </section>
+
+        <aside class="tablero lateral" aria-labelledby="titulo-como">
+          <h2 id="titulo-como">Cómo se juega</h2>
+          <ol class="pasos">
+            <li><strong>Recibes tres cartas</strong>Se reparten al azar desde tu mazo.</li>
+            <li><strong>Eliges una por ronda</strong>El ordenador selecciona otra carta sin repetir las que ya ha utilizado.</li>
+            <li><strong>Se resuelve el enfrentamiento</strong>Las reglas de combate tienen en cuenta el ataque, la defensa y el elemento de las criaturas.</li>
+            <li><strong>Repites el turno</strong>Tu carta utilizada se descarta y recibes otra si todavía quedan cartas disponibles.</li>
+            <li><strong>Termina la partida</strong>Después de 3, 5 o 7 rondas, gana quien haya ganado más rondas. Puede haber empate.</li>
+          </ol>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Pie común (candidato a fragmento). -->
+  <footer class="pie">
+    <div class="contenedor pie-interior">
+      <span>Creature Nexus, edición de aula</span>
+      <span>Maqueta HTML: la lógica de servidor está pendiente de implementar.</span>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Historial de partidas terminadas con filtro por tipo de partida.">
+  <title>Historial · Creature Nexus</title>
+  <!-- Ruta relativa para abrir la maqueta desde la carpeta templates.
+       En Spring Boot, la ruta pública es /css/creature-nexus.css. -->
+  <link rel="stylesheet" href="../static/css/creature-nexus.css">
+</head>
+<body>
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <!-- Cabecera común (candidata a fragmento). Solo cambia el enlace con es-actual. -->
+  <header class="cabecera">
+    <div class="contenedor cabecera-interior">
+      <a class="marca" href="inicio.html">
+        <span class="marca-simbolo" aria-hidden="true"><span></span><span></span><span></span></span>
+        Creature Nexus
+      </a>
+      <nav class="nav-principal" aria-label="Navegación principal">
+        <a class="nav-enlace" href="cartas.html">Cartas</a>
+        <a class="nav-enlace" href="mazos.html">Mazos</a>
+        <a class="nav-enlace" href="nueva-partida.html">Jugar</a>
+        <a class="nav-enlace es-actual" href="historial.html" aria-current="page">Historial</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="contenedor">
+      <div class="encabezado">
+        <div>
+          <h1>Historial</h1>
+          <p>Consulta las partidas terminadas de la más reciente a la más antigua. Puedes filtrarlas por tipo de partida: corta, normal o larga.</p>
+        </div>
+        <div class="encabezado-acciones">
+          <a class="boton boton-principal" href="nueva-partida.html">Nueva partida</a>
+        </div>
+      </div>
+
+      <!-- En Spring Boot, el controlador procesará el parámetro GET "tipo".
+           Esta maqueta HTML muestra todas las partidas, aunque pulses un filtro. -->
+      <section class="zona" style="margin-bottom: 36px;" aria-labelledby="titulo-filtro">
+        <div class="zona-titulo">
+          <h2 id="titulo-filtro">Tipo de partida</h2>
+          <p>Filtra los resultados según el número de rondas.</p>
+        </div>
+        <nav class="filtro" aria-label="Filtrar partidas por tipo">
+          <a class="es-actual" aria-current="page" href="historial.html">Todas</a>
+          <a href="historial.html?tipo=3">Corta · 3 rondas</a>
+          <a href="historial.html?tipo=5">Normal · 5 rondas</a>
+          <a href="historial.html?tipo=7">Larga · 7 rondas</a>
+        </nav>
+      </section>
+
+      <div class="tablero tabla-contenedor">
+        <table class="tabla">
+          <caption class="solo-lectores">Partidas terminadas (filas de ejemplo)</caption>
+          <thead>
+            <tr>
+              <th scope="col">Fecha</th>
+              <th scope="col">Jugador</th>
+              <th scope="col">Su mazo</th>
+              <th scope="col">Mazo rival</th>
+              <th scope="col">Tipo</th>
+              <th scope="col" class="num">Marcador</th>
+              <th scope="col" class="num">Empates</th>
+              <th scope="col">Resultado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><time datetime="2026-11-06T09:30">06/11/2026, 09:30</time></td>
+              <td><strong>Alex</strong></td>
+              <td>Viajeros del Alba</td>
+              <td>Guardianes del Nexus</td>
+              <td>5 rondas</td>
+              <td class="num"><span class="cifra">3 – 1</span></td>
+              <td class="num">1</td>
+              <td><span class="etiqueta etiqueta-victoria">Victoria</span></td>
+            </tr>
+            <tr>
+              <td><time datetime="2026-11-06T08:40">06/11/2026, 08:40</time></td>
+              <td><strong>Lucía</strong></td>
+              <td>Defensores del Río</td>
+              <td>Furia Elemental</td>
+              <td>3 rondas</td>
+              <td class="num"><span class="cifra">1 – 2</span></td>
+              <td class="num">0</td>
+              <td><span class="etiqueta etiqueta-derrota">Derrota</span></td>
+            </tr>
+            <tr>
+              <td><time datetime="2026-11-05T17:20">05/11/2026, 17:20</time></td>
+              <td><strong>Mario</strong></td>
+              <td>Semillas del Nexus</td>
+              <td>Equilibrio Primordial</td>
+              <td>7 rondas</td>
+              <td class="num"><span class="cifra">3 – 3</span></td>
+              <td class="num">1</td>
+              <td><span class="etiqueta etiqueta-empate">Empate</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Mostrar cuando no haya partidas terminadas. -->
+      <div class="estado-vacio" hidden>
+        <h3>No hay partidas que mostrar</h3>
+        <p>Prueba otro tipo de partida o comienza una nueva. Las partidas abandonadas no se guardan.</p>
+        <a class="boton boton-principal" href="nueva-partida.html">Nueva partida</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Pie común (candidato a fragmento). -->
+  <footer class="pie">
+    <div class="contenedor pie-interior">
+      <span>Creature Nexus, edición de aula</span>
+      <span>Maqueta HTML: la lógica de servidor está pendiente de implementar.</span>
+    </div>
+  </footer>
+</body>
+</html>

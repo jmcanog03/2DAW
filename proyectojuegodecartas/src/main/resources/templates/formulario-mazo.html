@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Constructor de mazos de Creature Nexus.">
+  <title>Nuevo mazo · Creature Nexus</title>
+  <!-- Ruta relativa para abrir la maqueta desde la carpeta templates.
+       En Spring Boot, la ruta pública es /css/creature-nexus.css. -->
+  <link rel="stylesheet" href="../static/css/creature-nexus.css">
+  <!-- Ajuste visual de las miniaturas, sin modificar el CSS común. -->
+  <style>
+    .opcion-nombre {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .opcion-miniatura {
+      display: block;
+      width: 58px;
+      height: 44px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <!-- Cabecera común (candidata a fragmento). Solo cambia el enlace con es-actual. -->
+  <header class="cabecera">
+    <div class="contenedor cabecera-interior">
+      <a class="marca" href="inicio.html">
+        <span class="marca-simbolo" aria-hidden="true"><span></span><span></span><span></span></span>
+        Creature Nexus
+      </a>
+      <nav class="nav-principal" aria-label="Navegación principal">
+        <a class="nav-enlace" href="cartas.html">Cartas</a>
+        <a class="nav-enlace es-actual" href="mazos.html" aria-current="page">Mazos</a>
+        <a class="nav-enlace" href="nueva-partida.html">Jugar</a>
+        <a class="nav-enlace" href="historial.html">Historial</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="contenedor">
+      <div class="encabezado">
+        <div>
+          <ol class="migas">
+            <li><a href="mazos.html">Mazos</a></li>
+            <li aria-current="page">Nuevo mazo</li>
+          </ol>
+          <h1>Nuevo mazo</h1>
+          <p>En edición, cargar el nombre actual y marcar las cartas que ya forman parte del mazo.</p>
+        </div>
+      </div>
+
+      <div class="formulario-con-lateral">
+        <section class="tablero" aria-label="Composición del mazo">
+          <div class="aviso aviso-error" role="alert" hidden>
+            <strong>No se ha podido guardar el mazo</strong>
+            <p>Ejemplo: el coste total es de 104 puntos y el máximo es 100.</p>
+          </div>
+
+          <form action="#" method="post" novalidate>
+            <div class="campo-grupo">
+              <label for="nombre">Nombre del mazo</label>
+              <input class="campo" type="text" id="nombre" name="nombre" maxlength="80" aria-describedby="error-nombre">
+              <p class="error-campo" id="error-nombre" hidden>Ejemplo: indica un nombre para el mazo.</p>
+            </div>
+
+            <!-- Si la selección no es válida, añadir es-invalido al fieldset y mostrar #error-cartas. -->
+            <fieldset class="seleccion" aria-describedby="ayuda-cartas error-cartas">
+              <legend>Elige tus cartas</legend>
+              <p class="ayuda" id="ayuda-cartas">Marca exactamente ocho cartas distintas, con un máximo de 100 puntos y al menos dos por elemento. El servidor comprobará las reglas al guardar.</p>
+              <!-- MAQUETA: solo se muestran seis cartas como ejemplo visual. El alumnado debe
+                   sustituir estas opciones por las cartas disponibles en la base de datos,
+                   conservando su imagen, elemento, nombre, atributos y coste. -->
+              <p class="ayuda">Muestra visual: seis cartas de ejemplo. En la aplicación aparecerán todas las disponibles.</p>
+              <div class="lista-opciones">
+                <label class="opcion es-fuego">
+                  <!-- Identificador ilustrativo: deberá proceder de MySQL. -->
+                  <input type="checkbox" name="cartaIds" value="1">
+                  <span class="opcion-nombre">
+                    <img class="opcion-miniatura" src="../static/img/criaturas/dragon-igneo.webp" alt="" width="58" height="44" loading="lazy">
+                    Dragón Ígneo
+                  </span>
+                  <span class="opcion-datos">Ataque 9, defensa 8</span>
+                  <span class="opcion-coste"><span class="solo-lectores">Coste </span>17</span>
+                </label>
+                <label class="opcion es-fuego">
+                  <!-- Identificador ilustrativo: deberá proceder de MySQL. -->
+                  <input type="checkbox" name="cartaIds" value="3">
+                  <span class="opcion-nombre">
+                    <img class="opcion-miniatura" src="../static/img/criaturas/salamandra-ambar.webp" alt="" width="58" height="44" loading="lazy">
+                    Salamandra Ámbar
+                  </span>
+                  <span class="opcion-datos">Ataque 8, defensa 3</span>
+                  <span class="opcion-coste"><span class="solo-lectores">Coste </span>11</span>
+                </label>
+                <label class="opcion es-agua">
+                  <!-- Identificador ilustrativo: deberá proceder de MySQL. -->
+                  <input type="checkbox" name="cartaIds" value="7">
+                  <span class="opcion-nombre">
+                    <img class="opcion-miniatura" src="../static/img/criaturas/leviatan-azul.webp" alt="" width="58" height="44" loading="lazy">
+                    Leviatán Azul
+                  </span>
+                  <span class="opcion-datos">Ataque 9, defensa 7</span>
+                  <span class="opcion-coste"><span class="solo-lectores">Coste </span>16</span>
+                </label>
+                <label class="opcion es-agua">
+                  <!-- Identificador ilustrativo: deberá proceder de MySQL. -->
+                  <input type="checkbox" name="cartaIds" value="8">
+                  <span class="opcion-nombre">
+                    <img class="opcion-miniatura" src="../static/img/criaturas/sirena-de-coral.webp" alt="" width="58" height="44" loading="lazy">
+                    Sirena de Coral
+                  </span>
+                  <span class="opcion-datos">Ataque 8, defensa 4</span>
+                  <span class="opcion-coste"><span class="solo-lectores">Coste </span>12</span>
+                </label>
+                <label class="opcion es-planta">
+                  <!-- Identificador ilustrativo: deberá proceder de MySQL. -->
+                  <input type="checkbox" name="cartaIds" value="13">
+                  <span class="opcion-nombre">
+                    <img class="opcion-miniatura" src="../static/img/criaturas/ent-ancestral.webp" alt="" width="58" height="44" loading="lazy">
+                    Ent Ancestral
+                  </span>
+                  <span class="opcion-datos">Ataque 4, defensa 10</span>
+                  <span class="opcion-coste"><span class="solo-lectores">Coste </span>14</span>
+                </label>
+                <label class="opcion es-planta">
+                  <!-- Identificador ilustrativo: deberá proceder de MySQL. -->
+                  <input type="checkbox" name="cartaIds" value="18">
+                  <span class="opcion-nombre">
+                    <img class="opcion-miniatura" src="../static/img/criaturas/brote-saltarin.webp" alt="" width="58" height="44" loading="lazy">
+                    Brote Saltarín
+                  </span>
+                  <span class="opcion-datos">Ataque 3, defensa 5</span>
+                  <span class="opcion-coste"><span class="solo-lectores">Coste </span>8</span>
+                </label>
+              </div>
+              <p class="error-campo" id="error-cartas" hidden>Ejemplo: has marcado 7 cartas; deben ser 8.</p>
+            </fieldset>
+
+            <div class="form-acciones">
+              <a class="boton" href="mazos.html">Cancelar</a>
+              <button class="boton boton-principal" type="submit">Guardar mazo</button>
+            </div>
+          </form>
+        </section>
+
+        <aside class="tablero lateral" aria-labelledby="titulo-reglas">
+          <h2 id="titulo-reglas">Reglas del mazo</h2>
+          <ul class="reglas">
+            <li>Cartas distintas <strong>8</strong></li>
+            <li>Coste máximo <strong>100</strong></li>
+            <li><span class="elemento es-fuego">Fuego</span> <strong>2 o más</strong></li>
+            <li><span class="elemento es-agua">Agua</span> <strong>2 o más</strong></li>
+            <li><span class="elemento es-planta">Planta</span> <strong>2 o más</strong></li>
+          </ul>
+          <div class="nota"><p>Si hay un error, la página debe conservar el nombre y las cartas marcadas.</p></div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Pie común (candidato a fragmento). -->
+  <footer class="pie">
+    <div class="contenedor pie-interior">
+      <span>Creature Nexus, edición de aula</span>
+      <span>Maqueta HTML: la lógica de servidor está pendiente de implementar.</span>
+    </div>
+  </footer>
+</body>
+</html>

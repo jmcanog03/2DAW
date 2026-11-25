@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cómo utilizar los recursos de Creature Nexus: maquetas, imágenes, datos iniciales y trabajo pendiente en Spring Boot.">
+  <title>Guía de inicio · Creature Nexus</title>
+  <link rel="stylesheet" href="static/css/creature-nexus.css">
+  <!-- Solo estilos de documentación: se reutiliza la hoja de estilos del juego. -->
+  <style>
+    /* Ancho exclusivo de la documentación: conserva el CSS de las pantallas del juego. */
+    :root { --ancho: 1320px; }
+
+    .documentacion { display: grid; grid-template-columns: 225px minmax(0, 1fr); gap: 40px; align-items: start; }
+    .documentacion-indice { position: sticky; top: 22px; }
+    .documentacion-indice ol { list-style: none; padding: 0; margin: 0; counter-reset: punto; }
+    .documentacion-indice li { counter-increment: punto; }
+    .documentacion-indice a { display: block; padding: 8px 12px; border-radius: 10px; color: var(--sobre-mesa-2); text-decoration: none; font-size: 15px; }
+    .documentacion-indice a::before { content: counter(punto) '. '; color: var(--oro); font-weight: 700; }
+    .documentacion-indice a:hover, .documentacion-indice a:focus-visible { background: var(--mesa-oscura); color: var(--sobre-mesa); }
+    .documentacion-seccion { padding-top: 24px; margin-bottom: 40px; scroll-margin-top: 12px; }
+    .documentacion-seccion > h2 { font-size: 34px; margin-bottom: 12px; }
+    .documentacion-seccion > p { max-width: 76ch; color: var(--sobre-mesa-2); }
+    .documentacion-seccion > p strong { color: var(--sobre-mesa); }
+    .documentacion-seccion code { padding: 2px 6px; background: var(--mesa-oscura); border-radius: 5px; color: var(--oro-claro); overflow-wrap: anywhere; }
+    .documentacion-tabla { overflow-x: auto; padding: 0; margin: 14px 0 24px; }
+    .documentacion-tabla .tabla { min-width: 550px; }
+    .documentacion-tabla code, .tablero code { background: var(--tablero-2); color: var(--tinta); padding: 2px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+    .doc-tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(205px, 1fr)); gap: 16px; margin: 18px 0; }
+    .doc-tarjetas .tablero { padding: 20px; }
+    .doc-tarjetas .tablero h3 { font-size: 23px; }
+    .doc-tarjetas .tablero p { margin: 8px 0 0; color: var(--texto-2); font-size: 15px; }
+    .doc-etapas { margin: 12px 0 20px; padding: 0; list-style: none; counter-reset: etapa; }
+    .doc-etapas li { counter-increment: etapa; margin: 0 0 12px; padding: 16px 18px 16px 58px; position: relative; }
+    .doc-etapas li::before { content: counter(etapa); position: absolute; left: 14px; top: 14px; border: var(--borde-fino); border-radius: 50%; width: 31px; height: 31px; line-height: 27px; text-align: center; background: var(--oro); font-family: var(--titulo); }
+    .doc-etapas li strong { display: block; margin-bottom: 3px; }
+    .doc-etapas li p { color: var(--texto-2); margin: 0; }
+    .doc-nota { margin-top: 18px; }
+    .doc-lista { padding-left: 22px; }
+    .doc-lista li { margin-bottom: 9px; }
+    .doc-arte { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+    .doc-arte figure { margin: 0; text-align: center; }
+    .doc-arte img { height: 130px; width: 100%; object-fit: contain; background: var(--tablero-2); border: var(--borde-fino); border-radius: 12px; }
+    .doc-arte figcaption { margin-top: 6px; font-size: 14px; font-weight: 700; }
+    .doc-enlaces { display: flex; flex-wrap: wrap; gap: 12px; margin: 18px 0 26px; }
+    .doc-pie { max-width: 65ch; }
+    @media (max-width: 900px) { .documentacion { grid-template-columns: 1fr; gap: 12px; } .documentacion-indice { position: static; } .documentacion-indice ol { display: flex; flex-wrap: wrap; gap: 3px 10px; } .documentacion-indice a { padding: 5px 9px; } }
+    @media (max-width: 520px) { .doc-arte { gap: 6px; } .doc-arte img { height: 90px; } .documentacion-seccion > h2 { font-size: 29px; } }
+      /* Evita que las tablas ensanchen toda la página en pantallas pequeñas. */
+    @media (max-width: 900px) {
+      .documentacion { grid-template-columns: minmax(0, 1fr); }
+      .documentacion > div { min-width: 0; }
+      .doc-arte { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .doc-arte figure { min-width: 0; }
+    }
+  </style>
+</head>
+<body>
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+  <header class="cabecera">
+    <div class="contenedor cabecera-interior">
+      <a class="marca" href="templates/inicio.html">
+        <span class="marca-simbolo" aria-hidden="true"><span></span><span></span><span></span></span>
+        Creature Nexus
+      </a>
+      <nav class="nav-principal" aria-label="Documentación del paquete">
+        <a class="nav-enlace es-actual" aria-current="page" href="README.html">Guía de inicio</a>
+        <a class="nav-enlace" href="documentacion/guia-de-desarrollo.html">Guía de desarrollo</a>
+        <a class="nav-enlace" href="documentacion/guia-componentes.html">Guía de componentes</a>
+        <a class="nav-enlace" href="templates/inicio.html">Ver maquetas</a>
+      </nav>
+    </div>
+  </header>
+  <main id="contenido">
+    <div class="contenedor">
+      <div class="encabezado">
+        <div>
+          <h1>Guía de inicio</h1>
+          <p>Aquí tienes los recursos de Creature Nexus para desarrollar tu aplicación web con Java, Spring Boot, Thymeleaf y MySQL.</p>
+        </div>
+        <div class="encabezado-acciones">
+          <a class="boton boton-principal" href="templates/inicio.html">Abrir el juego</a>
+          <a class="boton" href="documentacion/guia-componentes.html">Consultar componentes</a>
+          <a class="boton" href="documentacion/guia-de-desarrollo.html">Consultar la guía de desarrollo</a>
+        </div>
+      </div>
+      <div class="documentacion">
+        <nav class="documentacion-indice" aria-label="Índice de la guía de inicio">
+          <ol>
+            <li><a href="#contenido-paquete">Qué contiene el paquete</a></li>
+            <li><a href="#ver-maquetas">Ver e integrar las maquetas</a></li>
+            <li><a href="#datos-iniciales">Datos iniciales</a></li>
+            <li><a href="#reglas">Reglas del juego</a></li>
+            <li><a href="#imagenes">Imágenes predeterminadas</a></li>
+            <li><a href="#desarrollo">Lo que vas a desarrollar</a></li>
+          </ol>
+        </nav>
+        <div>
+          <div class="aviso aviso-exito" role="note">
+            <strong>Tus recursos para empezar</strong>
+            <p>Tienes a tu disposición las pantallas, los estilos, las imágenes y los datos iniciales de Creature Nexus. A partir de estos recursos construirás tu aplicación con Spring Boot.</p>
+          </div>
+          <div class="tablero" style="margin:18px 0 6px;padding:18px 22px;">
+            <h2 style="font-size:25px;">¿Por dónde empezar?</h2>
+            <p>Si no sabes qué desarrollar primero, consulta la <a href="documentacion/guia-de-desarrollo.html"><strong>Guía de desarrollo</strong></a>. Encontrarás diez etapas para organizar tu trabajo y comprobar tus avances.</p>
+          </div>
+          <section class="documentacion-seccion" id="contenido-paquete" aria-labelledby="titulo-contenido">
+            <h2 id="titulo-contenido">1. Qué contiene el paquete</h2>
+            <p>Puedes explorar el diseño del juego antes de empezar a programar. Las nueve plantillas son <strong>maquetas HTML</strong> que adaptarás a Thymeleaf para mostrar los datos de tu aplicación.</p>
+            <div class="doc-tarjetas">
+              <div class="tablero"><h3>9 plantillas</h3><p>Explora las páginas del juego en <code>templates/</code>. Sus datos ilustrativos te ayudarán a preparar las vistas dinámicas.</p></div>
+              <div class="tablero"><h3>CSS y fuentes</h3><p>Una hoja de estilos común en <code>static/css/</code> y tipografías con sus licencias en <code>static/fonts/</code>.</p></div>
+              <div class="tablero"><h3>21 ilustraciones</h3><p>18 criaturas originales y 3 imágenes predeterminadas, en <code>static/img/criaturas/</code>.</p></div>
+              <div class="tablero"><h3>4 CSV</h3><p>Tipos, cartas, mazos protegidos y asociaciones, en <code>datos-iniciales/</code>.</p></div>
+            </div>
+            <div class="tablero">
+              <h3>Dos guías para acompañar el trabajo</h3>
+              <p>La <a href="documentacion/guia-de-desarrollo.html"><strong>Guía de desarrollo</strong></a> te propone un recorrido por etapas para decidir qué construir primero y comprobar que cada parte funciona antes de continuar.</p>
+              <p>Consulta la <a href="documentacion/guia-componentes.html"><strong>Guía de componentes</strong></a> cuando adaptes las maquetas a Thymeleaf. Encontrarás explicaciones sobre las pantallas, las clases CSS y los elementos HTML.</p>
+              <p><strong>Orden recomendado:</strong> empieza por esta guía, sigue la Guía de desarrollo mientras programas y consulta la Guía de componentes al trabajar con las vistas.</p>
+              <div class="doc-enlaces">
+                <a class="boton boton-principal" href="documentacion/guia-de-desarrollo.html">Ver guía de desarrollo</a>
+                <a class="boton" href="documentacion/guia-componentes.html">Ver guía de componentes</a>
+              </div>
+              <div class="nota doc-nota"><p>Tienes ambas guías en la carpeta de documentación. Cuando incorpores las tipografías a tu aplicación, conserva también sus archivos de licencia.</p></div>
+            </div>
+          </section>
+          <section class="documentacion-seccion" id="ver-maquetas" aria-labelledby="titulo-ver">
+            <h2 id="titulo-ver">2. Ver e integrar las maquetas</h2>
+            <p>Para ver el diseño, descomprime el ZIP <strong>completo</strong> sin cambiar la estructura de carpetas. Abre <a href="templates/inicio.html"><code>templates/inicio.html</code></a> con el navegador y navega entre las distintas páginas.</p>
+            <p>Las pantallas contienen nombres de cartas, resultados y formularios de ejemplo. Úsalos para comprender el recorrido de la aplicación y después sustitúyelos por información y operaciones reales.</p>
+            <ol class="doc-etapas">
+              <li class="tablero"><strong>Crea tu proyecto Spring Boot.</strong><p>Configura las dependencias que necesitas para desarrollar Creature Nexus.</p></li>
+              <li class="tablero"><strong>Copia las nueve plantillas HTML.</strong><p>Colócalas en <code>src/main/resources/templates/</code>.</p></li>
+              <li class="tablero"><strong>Copia los estilos, las fuentes y las imágenes.</strong><p>Conserva sus subcarpetas dentro de <code>src/main/resources/static/</code>.</p></li>
+              <li class="tablero"><strong>Adapta las rutas públicas.</strong><p>Las maquetas usan rutas relativas para que puedas explorarlas en el navegador. En Spring Boot utilizarás rutas públicas como <code>/css/creature-nexus.css</code> y <code>/img/criaturas/dragon-igneo.webp</code>.</p></li>
+              <li class="tablero"><strong>Genera el contenido dinámico.</strong><p>Sustituye los datos de ejemplo por información del servidor mediante Thymeleaf, incluidos los listados de cartas, mazos y resultados.</p></li>
+            </ol>
+            <div class="aviso aviso-error" role="note"><strong>Atención a las rutas</strong><p>Cuando adaptes las maquetas, revisa sus enlaces y rutas para que apunten a los controladores y recursos de tu aplicación Spring Boot.</p></div>
+          </section>
+          <section class="documentacion-seccion" id="datos-iniciales" aria-labelledby="titulo-datos">
+            <h2 id="titulo-datos">3. Datos iniciales (CSV)</h2>
+            <p>Los cuatro CSV están en <strong>UTF-8 con BOM</strong> para que puedas consultarlos con facilidad. Utilízalos como referencia para preparar los datos iniciales de tu aplicación.</p>
+            <div class="tablero documentacion-tabla">
+              <table class="tabla">
+                <caption class="solo-lectores">Archivos de datos iniciales y contenido</caption>
+                <thead><tr><th scope="col">Archivo</th><th scope="col">Contenido</th></tr></thead>
+                <tbody>
+                  <tr><td><a href="datos-iniciales/tipos_carta.csv"><code>tipos_carta.csv</code></a></td><td>Los tres elementos: Fuego, Agua y Planta.</td></tr>
+                  <tr><td><a href="datos-iniciales/cartas_iniciales.csv"><code>cartas_iniciales.csv</code></a></td><td>18 criaturas, código de importación, nombre, elemento, ataque, defensa y ruta de la ilustración.</td></tr>
+                  <tr><td><a href="datos-iniciales/mazos_predefinidos.csv"><code>mazos_predefinidos.csv</code></a></td><td>Tres mazos del ordenador con <code>predefinido=true</code>.</td></tr>
+                  <tr><td><a href="datos-iniciales/composicion_mazos.csv"><code>composicion_mazos.csv</code></a></td><td>24 asociaciones entre los códigos de mazos y cartas.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Los códigos <code>F01</code>, <code>A02</code>, <code>P05</code> y otros similares te permiten relacionar las cartas y los mazos de los CSV. Para tus entidades JPA puedes utilizar identificadores generados por la base de datos.</p>
+            <p>Cuando prepares los registros, identifica cada carta y cada mazo mediante los códigos de referencia de los CSV y establece sus relaciones utilizando tus entidades JPA.</p>
+            <div class="tablero"><h3>Comprobación de la carga</h3><div class="doc-tarjetas"><span class="etiqueta etiqueta-oro">3 tipos</span><span class="etiqueta etiqueta-oro">18 cartas</span><span class="etiqueta etiqueta-oro">3 mazos</span><span class="etiqueta etiqueta-oro">24 asociaciones</span></div><p>Al poner en marcha el proyecto, podrás crear tus propios mazos desde la aplicación. En las maquetas encontrarás algunos nombres de ejemplo.</p></div>
+          </section>
+          <section class="documentacion-seccion" id="reglas" aria-labelledby="titulo-reglas">
+            <h2 id="titulo-reglas">4. Reglas de cartas, mazos y partidas</h2>
+            <p>Cada carta pertenece a un único elemento y tiene valores de ataque y defensa entre <strong>1 y 10</strong>. Su coste se calcula sumando <strong>ataque + defensa</strong>.</p>
+            <ul class="reglas-mesa" aria-label="Reglas para construir un mazo">
+              <li><strong>8</strong> cartas distintas</li>
+              <li><strong>100</strong> puntos como máximo</li>
+              <li><strong>2+</strong> cartas de cada elemento</li>
+            </ul>
+            <div class="tablero">
+              <h3>Qué se puede modificar</h3>
+              <p>Una criatura puede pertenecer a más de un mazo, pero no repetirse dentro del mismo. Esta es una relación <strong>muchos a muchos (N:M)</strong> entre mazos y criaturas. Tendrás que modelarla con JPA para que la composición de cada mazo quede guardada en MySQL.</p>
+              <p>Los mazos predefinidos del ordenador <strong>no pueden modificarse ni eliminarse</strong>. Los mazos personales sí pueden modificarse o eliminarse si cumplen las reglas.</p>
+              <p><strong>Una carta no se puede modificar ni eliminar si está incluida en algún mazo.</strong></p>
+              <p>Al comenzar una partida elegirás <strong>3, 5 o 7 rondas</strong>. El ordenador seleccionará aleatoriamente uno de sus mazos predefinidos y verás su nombre durante el combate.</p>
+              <p><strong>Diseña tus propias reglas de enfrentamiento</strong> usando el ataque, la defensa y el elemento de las criaturas. Deberás aplicarlas de forma coherente y mostrar cómo se ha resuelto cada ronda. Al final, gana quien haya ganado más rondas. Si ambos han ganado el mismo número, la partida termina en empate.</p>
+            </div>
+          </section>
+          <section class="documentacion-seccion" id="imagenes" aria-labelledby="titulo-imagenes">
+            <h2 id="titulo-imagenes">5. Imágenes de cartas nuevas</h2>
+            <p>Cuando crees una carta, podrás añadirle una imagen de forma opcional. Si dejas el campo vacío, muestra la <strong>imagen predeterminada de su elemento</strong>.</p>
+            <div class="tablero">
+              <div class="doc-arte">
+                <figure><img src="static/img/criaturas/imagen-defecto-fuego.webp" alt="Imagen predeterminada para criaturas de Fuego"><figcaption><span class="elemento es-fuego">Fuego</span></figcaption></figure>
+                <figure><img src="static/img/criaturas/imagen-defecto-agua.webp" alt="Imagen predeterminada para criaturas de Agua"><figcaption><span class="elemento es-agua">Agua</span></figcaption></figure>
+                <figure><img src="static/img/criaturas/imagen-defecto-planta.webp" alt="Imagen predeterminada para criaturas de Planta"><figcaption><span class="elemento es-planta">Planta</span></figcaption></figure>
+              </div>
+              <div class="nota doc-nota"><p>Utiliza estas tres imágenes como ilustraciones predeterminadas según el elemento de la carta. Los registros iniciales de criaturas están descritos en <code>cartas_iniciales.csv</code>.</p></div>
+            </div>
+            <p>Las imágenes iniciales WebP están en la carpeta de recursos. Para las imágenes nuevas que subas desde el formulario, implementa un almacenamiento persistente de archivos JPG o PNG y guarda su referencia en MySQL.</p>
+          </section>
+          <section class="documentacion-seccion" id="desarrollo" aria-labelledby="titulo-desarrollo">
+            <h2 id="titulo-desarrollo">6. Lo que vas a desarrollar</h2>
+            <p>Tu objetivo es convertir las maquetas y los datos de referencia en un juego web funcional. Organiza el código Java y conecta las páginas con la lógica del servidor y la base de datos.</p>
+            <div class="doc-tarjetas">
+              <div class="tablero"><h3>Spring Boot</h3><p>Controladores y servicios para recibir las peticiones y ejecutar las operaciones.</p></div>
+              <div class="tablero"><h3>Thymeleaf</h3><p>Adapta las maquetas a vistas dinámicas y conecta los formularios, los errores y los mensajes.</p></div>
+              <div class="tablero"><h3>MySQL y JPA</h3><p>Guarda en MySQL los tipos, las cartas, los mazos, sus relaciones y los resultados de las partidas finalizadas.</p></div>
+              <div class="tablero"><h3>Colecciones Java</h3><p>Gestiona la mano del jugador y las partidas de 3, 5 o 7 rondas con colecciones Java en el servidor.</p></div>
+            </div>
+            <div class="tablero">
+              <h3>Partidas e historial</h3>
+              <p>Durante el combate elegirás cartas de una mano de tres, que se irá reponiendo con las cartas disponibles de tu mazo. El ordenador elegirá sus cartas automáticamente, sin repetir las utilizadas. En la pantalla verás el nombre del mazo rival y el resultado de cada ronda, pero no su mano.</p>
+              <p>Guarda en MySQL únicamente las partidas finalizadas, junto con el alias, los nombres de ambos mazos, el número de rondas elegido y el resultado final. Permite consultar <strong>todas las partidas</strong> o filtrar el historial por partidas de <strong>3, 5 o 7 rondas</strong>.</p>
+              <div class="nota doc-nota"><p>Consulta el enunciado del proyecto para conocer los requisitos evaluables y las condiciones de entrega. Utiliza esta guía para localizar y aprovechar los recursos.</p></div>
+            </div>
+            <div class="doc-enlaces">
+              <a class="boton boton-principal" href="templates/inicio.html">Explorar las maquetas</a>
+              <a class="boton" href="documentacion/guia-componentes.html">Ver guía de componentes</a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="pie"><div class="contenedor pie-interior"><span>Creature Nexus, edición de aula</span><span>Guía de inicio de los recursos del proyecto</span></div></footer>
+</body>
+</html>

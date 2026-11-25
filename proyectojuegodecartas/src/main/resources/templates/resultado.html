@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Resultado final de una partida de 3, 5 o 7 rondas.">
+  <title>Resultado · Creature Nexus</title>
+  <!-- Ruta relativa para abrir la maqueta desde la carpeta templates.
+       En Spring Boot, la ruta pública es /css/creature-nexus.css. -->
+  <link rel="stylesheet" href="../static/css/creature-nexus.css">
+</head>
+<body>
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <!-- Cabecera común (candidata a fragmento). Solo cambia el enlace con es-actual. -->
+  <header class="cabecera">
+    <div class="contenedor cabecera-interior">
+      <a class="marca" href="inicio.html">
+        <span class="marca-simbolo" aria-hidden="true"><span></span><span></span><span></span></span>
+        Creature Nexus
+      </a>
+      <nav class="nav-principal" aria-label="Navegación principal">
+        <a class="nav-enlace" href="cartas.html">Cartas</a>
+        <a class="nav-enlace" href="mazos.html">Mazos</a>
+        <a class="nav-enlace es-actual" href="nueva-partida.html" aria-current="page">Jugar</a>
+        <a class="nav-enlace" href="historial.html">Historial</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="contenedor">
+      <!-- Variantes: resultado-victoria («¡Victoria!»), resultado-derrota («Derrota»),
+           resultado-empate («Empate»). Datos de ejemplo, no proceden de MySQL. -->
+      <section class="tablero resultado resultado-victoria" aria-labelledby="titulo-resultado">
+        <h1 id="titulo-resultado" class="resultado-banda">¡Victoria!</h1>
+        <p>Alex gana tres rondas frente a una del ordenador. La partida de 5 rondas ha terminado y su resultado se ha guardado en el historial.</p>
+        <div class="marcador-final">
+          <div><span>Alex</span><strong>3</strong></div>
+          <strong class="marcador-separador" aria-hidden="true">–</strong>
+          <div><span>Ordenador</span><strong>1</strong></div>
+        </div>
+        <dl class="datos">
+          <dt>Tipo de partida</dt><dd>Normal · 5 rondas</dd>
+          <dt>Rondas empatadas</dt><dd>1</dd>
+          <dt>Tu mazo</dt><dd>Viajeros del Alba</dd>
+          <dt>Mazo rival</dt><dd>Guardianes del Nexus</dd>
+        </dl>
+        <div class="resultado-acciones">
+          <a class="boton boton-principal" href="nueva-partida.html">Jugar otra vez</a>
+          <a class="boton" href="historial.html">Ver historial</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Pie común (candidato a fragmento). -->
+  <footer class="pie">
+    <div class="contenedor pie-interior">
+      <span>Creature Nexus, edición de aula</span>
+      <span>Maqueta HTML: la lógica de servidor está pendiente de implementar.</span>
+    </div>
+  </footer>
+</body>
+</html>

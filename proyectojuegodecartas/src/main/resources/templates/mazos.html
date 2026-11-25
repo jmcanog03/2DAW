@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mazos del ordenador y mazos personales de Creature Nexus.">
+  <title>Mazos · Creature Nexus</title>
+  <!-- Ruta relativa para abrir la maqueta desde la carpeta templates.
+       En Spring Boot, la ruta pública es /css/creature-nexus.css. -->
+  <link rel="stylesheet" href="../static/css/creature-nexus.css">
+</head>
+<body>
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <!-- Cabecera común (candidata a fragmento). Solo cambia el enlace con es-actual. -->
+  <header class="cabecera">
+    <div class="contenedor cabecera-interior">
+      <a class="marca" href="inicio.html">
+        <span class="marca-simbolo" aria-hidden="true"><span></span><span></span><span></span></span>
+        Creature Nexus
+      </a>
+      <nav class="nav-principal" aria-label="Navegación principal">
+        <a class="nav-enlace" href="cartas.html">Cartas</a>
+        <a class="nav-enlace es-actual" href="mazos.html" aria-current="page">Mazos</a>
+        <a class="nav-enlace" href="nueva-partida.html">Jugar</a>
+        <a class="nav-enlace" href="historial.html">Historial</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="contenedor">
+      <div class="encabezado">
+        <div>
+          <h1>Mazos</h1>
+          <p>Los tres mazos del ordenador y los que hayas creado. Para jugar necesitas al menos un mazo propio.</p>
+        </div>
+        <div class="encabezado-acciones">
+          <a class="boton boton-principal" href="formulario-mazo.html">Nuevo mazo</a>
+        </div>
+      </div>
+
+      <div class="aviso aviso-exito" role="status" hidden>
+        <strong>Mazo guardado</strong>
+        <p>Texto de confirmación.</p>
+      </div>
+      <div class="aviso aviso-error" role="alert" hidden>
+        <strong>Operación no permitida</strong>
+        <p>Texto del error.</p>
+      </div>
+
+      <ul class="reglas-mesa" aria-label="Reglas de construcción">
+        <li><strong>8</strong>cartas distintas</li>
+        <li><strong>100</strong>puntos como máximo</li>
+        <li><strong>2+</strong>cartas de cada elemento</li>
+      </ul>
+
+      <section class="seccion" aria-labelledby="titulo-personales">
+        <div class="seccion-titulo">
+          <h2 id="titulo-personales">Tus mazos</h2>
+          <p>Ejemplo visual: los datos iniciales no incluyen mazos personales.</p>
+        </div>
+        <div class="lista-mazos">
+          <article class="tablero mazo">
+            <div class="mazo-cabecera">
+              <div>
+                <h3>Viajeros del Alba</h3>
+                <p>Mazo de ejemplo</p>
+              </div>
+              <span class="etiqueta etiqueta-oro">Tuyo</span>
+            </div>
+            <!-- Lomo: una franja por carta con el color de su elemento. -->
+            <ul class="lomo" aria-hidden="true"><li class="es-fuego" title="Fénix Carmesí"></li><li class="es-fuego" title="Zorro Solar"></li><li class="es-fuego" title="Chispa Errante"></li><li class="es-agua" title="Sirena de Coral"></li><li class="es-agua" title="Náiade de Bruma"></li><li class="es-agua" title="Pez Linterna"></li><li class="es-planta" title="Lobo de Musgo"></li><li class="es-planta" title="Espinazo Verde"></li></ul>
+            <ul class="recuento-elementos"><li><span class="elemento es-fuego">3 Fuego</span></li><li><span class="elemento es-agua">3 Agua</span></li><li><span class="elemento es-planta">2 Planta</span></li></ul>
+            <div class="coste-mazo">
+              <div class="coste-mazo-texto"><span>Coste</span><span class="cifra">89 / 100</span></div>
+              <progress value="89" max="100">89 de 100 puntos</progress>
+            </div>
+            <details class="mazo-cartas">
+              <summary>Ver las ocho cartas</summary>
+              <ul><li>Fénix Carmesí</li><li>Zorro Solar</li><li>Chispa Errante</li><li>Sirena de Coral</li><li>Náiade de Bruma</li><li>Pez Linterna</li><li>Lobo de Musgo</li><li>Espinazo Verde</li></ul>
+            </details>
+            <div class="mazo-pie">
+              <a class="boton boton-peq" href="formulario-mazo.html">Editar</a>
+              <form action="#" method="post">
+                <button class="boton boton-peq boton-peligro" type="submit">Eliminar</button>
+              </form>
+            </div>
+          </article>
+        </div>
+        <!-- Mostrar cuando no haya mazos personales. -->
+        <div class="estado-vacio" hidden>
+          <h3>Todavía no tienes mazos</h3>
+          <p>Crea uno para poder empezar una partida.</p>
+          <a class="boton boton-principal" href="formulario-mazo.html">Nuevo mazo</a>
+        </div>
+      </section>
+
+      <section class="seccion" aria-labelledby="titulo-ordenador">
+        <div class="seccion-titulo">
+          <h2 id="titulo-ordenador">Mazos del ordenador</h2>
+          <p>En cada partida el ordenador usa uno de ellos, elegido al azar.</p>
+        </div>
+        <div class="lista-mazos">
+          <article class="tablero mazo">
+            <div class="mazo-cabecera">
+              <div>
+                <h3>Furia Elemental</h3>
+                <p>Ofensivo: prioriza el ataque</p>
+              </div>
+              <span class="etiqueta">Ordenador</span>
+            </div>
+            <!-- Lomo: una franja por carta con el color de su elemento. -->
+            <ul class="lomo" aria-hidden="true"><li class="es-fuego" title="Dragón Ígneo"></li><li class="es-fuego" title="Salamandra Ámbar"></li><li class="es-fuego" title="Zorro Solar"></li><li class="es-agua" title="Sirena de Coral"></li><li class="es-agua" title="Náiade de Bruma"></li><li class="es-planta" title="Lobo de Musgo"></li><li class="es-planta" title="Espinazo Verde"></li><li class="es-planta" title="Dríada del Alba"></li></ul>
+            <ul class="recuento-elementos"><li><span class="elemento es-fuego">3 Fuego</span></li><li><span class="elemento es-agua">2 Agua</span></li><li><span class="elemento es-planta">3 Planta</span></li></ul>
+            <div class="coste-mazo">
+              <div class="coste-mazo-texto"><span>Coste</span><span class="cifra">98 / 100</span></div>
+              <progress value="98" max="100">98 de 100 puntos</progress>
+            </div>
+            <details class="mazo-cartas">
+              <summary>Ver las ocho cartas</summary>
+              <ul><li>Dragón Ígneo</li><li>Salamandra Ámbar</li><li>Zorro Solar</li><li>Sirena de Coral</li><li>Náiade de Bruma</li><li>Lobo de Musgo</li><li>Espinazo Verde</li><li>Dríada del Alba</li></ul>
+            </details>
+            <div class="mazo-pie">
+              <span class="texto-secundario">Mazo protegido: solo consulta.</span>
+            </div>
+          </article>
+          <article class="tablero mazo">
+            <div class="mazo-cabecera">
+              <div>
+                <h3>Guardianes del Nexus</h3>
+                <p>Defensivo: prioriza la resistencia</p>
+              </div>
+              <span class="etiqueta">Ordenador</span>
+            </div>
+            <!-- Lomo: una franja por carta con el color de su elemento. -->
+            <ul class="lomo" aria-hidden="true"><li class="es-fuego" title="Gólem de Magma"></li><li class="es-fuego" title="Zorro Solar"></li><li class="es-agua" title="Tortuga Abisal"></li><li class="es-agua" title="Centinela de Mareas"></li><li class="es-agua" title="Náiade de Bruma"></li><li class="es-planta" title="Ent Ancestral"></li><li class="es-planta" title="Guardián de Raíces"></li><li class="es-planta" title="Dríada del Alba"></li></ul>
+            <ul class="recuento-elementos"><li><span class="elemento es-fuego">2 Fuego</span></li><li><span class="elemento es-agua">3 Agua</span></li><li><span class="elemento es-planta">3 Planta</span></li></ul>
+            <div class="coste-mazo">
+              <div class="coste-mazo-texto"><span>Coste</span><span class="cifra">100 / 100</span></div>
+              <progress value="100" max="100">100 de 100 puntos</progress>
+            </div>
+            <details class="mazo-cartas">
+              <summary>Ver las ocho cartas</summary>
+              <ul><li>Gólem de Magma</li><li>Zorro Solar</li><li>Tortuga Abisal</li><li>Centinela de Mareas</li><li>Náiade de Bruma</li><li>Ent Ancestral</li><li>Guardián de Raíces</li><li>Dríada del Alba</li></ul>
+            </details>
+            <div class="mazo-pie">
+              <span class="texto-secundario">Mazo protegido: solo consulta.</span>
+            </div>
+          </article>
+          <article class="tablero mazo">
+            <div class="mazo-cabecera">
+              <div>
+                <h3>Equilibrio Primordial</h3>
+                <p>Equilibrado: ataque y defensa similares</p>
+              </div>
+              <span class="etiqueta">Ordenador</span>
+            </div>
+            <!-- Lomo: una franja por carta con el color de su elemento. -->
+            <ul class="lomo" aria-hidden="true"><li class="es-fuego" title="Fénix Carmesí"></li><li class="es-fuego" title="Gólem de Magma"></li><li class="es-fuego" title="Zorro Solar"></li><li class="es-agua" title="Sirena de Coral"></li><li class="es-agua" title="Tortuga Abisal"></li><li class="es-planta" title="Espinazo Verde"></li><li class="es-planta" title="Guardián de Raíces"></li><li class="es-planta" title="Dríada del Alba"></li></ul>
+            <ul class="recuento-elementos"><li><span class="elemento es-fuego">3 Fuego</span></li><li><span class="elemento es-agua">2 Agua</span></li><li><span class="elemento es-planta">3 Planta</span></li></ul>
+            <div class="coste-mazo">
+              <div class="coste-mazo-texto"><span>Coste</span><span class="cifra">100 / 100</span></div>
+              <progress value="100" max="100">100 de 100 puntos</progress>
+            </div>
+            <details class="mazo-cartas">
+              <summary>Ver las ocho cartas</summary>
+              <ul><li>Fénix Carmesí</li><li>Gólem de Magma</li><li>Zorro Solar</li><li>Sirena de Coral</li><li>Tortuga Abisal</li><li>Espinazo Verde</li><li>Guardián de Raíces</li><li>Dríada del Alba</li></ul>
+            </details>
+            <div class="mazo-pie">
+              <span class="texto-secundario">Mazo protegido: solo consulta.</span>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Pie común (candidato a fragmento). -->
+  <footer class="pie">
+    <div class="contenedor pie-interior">
+      <span>Creature Nexus, edición de aula</span>
+      <span>Maqueta HTML: la lógica de servidor está pendiente de implementar.</span>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Guía de desarrollo de Creature Nexus: organiza tus tareas y comprueba tus avances en cada etapa.">
+  <title>Guía de desarrollo · Creature Nexus</title>
+  <link rel="stylesheet" href="../static/css/creature-nexus.css">
+  <style>
+    /* Ancho exclusivo de la documentación: conserva el CSS de las pantallas del juego. */
+    :root { --ancho: 1320px; }
+
+
+    /* Esta página solo añade presentación; el diseño base vive en creature-nexus.css. */
+    .mapa-contenedor { display:grid; grid-template-columns:218px minmax(0,1fr); gap:36px; align-items:start; }
+    .mapa-indice { position:sticky; top:22px; }
+    .mapa-indice h2 { color:var(--sobre-mesa); font-size:23px; margin-bottom:10px; }
+    .mapa-indice ol { list-style:none; padding:0; margin:0; }
+    .mapa-indice a { display:block; padding:9px 11px; border-radius:9px; text-decoration:none; color:var(--sobre-mesa-2); }
+    .mapa-indice a:hover, .mapa-indice a:focus-visible { background:var(--mesa-oscura); color:var(--sobre-mesa); }
+    .mapa-indice a span { font-weight:700; color:var(--oro); margin-right:6px; }
+    .mapa-indice .mapa-nota { padding:14px; border:2px solid var(--mesa-clara); border-radius:12px; margin-top:20px; color:var(--sobre-mesa-2); font-size:14px; }
+    .mapa-indice .mapa-nota strong { display:block; color:var(--oro-claro); margin-bottom:5px; }
+    .mapa-hero { background:var(--tablero); color:var(--tinta); border:var(--borde); border-radius:20px; padding:22px 26px 25px; box-shadow:var(--sombra-tablero); position:relative; overflow:hidden; margin-bottom:22px; }
+    .mapa-hero::after {content:'✦'; position:absolute; right:-10px; bottom:-58px; color:var(--tablero-2); font-size:220px; line-height:1; pointer-events:none; }
+    .mapa-hero h2 {font-size:28px; margin-bottom:10px; position:relative; z-index:1; }
+    .mapa-hero p {color:var(--texto-2); max-width:66ch; margin:0; position:relative; z-index:1; }
+    .mapa-hero .pergamino-sub { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#695386; margin-bottom:6px; }
+    .brujula-banda {display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin-top:22px; position:relative; z-index:1; }
+    .brujula-banda a { display:block; text-align:center; text-decoration:none; background:var(--tablero-2); border:2px solid var(--tinta); border-radius:12px; padding:11px 5px; font-family:var(--titulo); line-height:1.1; font-size:18px; }
+    .brujula-banda a:hover { background:var(--oro-claro); }
+    .brujula-banda a::before { content:'';display:block;width:13px;height:13px;border:2px solid var(--tinta);border-radius:50%;margin:0 auto 8px;background:var(--oro); }
+    .brujula-banda .s2::before {background:var(--planta);} .brujula-banda .s3::before {background:var(--agua);} .brujula-banda .s4::before {background:var(--fuego);}
+    .mapa-fase { scroll-margin-top:22px; padding:22px 0 8px; }
+    .mapa-fase-cabecera { display:flex; align-items:center; gap:15px; margin-bottom:13px; }
+    .mapa-sello { flex:none; width:56px; height:56px; border:3px solid var(--tinta); border-radius:14px; display:grid;place-items:center; background:var(--oro); color:var(--tinta); font:23px var(--titulo); transform:rotate(-6deg); box-shadow:0 3px 0 var(--mesa-oscura); }
+    .mapa-fase.p2 .mapa-sello {background:var(--planta-tinte);} .mapa-fase.p3 .mapa-sello {background:var(--agua-tinte);} .mapa-fase.p4 .mapa-sello {background:var(--fuego-tinte);}
+    .mapa-fase-cabecera h2 {font-size:32px; margin-bottom:4px;}
+    .mapa-fase-cabecera p {margin:0; color:var(--sobre-mesa-2); font-size:15px;}
+    .mapa-trayecto {list-style:none; margin:0; padding:0 0 0 34px; position:relative; }
+    .mapa-trayecto::before {content:''; position:absolute; left:15px; top:8px; bottom:12px; width:0; border-left:4px dashed var(--oro); opacity:.8; }
+    .mapa-fase.p2 .mapa-trayecto::before {border-color:var(--planta);} .mapa-fase.p3 .mapa-trayecto::before {border-color:var(--agua);} .mapa-fase.p4 .mapa-trayecto::before {border-color:var(--fuego);}
+    .mapa-etapa {position:relative; margin:0 0 17px; }
+    .mapa-etapa::before { content:''; width:21px; height:21px; border:3px solid var(--tinta); background:var(--oro); border-radius:50%; position:absolute; left:-28px; top:30px; z-index:1; box-shadow:0 0 0 3px var(--mesa); }
+    .mapa-fase.p2 .mapa-etapa::before {background:var(--planta);} .mapa-fase.p3 .mapa-etapa::before {background:var(--agua);} .mapa-fase.p4 .mapa-etapa::before {background:var(--fuego);}
+    .etapa-ficha {padding:19px 22px 17px; border:var(--borde); border-radius:15px; box-shadow:var(--sombra-tablero); background:var(--tablero); color:var(--tinta); }
+    .etapa-superior {display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; }
+    .etapa-tipo {font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--texto-2); }
+    .etapa-paso {display:flex; gap:12px; align-items:baseline; margin:5px 0 12px; }
+    .etapa-numero { color:var(--texto-3); font:29px var(--titulo); }
+    .etapa-paso h3 { font-size:26px; margin:0; }
+    .etapa-ficha > p {color:var(--texto-2); margin-bottom:12px; line-height:1.6; }
+    .prueba-paso { border-left:5px solid var(--oro); background:var(--tablero-2); padding:10px 13px; border-radius:0 9px 9px 0; margin:8px 0 0; color:var(--tinta); font-size:15px; }
+    .mapa-fase.p2 .prueba-paso {border-color:var(--planta);} .mapa-fase.p3 .prueba-paso {border-color:var(--agua);} .mapa-fase.p4 .prueba-paso {border-color:var(--fuego);}
+    .prueba-paso strong {display:block; margin-bottom:3px; }
+    .sello-check {display:inline-flex; align-items:center; gap:7px; border:2px solid var(--tinta); padding:5px 10px; border-radius:8px; background:var(--tablero-2); cursor:pointer; color:var(--tinta); font-size:13px; font-weight:700; user-select:none; }
+    .sello-check:has(input:checked) { background:var(--planta-tinte); }
+    .sello-check input {width:17px; height:17px; accent-color:var(--planta); margin:0; }
+    .mapa-premio {background:var(--oro-claro); color:var(--tinta); margin-top:18px; padding:23px 25px; position:relative; border-radius:16px; border:var(--borde); box-shadow:var(--sombra-tablero);}
+    .mapa-premio h2 {font-size:29px; margin-bottom:8px;}
+    .mapa-premio p {margin-bottom:14px; max-width:70ch; }
+    .mapa-premio .boton {margin-right:9px; margin-bottom:8px;}
+    .leyenda-oro {color:var(--oro-claro); font-weight:700; font-size:13px; letter-spacing:.09em; text-transform:uppercase; }
+    @media (max-width:920px){.mapa-contenedor{grid-template-columns:1fr;gap:12px}.mapa-indice{position:static}.mapa-indice ol{display:flex;gap:6px;flex-wrap:wrap}.mapa-indice .mapa-nota{margin-top:10px}.mapa-fase{padding-top:10px;}}
+    @media (max-width:600px){.brujula-banda{grid-template-columns:repeat(2,1fr)}.etapa-paso h3{font-size:23px}.mapa-fase-cabecera h2{font-size:28px}.mapa-trayecto{padding-left:26px}.mapa-etapa::before{left:-25px}.mapa-trayecto::before{left:12px}}
+    @media print {body{background:#fff;color:#222}.cabecera,.pie,.mapa-indice,.encabezado-acciones,.sello-check,.brujula-banda{display:none!important}.mapa-contenedor{display:block}.contenedor{width:100%}.mapa-fase-cabecera h2{color:#222}.mapa-fase-cabecera p{color:#444}.etapa-ficha,.mapa-hero,.mapa-premio{box-shadow:none;break-inside:avoid}.mapa-etapa{break-inside:avoid}}
+
+  </style>
+</head>
+<body>
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+  <header class="cabecera">
+    <div class="contenedor cabecera-interior">
+      <a class="marca" href="../templates/inicio.html"><span class="marca-simbolo" aria-hidden="true"><span></span><span></span><span></span></span>Creature Nexus</a>
+      <nav class="nav-principal" aria-label="Documentación">
+        <a class="nav-enlace" href="../README.html">Guía de inicio</a>
+        <a class="nav-enlace es-actual" href="guia-de-desarrollo.html" aria-current="page">Guía de desarrollo</a>
+        <a class="nav-enlace" href="guia-componentes.html">Componentes</a>
+        <a class="nav-enlace" href="../templates/inicio.html">Maquetas</a>
+      </nav>
+    </div>
+  </header>
+  <main id="contenido">
+    <div class="contenedor">
+      <div class="encabezado">
+        <div>
+          <span class="leyenda-oro">Tu ruta de desarrollo</span>
+          <h1>Guía de desarrollo</h1>
+          <p>Tienes diez paradas para construir Creature Nexus paso a paso. Sigue el recorrido recomendado y comprueba tus avances en cada etapa.</p>
+        </div>
+        <div class="encabezado-acciones"><a class="boton boton-principal" href="#fase-1">Comenzar la ruta</a></div>
+      </div>
+      <div class="mapa-contenedor">
+        <nav class="mapa-indice" aria-label="Etapas de desarrollo">
+          <h2>Las cuatro fases</h2>
+          <ol>
+            <li><a href="#fase-1"><span>I</span> Preparar el proyecto</a></li>
+            <li><a href="#fase-2"><span>II</span> Criaturas y mazos</a></li>
+            <li><a href="#fase-3"><span>III</span> La partida</a></li>
+            <li><a href="#fase-4"><span>IV</span> La comprobación final</a></li>
+          </ol>
+         
+        </nav>
+        <div>
+          <section class="mapa-hero" aria-labelledby="titulo-ruta">
+            <p class="pergamino-sub">Plan de desarrollo de Creature Nexus</p>
+            <h2 id="titulo-ruta">De la primera pantalla a la última ronda</h2>
+            <p>Avanza por etapas. En cada parada hay una misión y una <strong>prueba de paso</strong>: algo que deberías poder hacer con tu aplicación antes de continuar. Procura que cada avance funcione antes de pasar al siguiente.</p>
+            <div class="brujula-banda" aria-label="Las cuatro fases del recorrido">
+              <a href="#fase-1" class="s1">I · Preparar</a>
+              <a href="#fase-2" class="s2">II · Construir</a>
+              <a href="#fase-3" class="s3">III · Jugar</a>
+              <a href="#fase-4" class="s4">IV · Comprobar</a>
+            </div>
+          </section>
+        
+          <section class="mapa-fase p1" id="fase-1" aria-labelledby="titulo-fase-1">
+            <div class="mapa-fase-cabecera">
+              <span class="mapa-sello" aria-hidden="true">I</span>
+              <div><span class="leyenda-oro">Fase I · Preparación</span><h2 id="titulo-fase-1">Preparar el proyecto</h2><p>Antes de construir el juego, asegúrate de tener un terreno firme.</p></div>
+            </div>
+            <ol class="mapa-trayecto">
+              <li class="mapa-etapa">
+                <article class="etapa-ficha">
+                  <div class="etapa-superior">
+                    <span class="etapa-tipo">Parada 01 · Reconocimiento</span>
+                    <label class="sello-check" for="check-01"><input type="checkbox" id="check-01" aria-label="Marcar como completada la parada 01"> Superada</label>
+                  </div>
+                  <div class="etapa-paso"><span class="etapa-numero" aria-hidden="true">01</span><h3>Explorar el terreno</h3></div>
+                  <p>Recorre las maquetas, consulta los recursos y entiende qué sucede en cada pantalla. Localiza las reglas que afectan a cartas, mazos y partidas.</p>
+                  <div class="prueba-paso"><strong>Prueba de paso</strong>Puedes explicar el recorrido del juego desde la portada hasta el historial sin tener que adivinar qué hace cada página.</div>
+                </article>
+              </li>
+              <li class="mapa-etapa">
+                <article class="etapa-ficha">
+                  <div class="etapa-superior">
+                    <span class="etapa-tipo">Parada 02 · Primer arranque</span>
+                    <label class="sello-check" for="check-02"><input type="checkbox" id="check-02" aria-label="Marcar como completada la parada 02"> Superada</label>
+                  </div>
+                  <div class="etapa-paso"><span class="etapa-numero" aria-hidden="true">02</span><h3>Abrir el portal</h3></div>
+                  <p>Pon en marcha la aplicación e integra los recursos visuales para que el juego tenga una primera pantalla accesible.</p>
+                  <div class="prueba-paso"><strong>Prueba de paso</strong>La página de inicio se abre desde tu aplicación y muestra correctamente estilos e ilustraciones.</div>
+                </article>
+              </li>
+              <li class="mapa-etapa">
+                <article class="etapa-ficha">
+                  <div class="etapa-superior">
+                    <span class="etapa-tipo">Parada 03 · Datos de partida</span>
+                    <label class="sello-check" for="check-03"><input type="checkbox" id="check-03" aria-label="Marcar como completada la parada 03"> Superada</label>
+                  </div>
+                  <div class="etapa-paso"><span class="etapa-numero" aria-hidden="true">03</span><h3>Poblar el Nexus</h3></div>
+                  <p>Prepara el almacenamiento y consigue que el mundo comience con sus elementos, criaturas y mazos del ordenador.</p>
+                  <div class="prueba-paso"><strong>Prueba de paso</strong>Los datos iniciales están disponibles de forma persistente y los mazos del ordenador tienen sus cartas correspondientes.</div>
+                </article>
+              </li>
+            </ol>
+          </section>
+          <section class="mapa-fase p2" id="fase-2" aria-labelledby="titulo-fase-2">
+            <div class="mapa-fase-cabecera">
+              <span class="mapa-sello" aria-hidden="true">II</span>
+              <div><span class="leyenda-oro">Fase II · El bestiario</span><h2 id="titulo-fase-2">Criaturas y mazos</h2><p>Ya has preparado los datos del juego. Ahora consigue que tu aplicación responda a las acciones de quien la utiliza.</p></div>
+            </div>
+            <ol class="mapa-trayecto">
+              <li class="mapa-etapa">
+                <article class="etapa-ficha">
+                  <div class="etapa-superior">
+                    <span class="etapa-tipo">Parada 04 · Consulta</span>
+                    <label class="sello-check" for="check-04"><input type="checkbox" id="check-04" aria-label="Marcar como completada la parada 04"> Superada</label>
+                  </div>
+                  <div class="etapa-paso"><span class="etapa-numero" aria-hidden="true">04</span><h3>Abrir el bestiario</h3></div>
+                  <p>Haz que el catálogo muestre las criaturas realmente disponibles y que el filtro por elemento deje de ser una simple maqueta.</p>
+                  <div class="prueba-paso"><strong>Prueba de paso</strong>El catálogo responde a cambios en los datos sin tener que modificar manualmente el HTML.</div>
+                </article>
+              </li>
+              <li class="mapa-etapa">
+                <article class="etapa-ficha">
+                  <div class="etapa-superior">
+                    <span class="etapa-tipo">Parada 05 · Gestión</span>
+                    <label class="sello-check" for="check-05"><input type="checkbox" id="check-05" aria-label="Marcar como completada la parada 05"> Superada</label>
+                  </div>
+                  <div class="etapa-paso"><span class="etapa-numero" aria-hidden="true">05</span><h3>El taller de criaturas</h3></div>
+                  <p>Permite crear, modificar y eliminar criaturas cuando las reglas lo permitan. Decide qué imagen mostrarás cuando una criatura no tenga una ilustración personalizada.</p>
+                  <div class="prueba-paso"><strong>Prueba de paso</strong>Una criatura nueva aparece en el catálogo y los cambios prohibidos se rechazan correctamente.</div>
+                </article>
+              </li>
+              <li class="mapa-etapa">
+                <article class="etapa-ficha">
+                  <div class="etapa-superior">
+                    <span class="etapa-tipo">Parada 06 · Construcción</span>
+                    <label class="sello-check" for="check-06"><input type="checkbox" id="check-06" aria-label="Marcar como completada la parada 06"> Superada</label>
+                  </div>
+                  <div class="etapa-paso"><span class="etapa-numero" aria-hidden="true">06</span><h3>Forjar un mazo</h3></div>
+                  <p>Conecta el constructor de mazos con las criaturas disponibles y permite gestionar mazos personales respetando las condiciones del juego.</p>
+                  <div class="prueba-paso"><strong>Prueba de paso</strong>Puedes guardar un mazo válido, consultar su composición y comprobar que uno inválido no llega a guardarse.</div>
+                </article>
+              </li>
+            </ol>
+          </section>
+          <section class="mapa-fase p3" id="fase-3" aria-labelledby="titulo-fase-3">
+            <div class="mapa-fase-cabecera">
+              <span class="mapa-sello" aria-hidden="true">III</span>
+              <div><span class="leyenda-oro">Fase III · La arena</span><h2 id="titulo-fase-3">La partida cobra vida</h2><p>Lo que antes eran pantallas se convierte en una experiencia jugable.</p></div>
+            </div>
+            <ol class="mapa-trayecto">
+              <li class="mapa-etapa">
+                <article class="etapa-ficha">
+                  <div class="etapa-superior">
+                    <span class="etapa-tipo">Parada 07 · Preparación de partida</span>
+                    <label class="sello-check" for="check-07"><input type="checkbox" id="check-07" aria-label="Marcar como completada la parada 07"> Superada</label>
+                  </div>
+                  <div class="etapa-paso"><span class="etapa-numero" aria-hidden="true">07</span><h3>Abrir las puertas de la arena</h3></div>
+                  <p>Convierte la pantalla de nueva partida en el inicio de un enfrentamiento real. Permite elegir 3, 5 o 7 rondas y selecciona aleatoriamente uno de los tres mazos del ordenador.</p>
+                  <div class="prueba-paso"><strong>Prueba de paso</strong>Al comenzar se muestran tu alias, el nombre de tu mazo, el mazo rival seleccionado y el número de rondas elegido. También se muestra una primera mano lista para jugar.</div>
+                </article>
+              </li>
+              <li class="mapa-etapa">
+                <article class="etapa-ficha">
+                  <div class="etapa-superior">
+                    <span class="etapa-tipo">Parada 08 · Combate</span>
+                    <label class="sello-check" for="check-08"><input type="checkbox" id="check-08" aria-label="Marcar como completada la parada 08"> Superada</label>
+                  </div>
+                  <div class="etapa-paso"><span class="etapa-numero" aria-hidden="true">08</span><h3>Resolver las rondas de la partida</h3></div>
+                  <p>Define tus reglas de enfrentamiento a partir del ataque, la defensa y el elemento. Haz que cada carta elegida se enfrente a otra seleccionada automáticamente por el ordenador, sin repetir cartas. Muestra el resultado de cada ronda y continúa hasta completar las rondas elegidas.</p>
+                  <div class="prueba-paso"><strong>Prueba de paso</strong>Puedes completar partidas de 3, 5 y 7 rondas. Compruebas que el marcador, las cartas utilizadas y la explicación de cada enfrentamiento son coherentes con tus reglas.</div>
+                </article>
+              </li>
+              <li class="mapa-etapa">
+                <article class="etapa-ficha">
+                  <div class="etapa-superior">
+                    <span class="etapa-tipo">Parada 09 · Resultados</span>
+                    <label class="sello-check" for="check-09"><input type="checkbox" id="check-09" aria-label="Marcar como completada la parada 09"> Superada</label>
+                  </div>
+                  <div class="etapa-paso"><span class="etapa-numero" aria-hidden="true">09</span><h3>Escribir la crónica</h3></div>
+                  <p>Muestra el desenlace de la partida con el nombre de ambos mazos y las rondas jugadas. Guarda únicamente las partidas finalizadas y permite filtrar el historial por partidas de 3, 5 o 7 rondas.</p>
+                  <div class="prueba-paso"><strong>Prueba de paso</strong>El resultado final coincide con las rondas ganadas. Una partida terminada aparece en el historial con su tipo y puedes localizarla mediante el filtro correspondiente. Una partida abandonada no aparece.</div>
+                </article>
+              </li>
+            </ol>
+          </section>
+          <section class="mapa-fase p4" id="fase-4" aria-labelledby="titulo-fase-4">
+            <div class="mapa-fase-cabecera">
+              <span class="mapa-sello" aria-hidden="true">IV</span>
+              <div><span class="leyenda-oro">Fase IV · Comprobación</span><h2 id="titulo-fase-4">La última comprobación</h2><p>Una aplicación no está terminada solo porque funcione el recorrido más fácil.</p></div>
+            </div>
+            <ol class="mapa-trayecto">
+              <li class="mapa-etapa">
+                <article class="etapa-ficha">
+                  <div class="etapa-superior">
+                    <span class="etapa-tipo">Parada 10 · Verificación final</span>
+                    <label class="sello-check" for="check-10"><input type="checkbox" id="check-10" aria-label="Marcar como completada la parada 10"> Superada</label>
+                  </div>
+                  <div class="etapa-paso"><span class="etapa-numero" aria-hidden="true">10</span><h3>Verificar el proyecto completo</h3></div>
+                  <p>Recorre la aplicación desde el comienzo como si fueras una persona que la usa por primera vez. Prueba los tres tipos de partida, el filtro del historial, las reglas que has diseñado y las operaciones que deben rechazarse.</p>
+                  <div class="prueba-paso"><strong>Prueba de paso</strong>Puedes demostrar partidas de diferentes duraciones, explicar tus reglas de combate y comprobar que las validaciones también funcionan cuando algo sale mal.</div>
+                </article>
+              </li>
+            </ol>
+          </section>
+          <section class="mapa-premio" aria-labelledby="titulo-tesoro">
+            <h2 id="titulo-tesoro">Objetivo final</h2>
+            <p>El objetivo es que tengas un juego funcional y que conozcas su código lo suficiente para localizar errores, realizar comprobaciones y adaptar sus funcionalidades cuando sea necesario.</p>
+            <a class="boton boton-principal" href="../README.html">Volver a la guía de inicio</a>
+            <a class="boton" href="guia-componentes.html">Consultar componentes</a>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="pie"><div class="contenedor pie-interior"><span>Creature Nexus, edición de aula</span><span>Orientación del recorrido.</span></div></footer>
+</body>
+</html>
